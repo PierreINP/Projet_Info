@@ -20,6 +20,7 @@ extern string operatorList[];
 		}
 	}
 	name = nameLexeme;
+	associateType();
     }
 
     //Accesseurs
@@ -38,22 +39,24 @@ extern string operatorList[];
 	
 
     //Methodes
+
     void Lexeme::associateType(){
-	//cout << "dans associateType : "<< name << endl;
-				
+	/*
+	IN : lexeme
+	OUT : lexeme's type
+	It searchs on special/keyword/operator list contained in syntaxConstrains.cpp to define type
+	*/
+	type = "id";			
 	for(int i = 0; i < N ; i++){	
-		if(name == keywordList[i]){
-			//cout<< "dans Keyword" << endl; 
+		if(name == keywordList[i]){ 
 			type = "keyword";
 			break;
 		}
-		else if (name[0] == specialList[i]){
-			//cout<< "dans Special" << endl; 
+		else if (name[0] == specialList[i]){ 
 			type = "special";
 			break;
 		}
 		else if (name == operatorList[i]){
-			//cout<< "dans Special" << endl; 
 			type = "special";
 			break;
 		}
@@ -64,14 +67,25 @@ extern string operatorList[];
     }
 
     bool Lexeme::validIdentifier() {
+	/*
+	IN : lexeme identifier
+	OUT : bool if lexeme fit to rules 
+	Rules :
+		1/ No "_" at beginning or end
+		2/ No 0-9 at beginning
+		3/ between, juste have alphanum or "_"
+	*/
 	int len = this->getName().size();
 	string id = getName();
 	
 	int i;
+	// No "_" at beginning or end
 	if (id[0] == 95) {return false;}
 	else if (id[len-1] == 95) {return false;}
+	// No 0-9 at beginning
 	else if (id[0]  >= 48 && id[0] <= 57 ){return false;}
 
+	// between, juste have alphanum or "_"
 	for (i =0; i < len; i++)
 	{
 		//caractère de a à z
