@@ -7,6 +7,7 @@ Output : Data structure
 #include"./../Header/Lexeur.h"
 #include "./../Header/Lexeme.h"
 #define path_size 100
+#define nb_separator 10
 
 extern string keywordList[];
 extern char specialList[];
@@ -51,17 +52,36 @@ list<Lexeme> split_line(string line)
 	int r = 0;
 	int i;
 
+	int sep;
 	//cout << "Line of " << size << " characters" << endl;
 	//cout << line << endl;
 
 	for(i = 0; i < size; i++) {
 		if(line[i]== 32) {
 		     Lexeme word(line.substr(r, i-r));
-		     //cout << word.getName() << endl;
+		     cout << "MOT1 : "<< word.getName() << endl;
+		     word.avoidSpace();
+	  	     cout << "MOT2 : "<< word.getName() << endl;
 		     my_list.push_back(word);
       		     r=i+1;
     		}
-  	}
+		else {
+			for (sep = 0; sep < nb_separator; sep++) {
+				if(line[i]== specialList[sep]) {
+				     Lexeme word(line.substr(r, i-r));
+				     word.avoidSpace();
+				     //cout << "MOT : "  << word.getName() << endl;
+				     my_list.push_back(word);
+				     
+				     Lexeme separator(line[i]);
+				     //cout << "SEP : " << separator.getName() << endl;
+				     my_list.push_back(separator);
+				     r=i+1;
+		      		     
+		    		}
+			}
+		}  	
+	}
 Lexeme fin(line.substr(r, size-r));
 my_list.push_back(fin);
 return my_list;

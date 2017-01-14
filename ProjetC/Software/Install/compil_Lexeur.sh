@@ -1,2 +1,2 @@
-g++ syntaxConstraints.cpp Source/Lexeme.cpp Source/Lexeur.cpp Source/test.cpp -o Binaries/Lexeur
+g++ syntaxConstraints.cpp Source/Lexeme.cpp Source/Lexeur.cpp Source/main.cpp -o Binaries/Lexeur
 ./Binaries/Lexeur

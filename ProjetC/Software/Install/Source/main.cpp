@@ -20,6 +20,7 @@ int main()
 	lexeme_list = readSource(fichier);
 
 	//Test lecture lexeme dans liste
+		
 	for(iter = lexeme_list.begin(); iter != lexeme_list.end(); iter ++)
 	{
 		cout << *iter << endl;

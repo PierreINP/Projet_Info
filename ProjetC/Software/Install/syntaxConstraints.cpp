@@ -34,7 +34,7 @@ string keywordList[N] = {
 };
 
 char specialList[N] = {
-	".;:()\"'"	
+	".;:()\"'[]"	
 };
 
 string operatorList[N] = {

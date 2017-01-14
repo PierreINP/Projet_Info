@@ -13,7 +13,8 @@ private:
 	string type;
 public:
     Lexeme();
-    Lexeme(string nameLexeme);       	
+    Lexeme(string nameLexeme);  
+    Lexeme(char nameLexeme);      	
     ~Lexeme() {}    					
 
     //Accesseurs
@@ -26,6 +27,7 @@ public:
     //Methodes
     void associateType();
     bool validIdentifier();
+    void avoidSpace();
     //bool Lexeme::checkID(const string & name);
     string toString() const;
 
