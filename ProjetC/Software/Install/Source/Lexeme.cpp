@@ -21,6 +21,7 @@ extern string operatorList[];
 	}
 	name = nameLexeme;
 	type = "id";
+	associateType();
     }
     
        Lexeme::Lexeme(char nameLexeme){

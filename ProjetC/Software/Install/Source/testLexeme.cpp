@@ -9,6 +9,7 @@ int main() {
 	cout << endl << "--------------------------"<< endl << "Test 1 : Associate Type" << endl << "--------------------------" << endl;
 	Lexeme Lex1("Entity");
 	Lexeme Lex2(";");
+<<<<<<< HEAD
 	Lexeme Lex3("+");
 	Lexeme Lex4("an_id");
 	Lex1.associateType();
@@ -49,4 +50,41 @@ int main() {
 	Lex10 = Lex1;
 	cout << "After operation : Lexeme = " << Lex10 << endl;
 	assert(Lex10.getName() == "entity");
+=======
+	Lexeme Lex5, Lex6, Lex7, Lex8, Lex9, Lex10;
+
+
+	Lex5 = "_ident1f1ant";
+	Lex6 = "ident1f1ant";
+	Lex7 = "_ident1f1ant_";
+	Lex8 = "ident1f1ant_";
+	Lex9 = "8dent1f1ant_";
+	Lex10 = "test_ent";
+
+	/*Lex1.associateType();
+	Lex2.associateType();
+	Lex10.associateType();*/
+	cout<< "Name " <<Lex1 << "| Type : " <<Lex1.getType() << endl;
+	cout<< "Name "<< Lex2 << "| Type : " <<Lex2.getType() << endl;
+	cout<< "Name "<< Lex10 << "| Type : " <<Lex10.getType() << endl;
+
+
+	cout << endl << "Test 2 : Opérateur = " << endl;
+
+	Lexeme Lex3("Salut");
+	cout << "Avant Lexeme = " << Lex3 << endl;
+	cout << Lex3 << " = " << Lex1 <<endl;
+	Lex3 = Lex1;
+	cout << "Après Lexeme =  " << Lex3 << endl;
+
+		
+	cout<< "Test 3 : validIdentifier" << endl;
+
+	cout << Lex5 << Lex5.validIdentifier()<< endl 
+<< Lex6 << Lex6.validIdentifier()<< endl 
+<< Lex7 << Lex7.validIdentifier()<< endl 
+<< Lex8 << Lex8.validIdentifier()<< endl
+<< Lex9 << Lex9.validIdentifier()<< endl
+<< Lex10 << Lex10.validIdentifier()<< endl;
+>>>>>>> c69983e5d0f73f2d023685b0cdfa7e4a1d92e1ee
 }
