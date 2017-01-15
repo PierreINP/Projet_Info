@@ -25,5 +25,4 @@ int main(void){
    //cout<< noeud1.<< endl;
    //cout << noeud1.getValue()<< endl;
   // cout << noeud1.
-
 }

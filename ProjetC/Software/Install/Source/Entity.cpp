@@ -1,52 +1,25 @@
-#include "Node.h"
+#include "./../Header/Entity.h"
 #include <iostream> 
 
 
 //builders
-Node::Node() {
-	/*vector<Node*>::iterator it;
-	for (it = parents.begin(); it != parents.end(); it++){
-		it = NULL;
-	} */
-	value = 1;
+Entity::Entity(){
+	label = "Entity"
 }
 
+Entity::Entity(string e_ID,list<Lexeme> struc) {
+	label = "Entity"
+	entity_ID = e_ID
+	structure = struc	
+}
 
-//Node::Node(const Node& orig {next = orig.next;type = orig.type;// values assignaton
-
-Node::~Node() {}
+Entity::~Entity(){}
 
 //methods
 
-void addSon(){
-   enfants.push_back()
-
-}
-/*bool Node::hasNext(){
-   if(parents != NULL)
-	return true;
-   else
-	return false;
-}*/
 
 //accessors
-//Node* Node::getNext(){return next;}
-int Node::getValue(){return value;}
-//Lexeme* Node::getLexeme(){return type;}
+	string getLabel(return label);
+	string getEntityID(return e_ID);
+	liste<Lexeme> getStructure(return structure);
 
-//modifiers
-/*void Node::setNext(Note* newNext){
-   if(newNext == NULL)
-	next = NULL;
-   else
-	next = newNext;//->next;
-}*/
-
-void Node::setValue(int val){
-   value = val;
-}
-
-/*
-void Node::setLexeme(int lexType){
-   type = lexType;
-}*/
