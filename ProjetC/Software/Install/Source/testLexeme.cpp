@@ -8,10 +8,22 @@ int main() {
 	cout<< "Test 1 : Associate Type" << endl;
 	Lexeme Lex1("Entity");
 	Lexeme Lex2(";");
+	Lexeme Lex5, Lex6, Lex7, Lex8, Lex9, Lex10;
+
+
+	Lex5 = "_ident1f1ant";
+	Lex6 = "ident1f1ant";
+	Lex7 = "_ident1f1ant_";
+	Lex8 = "ident1f1ant_";
+	Lex9 = "8dent1f1ant_";
+	Lex10 = "test_ent";
+
 	Lex1.associateType();
 	Lex2.associateType();
+	Lex10.associateType();
 	cout<< "Name " <<Lex1 << "| Type : " <<Lex1.getType() << endl;
-	cout<< "Name "<< Lex2 << "| Type : " <<Lex1.getType() << endl;
+	cout<< "Name "<< Lex2 << "| Type : " <<Lex2.getType() << endl;
+	cout<< "Name "<< Lex10 << "| Type : " <<Lex10.getType() << endl;
 
 
 	cout << endl << "Test 2 : Opérateur = " << endl;
@@ -24,15 +36,6 @@ int main() {
 
 		
 	cout<< "Test 3 : validIdentifier" << endl;
-
-	Lexeme Lex5, Lex6, Lex7, Lex8, Lex9, Lex10;
-
-	Lex5 = "_ident1f1ant";
-	Lex6 = "ident1f1ant";
-	Lex7 = "_ident1f1ant_";
-	Lex8 = "ident1f1ant_";
-	Lex9 = "8dent1f1ant_";
-	Lex10 = "test_ent";
 
 	cout << Lex5 << Lex5.validIdentifier()<< endl 
 << Lex6 << Lex6.validIdentifier()<< endl 

@@ -22,7 +22,8 @@ public:
     string getType() const;
 
     //Modifieurs
-    void setName(const string & nomLexeme);	
+    void setName(const string & nomLexeme);
+    void setType(const string & nomType);	
 
     //Methodes
     void associateType();

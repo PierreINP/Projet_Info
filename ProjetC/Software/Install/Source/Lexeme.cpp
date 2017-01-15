@@ -20,7 +20,7 @@ extern string operatorList[];
 		}
 	}
 	name = nameLexeme;
-	associateType();
+	type = "id";
     }
     
        Lexeme::Lexeme(char nameLexeme){
@@ -42,6 +42,9 @@ extern string operatorList[];
     	name = nomLexeme;
     }	
 	
+    void Lexeme::setType(const string & nomType){
+    	type = nomType;
+    }	
 
     //Methodes
 
@@ -51,22 +54,23 @@ extern string operatorList[];
 	OUT : lexeme's type
 	It searchs on special/keyword/operator list contained in syntaxConstrains.cpp to define type
 	*/
-	type = "id";			
+	type = "id";
+	setType("id");			
 	for(int i = 0; i < N ; i++){	
 		if(name == keywordList[i]){ 
 			type = "keyword";
+			setType("keyword");
 			break;
 		}
 		else if (name[0] == specialList[i]){ 
 			type = "special";
+			setType("special");
 			break;
 		}
 		else if (name == operatorList[i]){
-			type = "special";
+			type = "operator";
+			setType("operator");
 			break;
-		}
-		else{
-			
 		}
 	}	
     }
