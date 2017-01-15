@@ -21,5 +21,6 @@ using namespace std;
 
 list<Lexeme> readSource(char* file);
 list<Lexeme> split_line(string line);
+list<Lexeme> clearList (list<Lexeme> old_list);
 
 #endif

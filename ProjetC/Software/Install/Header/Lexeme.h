@@ -27,7 +27,6 @@ public:
     //Methodes
     void associateType();
     bool validIdentifier();
-    void avoidSpace();
     //bool Lexeme::checkID(const string & name);
     string toString() const;
 

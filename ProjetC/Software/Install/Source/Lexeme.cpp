@@ -107,22 +107,6 @@ extern string operatorList[];
 	return true;
 }
 
-    void Lexeme::avoidSpace() {/*
-	string name = this->getName();
-	int size = this->getName().size();
-	string newname;
-
-	int i,j = 0;
-	for(i = 0; i < size; i++) {
-		if (name[i] != 9 and name[i] != 32) {
-			newname[j] = name[i];
-			j++;
-		}		
-	}
-	newname[j] = '\0';
-	this->setName(newname);
-*/}
-
     void Lexeme::operator=(const string & b){
 	this->setName(b);
 }

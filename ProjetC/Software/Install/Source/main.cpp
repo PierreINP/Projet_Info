@@ -15,14 +15,19 @@ int main()
 	std::list<Lexeme> lexeme_list;
 	list<Lexeme>::iterator iter; 
 
-	//char fichier [path_size]= "/users/phelma/phelma2015/lamypi/ProjetC/SourceCode/test.vhdl";
+	
 	char fichier [path_size]= "../../../ProjetC/SourceCode/test.vhdl";
+	//Lancement de la routine (ouverture fichier, scan de chaque ligne + découpage)
 	lexeme_list = readSource(fichier);
+	//Suppression des éléments vides
+	lexeme_list = clearList(lexeme_list);
+	
 
-	//Test lecture lexeme dans liste
-		
+	//Test lecture de la liste de lexeme	
 	for(iter = lexeme_list.begin(); iter != lexeme_list.end(); iter ++)
 	{
+		//if ((*iter).getName()[0] == 13) {cout << "CHARRIOT" <<endl;}
+		//else if (iter->getName()[0] == 0 and iter->getName()[0] <= 32) {cout << "Merde" <<endl;}
 		cout << *iter << endl;
 	}	
 }
