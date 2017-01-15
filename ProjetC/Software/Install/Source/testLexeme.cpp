@@ -18,9 +18,9 @@ int main() {
 	Lex9 = "8dent1f1ant_";
 	Lex10 = "test_ent";
 
-	Lex1.associateType();
+	/*Lex1.associateType();
 	Lex2.associateType();
-	Lex10.associateType();
+	Lex10.associateType();*/
 	cout<< "Name " <<Lex1 << "| Type : " <<Lex1.getType() << endl;
 	cout<< "Name "<< Lex2 << "| Type : " <<Lex2.getType() << endl;
 	cout<< "Name "<< Lex10 << "| Type : " <<Lex10.getType() << endl;
