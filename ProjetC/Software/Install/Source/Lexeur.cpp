@@ -54,7 +54,7 @@ list<Lexeme> split_line(string line)
 	int r = 0;
 	int i;
 
-	int sep, ope;
+	int sep, ope, filler;
 	//cout << "Line of " << size << " characters" << endl;
 	//cout << line << endl;
 
@@ -90,34 +90,51 @@ list<Lexeme> split_line(string line)
 			Gestion des opérateurs char mais aussi opérateurs avec size > 1 (check de list[i] et list [i+1]) ...
 			*/
 
-			/*	
+				
 			for (ope = 0; ope < nb_operator; ope++) {
 				size_t len_ope = operatorList[ope].size();
+				cout << "Operateur : "<< operatorList[ope] << operatorList[ope].size() << endl;
 					
 				if(len_ope == 1) {
-			 	     if (line[i] == operatorList[ope][0]) {
-					     //séparation de la ligne si on rencontre un espace + saut du séparateur
-					     Lexeme word(line.substr(r, i-r));
-					     my_list.push_back(word);
-					     //Création d'un lexeme pour le séparateur
-					     Lexeme separator(line[i]);
-					     my_list.push_back(separator);
-					     r=i+1;
-				     }
-		      		     
-		    		}
-				else if(len_ope == 2) {
-				     if (line[i]== operatorList[ope][0] and line[i+1]== operatorList[ope][1]) {
-					     //séparation de la ligne si on rencontre un espace + saut du séparateur
-					     Lexeme word(line.substr(r, i-r));
-					     my_list.push_back(word);
-					     //Création d'un lexeme pour le séparateur
-					     Lexeme separator(line.substr(i, i+len_ope-1));
-					     my_list.push_back(separator);
-					     r=i+1;
+				     for (filler = 0; filler < nb_operator; filler++) {
+				 	     if (line[i] == operatorList[filler][0]) {
+						     //séparation de la ligne si on rencontre opérateur
+						     Lexeme word(line.substr(r, i-r));
+						     my_list.push_back(word);
+						     //Création d'un lexeme pour le séparateur
+						     Lexeme operateur(line[i]);
+						     my_list.push_back(operateur);
+						     r=i+1;
+					     }
 		      		     }
 		    		}
-			}*/
+				else if(len_ope == 2) {
+				     for (filler = 0; filler < nb_operator; filler++) {
+					     if (line[i]== operatorList[filler][0] and line[i+1]== operatorList[filler][1]) {
+						     //séparation de la ligne si on rencontre un espace + saut du séparateur
+						     Lexeme word(line.substr(r, i-r));
+						     my_list.push_back(word);
+						     //Création d'un lexeme pour le séparateur
+						     Lexeme operateur(line.substr(i, i+len_ope-1));
+						     my_list.push_back(operateur);
+						     r=i+1;
+			      		     }
+				     }		    		
+				}
+				else if(len_ope == 3) {
+				     for (filler = 0; filler < nb_operator; filler++) {
+					     if (line[i]== operatorList[filler][0] and line[i+1]== operatorList[filler][1] and line[i+2]== operatorList[filler][2]) {
+						     //séparation de la ligne si on rencontre un espace + saut du séparateur
+						     Lexeme word(line.substr(r, i-r));
+						     my_list.push_back(word);
+						     //Création d'un lexeme pour le séparateur
+						     Lexeme operateur(line.substr(i, i+len_ope-1));
+						     my_list.push_back(operateur);
+						     r=i+1;
+			      		     }
+				     }		    		
+				}
+			}
 
 
 
