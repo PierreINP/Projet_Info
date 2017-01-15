@@ -138,8 +138,6 @@ list<Lexeme> checkLexeme(list<Lexeme> old_list) {
 	list<Lexeme>::iterator iter;
 	list<Lexeme>::iterator local_iter; 
 
-	final_list = old_list;
-
 	int ope;
 	int pos = 0;
 
@@ -167,7 +165,7 @@ list<Lexeme> checkLexeme(list<Lexeme> old_list) {
 					tmp_list.push_back(mot);
 					
 					old_list.splice(iter, tmp_list);
-					cout << "ORIGIN : " << lex << " POS : " << pos << " MOT : " << mot << " OPE : " << operateur << endl;
+					//cout << "ORIGIN : " << lex << " POS : " << pos << " MOT : " << mot << " OPE : " << operateur << endl;
 					break;
 				}
 				//Si il est present dans la seconde moitié, découpe id puis opérateur + insertion dans la liste
@@ -178,29 +176,31 @@ list<Lexeme> checkLexeme(list<Lexeme> old_list) {
 					tmp_list.push_back(operateur);
 
 					old_list.splice(iter, tmp_list);
-					cout << "ORIGIN : " << lex << " POS : " << pos << " MOT : " << mot << " OPE : " << operateur << endl;
-					break;
-				}
-			}
-		}
-	}
-	//suppression de l'id faussé avec un operateur collé.
-	for(iter = old_list.begin(); iter != old_list.end(); iter ++)
-	{
-		(*iter).associateType();
-		if ((*iter).getType() == "id") {
-			for (ope = 0; ope < nb_operator; ope++) {
-				pos = (*iter).getName().find(operatorList[ope]);
-				if (pos != -1) {
-					cout << (*iter).getName() << endl;
-					old_list.erase(iter);
+					//cout << "ORIGIN : " << lex << " POS : " << pos << " MOT : " << mot << " OPE : " << operateur << endl;
 					break;
 				}
 			}
 		}
 	}
 
-cout << "OLD : " << old_list.size() << " FINAL : "<< final_list.size() << endl;
+	final_list = old_list;
+
+	//suppression de l'id faussé avec un operateur collé.
+	for(iter = final_list.begin(); iter != final_list.end(); iter ++)
+	{
+		(*iter).associateType();
+		if ((*iter).getType() == "id") {
+			for (ope = 0; ope < nb_operator; ope++) {
+				pos = (*iter).getName().find(operatorList[ope]);
+				if (pos != -1) {
+					//cout << (*iter).getName() << endl;
+					old_list.remove((*iter).getName());
+					break;
+				}
+			}
+		}
+	}
+
 return old_list;
 }
 

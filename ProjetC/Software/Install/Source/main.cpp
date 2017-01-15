@@ -23,7 +23,7 @@ int main()
 	lexeme_list = clearList(lexeme_list);
 	lexeme_list = checkLexeme(lexeme_list);
 	
-/*
+
 	//Test lecture de la liste de lexeme	
 	for(iter = lexeme_list.begin(); iter != lexeme_list.end(); iter ++)
 	{
@@ -31,5 +31,5 @@ int main()
 		//else if (iter->getName()[0] == 0 and iter->getName()[0] <= 32) {cout << "Merde" <<endl;}
 		cout << *iter << endl;
 	}
-*/	
+	
 }
