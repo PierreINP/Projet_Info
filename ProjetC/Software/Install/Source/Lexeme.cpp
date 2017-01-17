@@ -128,6 +128,10 @@ extern string operatorList[];
 	return out;
 }
 
+    bool operator==(const Lexeme &a, const Lexeme &b) {
+	return ((a.name == b.name) && (a.type == b.type));
+}
+
 
     
 

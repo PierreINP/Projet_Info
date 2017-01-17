@@ -33,6 +33,7 @@ public:
 
     //Fonctions amies
     friend ostream& operator<<(ostream& out, const Lexeme &l);
+    friend bool operator==(const Lexeme &a, const Lexeme &b);
     void operator=(const string & b);
 };
 

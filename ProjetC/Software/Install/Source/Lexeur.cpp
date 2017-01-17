@@ -84,63 +84,10 @@ list<Lexeme> split_line(string line)
 		      		     
 		    		}
 			}
-
-			/*
-			Séparation pour operatorList	
-			Gestion des opérateurs char mais aussi opérateurs avec size > 1 (check de list[i] et list [i+1]) ...
-			*/
-
-				
-			for (ope = 0; ope < nb_operator; ope++) {
-				size_t len_ope = operatorList[ope].size();
-				cout << "Operateur : "<< operatorList[ope] << operatorList[ope].size() << endl;
-					
-				if(len_ope == 1) {
-				     for (filler = 0; filler < nb_operator; filler++) {
-				 	     if (line[i] == operatorList[filler][0]) {
-						     //séparation de la ligne si on rencontre opérateur
-						     Lexeme word(line.substr(r, i-r));
-						     my_list.push_back(word);
-						     //Création d'un lexeme pour le séparateur
-						     Lexeme operateur(line[i]);
-						     my_list.push_back(operateur);
-						     r=i+1;
-					     }
-		      		     }
-		    		}
-				else if(len_ope == 2) {
-				     for (filler = 0; filler < nb_operator; filler++) {
-					     if (line[i]== operatorList[filler][0] and line[i+1]== operatorList[filler][1]) {
-						     //séparation de la ligne si on rencontre un espace + saut du séparateur
-						     Lexeme word(line.substr(r, i-r));
-						     my_list.push_back(word);
-						     //Création d'un lexeme pour le séparateur
-						     Lexeme operateur(line.substr(i, i+len_ope-1));
-						     my_list.push_back(operateur);
-						     r=i+1;
-			      		     }
-				     }		    		
-				}
-				else if(len_ope == 3) {
-				     for (filler = 0; filler < nb_operator; filler++) {
-					     if (line[i]== operatorList[filler][0] and line[i+1]== operatorList[filler][1] and line[i+2]== operatorList[filler][2]) {
-						     //séparation de la ligne si on rencontre un espace + saut du séparateur
-						     Lexeme word(line.substr(r, i-r));
-						     my_list.push_back(word);
-						     //Création d'un lexeme pour le séparateur
-						     Lexeme operateur(line.substr(i, i+len_ope-1));
-						     my_list.push_back(operateur);
-						     r=i+1;
-			      		     }
-				     }		    		
-				}
-			}
-
-
-
-	
-		}  	
+		}
 	}
+ 	
+	
 Lexeme fin(line.substr(r, size-r));
 my_list.push_back(fin);
 return my_list;
@@ -173,5 +120,87 @@ list<Lexeme> clearList (list<Lexeme> old_list) {
 	}
 	//cout << "list1 : " << old_list.size()<< endl << "list2 : " << cleared_list.size()<< endl;
 	return cleared_list;
+}
+
+list<Lexeme> search_Operator(string mot) {
+
+}
+
+list<Lexeme> checkLexeme(list<Lexeme> old_list) {
+	/*
+	IN : lexeme List
+	OUT : lexeme list
+	this function takes the lexeme list cleaned. Final vérif : séparation si un opérateur dans le lexeme + associate type + verif ID 
+	*/
+
+	std::list<Lexeme> final_list;
+	std::list<Lexeme> tmp_list;
+	list<Lexeme>::iterator iter;
+	list<Lexeme>::iterator local_iter; 
+
+	int ope;
+	int pos = 0;
+
+	
+
+	for(iter = old_list.begin(); iter != old_list.end(); iter ++)
+	{
+		tmp_list.clear();
+		//cout << *iter << endl;
+		
+		(*iter).associateType();
+		//Prend les id, dont ceux qui contiennent un operateur collé dans la même string
+		if ((*iter).getType() == "id") {
+			//Pour chaque opérateur, verifier si il est présent dans la string
+			for (ope = 0; ope < nb_operator; ope++) {
+				pos = (*iter).getName().find(operatorList[ope]);
+				size_t taille_mot = (*iter).getName().size();
+				string lex = (*iter).getName();
+
+				//Si il est present dans la première moitié, découpe operateur puis id + insertion dans la liste
+				if (pos != -1 and pos <= (taille_mot/2)) {
+					Lexeme operateur(lex.substr(pos, operatorList[ope].size() ));
+					Lexeme mot(lex.substr(pos + operatorList[ope].size(), lex.size()-1));
+					tmp_list.push_back(operateur);
+					tmp_list.push_back(mot);
+					
+					old_list.splice(iter, tmp_list);
+					//cout << "ORIGIN : " << lex << " POS : " << pos << " MOT : " << mot << " OPE : " << operateur << endl;
+					break;
+				}
+				//Si il est present dans la seconde moitié, découpe id puis opérateur + insertion dans la liste
+				else if (pos != -1 and pos >= (taille_mot/2)) {
+					Lexeme mot(lex.substr(0, pos));
+					Lexeme operateur(lex.substr(pos, operatorList[ope].size() ));
+					tmp_list.push_back(mot);
+					tmp_list.push_back(operateur);
+
+					old_list.splice(iter, tmp_list);
+					//cout << "ORIGIN : " << lex << " POS : " << pos << " MOT : " << mot << " OPE : " << operateur << endl;
+					break;
+				}
+			}
+		}
+	}
+
+	final_list = old_list;
+
+	//suppression de l'id faussé avec un operateur collé.
+	for(iter = final_list.begin(); iter != final_list.end(); iter ++)
+	{
+		(*iter).associateType();
+		if ((*iter).getType() == "id") {
+			for (ope = 0; ope < nb_operator; ope++) {
+				pos = (*iter).getName().find(operatorList[ope]);
+				if (pos != -1) {
+					//cout << (*iter).getName() << endl;
+					old_list.remove((*iter).getName());
+					break;
+				}
+			}
+		}
+	}
+
+return old_list;
 }
 
