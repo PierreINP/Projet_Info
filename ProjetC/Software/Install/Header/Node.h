@@ -15,16 +15,18 @@ private:
 	list<Lexeme> structure;
 	vector <Node*> enfants;
 public:
-	Node();
+	Node(string label);
 	virtual ~Node();
 
 //methods
+	Node* createSon(Lexeme lex);
 	void addSon(Node* enfant);
+	void getSons();
 	//void delSon(Node* enfant);
 	//void accessSon(const Node* enfant);
 	//Node* nextSon();
 	//Node* previousSon();
-	virtual bool checkStruct() = 0; // pure virtual
+	//virtual bool checkStruct() = 0; // pure virtual
 //Remarque : renvoyer le numero de l'iterateur avec le fils courant
 
 //accessors
