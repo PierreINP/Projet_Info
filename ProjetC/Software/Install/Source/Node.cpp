@@ -9,18 +9,18 @@ Node::Node(string n_label){
 Node::~Node() {}
 
 //methods
-Node* Node::createSon(Lexeme lex){
-	Node son(lex.getType());
-	return &son;
+Node Node::createSon(Lexeme lex){
+	Node son(lex.getName());
+	return son;
 }
 
-void Node::addSon(Node* enfant){enfants.push_back(enfant);}
+void Node::addSon(Node enfant){enfants.push_back(enfant);}
 
 void Node::getSons(){
-
-	vector<Node*>::iterator it;
+	vector<Node>::iterator it;
+	cout << label << " node has following sons : " << endl; 
 	for (it = enfants.begin(); it != enfants.end(); it++){
-		cout << *it;
+		cout << it->getLabel() << endl;
 	}
 }
 

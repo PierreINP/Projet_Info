@@ -13,14 +13,14 @@ class Node {
 private:
 	string label;
 	list<Lexeme> structure;
-	vector <Node*> enfants;
+	vector <Node> enfants;
 public:
 	Node(string label);
 	virtual ~Node();
 
 //methods
-	Node* createSon(Lexeme lex);
-	void addSon(Node* enfant);
+	Node createSon(Lexeme lex);
+	void addSon(Node enfant);
 	void getSons();
 	//void delSon(Node* enfant);
 	//void accessSon(const Node* enfant);
