@@ -3,24 +3,31 @@
 
 
 //builders
-Node::Node(string n_label){
-	label = n_label;
+Node::Node(){
+	label = "Node";
 }
 Node::~Node() {}
 
 //methods
-Node Node::createSon(Lexeme lex){
-	Node son(lex.getName());
+/*Node *Node::createSon(Lexeme special){
+	if(special.getName() == "entity"){
+		Node* son = new Node_entity();
+	}
+	else{
+		cout << "error" << endl;
+	}
+	
 	return son;
-}
+}*/
 
-void Node::addSon(Node enfant){enfants.push_back(enfant);}
+//void Node::addSon(Node* enfant){enfants.push_back(enfant);}
+void Node::addSon(){enfants.push_back(new Node());}
 
 void Node::getSons(){
 	vector<Node>::iterator it;
 	cout << label << " node has following sons : " << endl; 
 	for (it = enfants.begin(); it != enfants.end(); it++){
-		cout << it->getLabel() << endl;
+		cout << *it->getLabel() << endl;
 	}
 }
 
@@ -34,29 +41,17 @@ void Node::getSons(){
 	//if (enfants[enfant])
 		//enfants.pop_back(enfant);
 //}
-/*
-void accessSon(const Node* enfant){
-}
 
-Node* nextSon(){
-}
 
-Node* previousSon(){
-}
-*/
-/*bool Node::hasNext(){
-   if(parents != NULL)
-	return true;
-   else
-	return false;
-}*/
 
 //accessors
 
-//Node* Node::getNext(){return next;}
-
-string Node::getLabel(){return label;}
-list<Lexeme> Node::getStructure(){return structure;}
+const string & Node::getLabel()const{
+	return label;
+}
+const list<Lexeme> & Node::getStructure()const{
+	return structure;
+}
 
 
 
