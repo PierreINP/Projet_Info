@@ -31,6 +31,7 @@ void Node::getSons(){
 	}
 }
 
+<<<<<<< HEAD
 //void Node::delSon(Node* enfant){
 	//vector<Node*>::iterator it;
 	//for (it = enfants.begin(); it != enfants.end(); it++){
@@ -52,6 +53,10 @@ const string & Node::getLabel()const{
 const list<Lexeme> & Node::getStructure()const{
 	return structure;
 }
+=======
+string Node::getLabel(){return label;}
+list<Lexeme> Node::getStructure(){return structure;}
+>>>>>>> 772586236dcbc5a8ea90eb35766964e29e628ffe
 
 
 
