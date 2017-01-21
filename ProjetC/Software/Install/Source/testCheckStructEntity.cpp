@@ -28,18 +28,18 @@ int main() {
 	structure.push_back(Lexeme(")"));
 	structure.push_back(Lexeme(";"))*/;	
 	structure.push_back(Lexeme("end"));
-
-	structure.push_back(Lexeme("end"));
 	structure.push_back(Lexeme("toto"));
 	structure.push_back(Lexeme(";"));
 
 	
 	list<Lexeme>::iterator it;
+	list<Lexeme>::iterator it_tmp;
 	int step = 0;
 	string entity_ID;
 
 		for(it = structure.begin(); it != structure.end(); it ++)
 	{
+		it_tmp = it;
 		cout << *it << " | " << step <<endl;
 		switch(step){		//FSM struct entity
 
@@ -67,8 +67,8 @@ int main() {
 					break;
 	
 
-			case 4 :        if((*it).getName()=="end" and (*++it).getType() == "id"){step = 5; it--; }
-					else if((*it).getName()=="end" and (*++it).getName() == ";"){step = 6 ; it--;}
+			case 4 :     	if((*it).getName()=="end" and (*++it_tmp).getType() == "id"){step = 5;}
+					else if((*it).getName()=="end" and (*++it_tmp).getName() == ";"){step = 6 ;}
 					else step=-1;
 					break;
 
@@ -76,7 +76,7 @@ int main() {
 					else step=-1;
 					break;
 
-			case 6 :        if((*it).getName()==";"){return true; cout << "Structure ENTITY validée" << endl;}
+			case 6 :        if((*it).getName()==";"){cout << "Structure ENTITY validée" << endl; return true;}
 					else {return false;}    
 					
 
