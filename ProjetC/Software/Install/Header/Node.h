@@ -7,31 +7,33 @@
 #include <vector>
 #include <list>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
 class Node {
-private:
-	string label;
+
+protected:
 	list<Lexeme> structure;
 	vector <Node*> enfants;
+private:
+	string label;
+	
 public:
 	Node(string l);
 	virtual ~Node();
 
 //methods
-	//Node* createSon(Lexeme special);
-	//void addSon(Node* enfant);
-	//void addSon();
-	//void delSon(Node* enfant);
-	//void getSons();
 	virtual void createSons() = 0;  // pure virtual
 	virtual bool checkStruct() = 0; // pure virtual
-
+	string displaySons() const;
 
 //accessors
 	const string & getLabel()const;
-	virtual const list<Lexeme> & getStructure() const;
+	const list<Lexeme> & getStructure() const;
+
+//Fonctions amies
+	friend ostream& operator<<(ostream& out, const Node &n);
 };
 
 #endif 
