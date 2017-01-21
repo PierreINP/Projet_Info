@@ -23,6 +23,9 @@ int main(void){
    cout << node1.getLabel() <<endl; //NTM erreur: request for member ‘getLabel’ in ‘node1’, which is of non-class type ‘Node_root()’
    cout << node2.getLabel() <<endl; //Idem
 
+   node1.createSons();
+   cout << node1;
+
 //---------->Tests à réaliser après validation de la structure objet<---------
 /* 
    Node_root pere();
