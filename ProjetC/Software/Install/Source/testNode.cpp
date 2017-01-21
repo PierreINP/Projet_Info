@@ -9,11 +9,21 @@
 using namespace std;
 
 int main(void){
+<<<<<<< HEAD
    Node_root node1;
    Node_entity node2;
 
    cout << node1.getLabel()<<endl;
    cout<<node2.getLabel()<<endl;
+=======
+   //Node node0();//test à faire en commentant la méthode virtuelle pure de Node ... ne marche pas non plus
+   Node_root node1;
+   Node_entity node2;
+   
+  //node0.getLabel();//test à faire en commentant la méthode virtuelle pure de Node ... ne marche pas non plus
+   cout << node1.getLabel() <<endl; //NTM erreur: request for member ‘getLabel’ in ‘node1’, which is of non-class type ‘Node_root()’
+   cout << node2.getLabel() <<endl; //Idem
+>>>>>>> 2d09e98de153a3fd75a6896a97e4aee8494ddb80
 
 //---------->Tests à réaliser après validation de la structure objet<---------
 /* 
