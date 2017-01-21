@@ -13,6 +13,7 @@ public:
 	~Node_entity();
 
 //methods
+	void createSons();
 	bool checkStruct();
 
 //accessors

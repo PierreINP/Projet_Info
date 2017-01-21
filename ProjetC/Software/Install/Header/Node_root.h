@@ -12,6 +12,7 @@ public:
 	~Node_root();
 
 //methods
+	void createSons();
 	bool checkStruct();
 };
 
