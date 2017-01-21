@@ -1,18 +1,18 @@
 #ifndef _NODE_ROOT_H_
 #define _NODE_ROOT_H_
 
-#include "./../Header/Node.h"
+#include "Node.h"
 
 using namespace std;
 
-class Node_root : public virtual Node {
+class Node_root : public Node {
 private:
 public:
 	Node_root();
-	virtual ~Node_root();
+	~Node_root();
 
 //methods
-	virtual bool checkStruct();
+	bool checkStruct();
 };
 
 #endif 

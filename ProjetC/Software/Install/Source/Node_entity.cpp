@@ -1,19 +1,66 @@
 #include "./../Header/Node_entity.h"
 #include <iostream> 
 
-
 //builders
-Node_entity::Node_entity(){
-	label = "Entity"
-}
-
+Node_entity::Node_entity():Node("Entity"){}
 Node_entity::~Node_entity(){}
 
 //methods
-bool Node_entity::checkStruct(){}
+bool Node_entity::checkStruct(){
+	/*list<Lexeme>::iterator it;
+	int step = 0;
+
+	for (it = structure.begin(); it != structure.end(); it++){//parcours de la structure de lexeme locale	
+
+		switch(step){		//FSM struct entity
+
+			case 0:		if(it.getName()=="entity"){step++;}
+					else step=-1;	//rentre dans le cas default
+			
+					break;
+
+			case 1:		if(it.getType()=="id"){
+						entity_ID = it.getName();
+						step ++;
+					}
+					else step=-1;
+					break;
+
+			case 2 :   	if(it.getName()=="is"){step++;}
+					else step=-1;
+					break;
+
+			case 3 :        if(it.getName()=="port"){
+						//appel methode checkStruct de port ?
+						step++;
+					}
+					else step=-1
+					break;
+	
+
+			case 4 :        if(it.getName()=="end"){step++;}
+					else step=-1;
+					break;
+
+			case 5 :        if(it.getName()==entity_ID){step++;}
+					else step=-1;
+					break;
+
+			case 6 :        if(it.getName()==";"){step++;}
+					else step=-1;
+					break;
+
+			case 7 :        return true;
+
+			default :	cout << "error" << endl; //cf gestion d'erreur
+					return false;		  
+		}
+	}*/
+}
 
 //accessors
-string Node_entity::getEntityID{
-	return e_ID;
+
+const string & Node_entity::getEntityID() const{
+	return entity_ID;
 }
 

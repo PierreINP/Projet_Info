@@ -2,7 +2,6 @@
 #define NODE_H
 
 #include "./../Header/Lexeme.h"
-//#include "./../Header/Node_entity.h"
 
 #include <vector>
 #include <list>
@@ -12,27 +11,27 @@ using namespace std;
 
 class Node {
 private:
+	string label;
 	list<Lexeme> structure;
 	vector <Node*> enfants;
 public:
-	Node();
+	Node(string l);
 	virtual ~Node();
 
 //methods
-<<<<<<< HEAD
 	//Node* createSon(Lexeme special);
 	//void addSon(Node* enfant);
-	void addSon();
+	//void addSon();
 	//void delSon(Node* enfant);
-	void getSons();
+	//void getSons();
 	
 	virtual bool checkStruct() = 0; // pure virtual
 //Remarque : renvoyer le numero de l'iterateur avec le fils courant
-=======
-	Node createSon(Lexeme lex);
-	void addSon(Node enfant);
-	void getSons();
->>>>>>> 772586236dcbc5a8ea90eb35766964e29e628ffe
+
+	//Node createSon(Lexeme lex);
+	//void addSon(Node enfant);
+	//void getSons();
+
 
 //accessors
 	const string & getLabel()const;

@@ -1,22 +1,22 @@
 #ifndef _NODE_ENTITY_H_
 #define _NODE_ENTITY_H_
 
-#include "./../Header/Node.h"
+#include "Node.h"
 
 using namespace std;
 
-class Node_entity : public virtual Node {
+class Node_entity : public Node {
 private:
 	string entity_ID;
 public:
 	Node_entity();
-	virtual ~Node_entity();
+	~Node_entity();
 
 //methods
-	virtual bool checkStruct();
+	bool checkStruct();
 
 //accessors
-	string getEntityID();
+	const string & getEntityID()const;
 };
 
 #endif 
