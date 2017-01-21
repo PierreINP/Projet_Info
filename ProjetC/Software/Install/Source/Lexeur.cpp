@@ -7,8 +7,10 @@ Output : Data structure
 #include"./../Header/Lexeur.h"
 #include "./../Header/Lexeme.h"
 #define path_size 100
+
+// A MAINTENIR A JOUR
 #define nb_separator 10
-#define nb_operator 16
+#define nb_operator 15
 
 extern string keywordList[];
 extern char specialList[];
@@ -46,6 +48,7 @@ sourcecode.close(); // Closing the input file stream
 return lexeme_list;
 }
 
+/*
 string suppressCommentary(string line) {
 	int i;
 	string new_line;
@@ -54,14 +57,14 @@ string suppressCommentary(string line) {
 			cout << "COMMENTAIRE" << endl;			
 			//new_line += "\0";
 			return new_line;
-		}*/		
+		}		
 		new_line += line[i];
 	
 	}
 	new_line += "\0";
 	//cout << line << endl << new_line << endl;
 return new_line; 
-}
+}*/
 
 //Remplace in a ligne horizontal tab by space character
 string eraseTab(string line) {
@@ -88,7 +91,7 @@ list<Lexeme> split_line(string line)
 	int r = 0;
 	int i;
 
-	line = suppressCommentary(line);
+	//line = suppressCommentary(line);
 	line = eraseTab(line);
 	int sep, ope, filler;
 	//cout << "Line of " << size << " characters" << endl;

@@ -45,7 +45,7 @@ string operatorList[N] = {
 	"=",
 	"==",
 	"and",
-	"or",
+	//"or",
 	"not",
 	"xor",
 	"+",
