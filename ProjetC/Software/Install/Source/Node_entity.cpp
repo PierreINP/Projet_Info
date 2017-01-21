@@ -1,11 +1,13 @@
 #include "./../Header/Node_entity.h"
-#include <iostream> 
 
 //builders
 Node_entity::Node_entity():Node("Entity"){}
 Node_entity::~Node_entity(){}
 
 //methods
+
+void Node_entity::createSons(){}
+
 bool Node_entity::checkStruct(){
 	/*list<Lexeme>::iterator it;
 	int step = 0;
@@ -59,7 +61,6 @@ bool Node_entity::checkStruct(){
 }
 
 //accessors
-
 const string & Node_entity::getEntityID() const{
 	return entity_ID;
 }

@@ -3,6 +3,7 @@
 
 #include "./../Header/Lexeme.h"
 
+#include <iostream>
 #include <vector>
 #include <list>
 #include <string>
@@ -24,13 +25,8 @@ public:
 	//void addSon();
 	//void delSon(Node* enfant);
 	//void getSons();
-	
+	virtual void createSons() = 0;  // pure virtual
 	virtual bool checkStruct() = 0; // pure virtual
-//Remarque : renvoyer le numero de l'iterateur avec le fils courant
-
-	//Node createSon(Lexeme lex);
-	//void addSon(Node enfant);
-	//void getSons();
 
 
 //accessors
