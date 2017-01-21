@@ -35,7 +35,7 @@ public:
 
 //accessors
 	const string & getLabel()const;
-	const list<Lexeme> & getStructure() const;
+	virtual const list<Lexeme> & getStructure() const;
 };
 
 #endif 

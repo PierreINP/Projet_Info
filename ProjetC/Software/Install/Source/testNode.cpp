@@ -10,12 +10,12 @@ using namespace std;
 
 int main(void){
    //Node node0();//test à faire en commentant la méthode virtuelle pure de Node ... ne marche pas non plus
-   Node_root node1();
-   Node_entity node2();
+   Node_root node1;
+   Node_entity node2;
    
   //node0.getLabel();//test à faire en commentant la méthode virtuelle pure de Node ... ne marche pas non plus
-   node1.getLabel(); //NTM erreur: request for member ‘getLabel’ in ‘node1’, which is of non-class type ‘Node_root()’
-   node2.getLabel(); //Idem
+   cout << node1.getLabel() <<endl; //NTM erreur: request for member ‘getLabel’ in ‘node1’, which is of non-class type ‘Node_root()’
+   cout << node2.getLabel() <<endl; //Idem
 
 //---------->Tests à réaliser après validation de la structure objet<---------
 /* 
