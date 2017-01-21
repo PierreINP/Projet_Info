@@ -10,7 +10,7 @@ private:
 	string library_ID;
 	string package;
 public:
-	Node_libraryUse();
+	Node_libraryUse(list<Lexeme>::iterator it);
 	~Node_libraryUse();
 
 //methods

@@ -1,7 +1,7 @@
 #include "./../Header/Node.h"
 
 //builders
-Node::Node(string l): label(l){}
+Node::Node(string l, list<Lexeme>::iterator it): label(l), lex_it(it){}
 Node::~Node(){}
 
 //accessors
@@ -11,6 +11,10 @@ const string & Node::getLabel()const{
 
 const list<Lexeme> & Node::getStructure()const{
 	return structure;
+}
+
+const list<Lexeme>::iterator & Node::getLexIt()const{
+	return lex_it;
 }
 
 //methods

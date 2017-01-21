@@ -1,7 +1,7 @@
 #include "./../Header/Node_library.h"
 
 //builders
-Node_library::Node_library():Node("Library"){}
+Node_library::Node_library(list<Lexeme>::iterator it):Node("Library",it){}
 Node_library::~Node_library(){}
 
 //methods

@@ -9,22 +9,16 @@
 using namespace std;
 
 int main(void){
-   Node_root node1;
-   Node_entity node2;
-
-   cout << node1.getLabel()<<endl;
-   cout<<node2.getLabel()<<endl;
-
-   //Node node0();//test à faire en commentant la méthode virtuelle pure de Node ... ne marche pas non plus
-   Node_root node1;
-   Node_entity node2;
+   list<Lexeme> fakeStruct;
+   Lexeme lex1("Library");
+   fakeStruct.push_back(lex1);
+   list<Lexeme>::iterator it1 = fakeStruct.begin();
    
-  //node0.getLabel();//test à faire en commentant la méthode virtuelle pure de Node ... ne marche pas non plus
-   cout << node1.getLabel() <<endl; //NTM erreur: request for member ‘getLabel’ in ‘node1’, which is of non-class type ‘Node_root()’
-   cout << node2.getLabel() <<endl; //Idem
+   Node_root node1(it1);
 
-   node1.createSons();
    cout << node1;
+   cout << (*node1.getLexIt())<< endl;
+   cout << (*node1.getLexIt()).getType()<< endl;
 
 //---------->Tests à réaliser après validation de la structure objet<---------
 /* 

@@ -9,7 +9,7 @@ class Node_entity : public Node {
 private:
 	string entity_ID;
 public:
-	Node_entity();
+	Node_entity(list<Lexeme>::iterator it);
 	~Node_entity();
 
 //methods

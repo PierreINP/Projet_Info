@@ -10,7 +10,7 @@ private:
 	string entity_ID;
 	string architecture_ID;
 public:
-	Node_architecture();
+	Node_architecture(list<Lexeme>::iterator it);
 	~Node_architecture();
 
 //methods

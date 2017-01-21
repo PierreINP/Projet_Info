@@ -1,7 +1,7 @@
 #include "./../Header/Node_entity.h"
 
 //builders
-Node_entity::Node_entity():Node("Entity"){}
+Node_entity::Node_entity(list<Lexeme>::iterator it):Node("Entity",it){}
 Node_entity::~Node_entity(){}
 
 //methods

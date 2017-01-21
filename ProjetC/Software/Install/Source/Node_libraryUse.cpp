@@ -1,7 +1,7 @@
 #include "./../Header/Node_libraryUse.h"
 
 //builders
-Node_libraryUse::Node_libraryUse():Node("LibraryUse"){}
+Node_libraryUse::Node_libraryUse(list<Lexeme>::iterator it):Node("LibraryUse",it){}
 Node_libraryUse::~Node_libraryUse(){}
 
 //methods

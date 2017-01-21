@@ -8,7 +8,7 @@ using namespace std;
 class Node_root : public Node {
 private:
 public:
-	Node_root();
+	Node_root(list<Lexeme>::iterator it);
 	~Node_root();
 
 //methods

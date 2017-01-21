@@ -9,7 +9,7 @@ class Node_library : public Node {
 private:
 	string library_ID;
 public:
-	Node_library();
+	Node_library(list<Lexeme>::iterator it);
 	~Node_library();
 
 //methods

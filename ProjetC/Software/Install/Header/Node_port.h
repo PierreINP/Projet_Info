@@ -11,7 +11,7 @@ private:
 	string direction;
 	string type;
 public:
-	Node_port();
+	Node_port(list<Lexeme>::iterator it);
 	~Node_port();
 
 //methods

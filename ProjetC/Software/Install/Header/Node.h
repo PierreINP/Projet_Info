@@ -15,12 +15,14 @@ class Node {
 
 protected:
 	list<Lexeme> structure;
+	list<Lexeme>::iterator lex_it;
 	vector <Node*> enfants;
+	
 private:
 	string label;
 	
 public:
-	Node(string l);
+	Node(string l, list<Lexeme>::iterator it);
 	virtual ~Node();
 
 //methods
@@ -31,6 +33,7 @@ public:
 //accessors
 	const string & getLabel()const;
 	const list<Lexeme> & getStructure() const;
+	const list<Lexeme>::iterator & getLexIt()const;
 
 //Fonctions amies
 	friend ostream& operator<<(ostream& out, const Node &n);

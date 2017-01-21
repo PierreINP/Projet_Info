@@ -1,7 +1,7 @@
 #include "./../Header/Node_port.h"
 
 //builders
-Node_port::Node_port():Node("Port"){}
+Node_port::Node_port(list<Lexeme>::iterator it):Node("Port",it){}
 Node_port::~Node_port(){}
 
 //methods

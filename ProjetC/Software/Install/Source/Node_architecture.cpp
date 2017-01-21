@@ -1,7 +1,7 @@
 #include "./../Header/Node_architecture.h"
 
 //builders
-Node_architecture::Node_architecture():Node("Architecture"){}
+Node_architecture::Node_architecture(list<Lexeme>::iterator it):Node("Architecture",it){}
 Node_architecture::~Node_architecture(){}
 
 //methods
