@@ -14,18 +14,12 @@ using namespace std;
 class Error {
 	private :
 		string m_errors;
-		string m_display;
-		ifstream m_file_errors;
 	public :
 
 	Error();
-	~Error() {file_errors.close();};
 	
 	void generateLog(string code, int line, string name_lexeme);
-	void display(ifstream file_errors);
-	
-	void getErrors() const; 
-	
+	void display();
 	friend ostream& operator<<(ostream& out, const Error &e);
 
 };

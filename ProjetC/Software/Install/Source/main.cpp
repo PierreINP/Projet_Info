@@ -16,7 +16,7 @@ int main()
 	list<Lexeme>::iterator iter; 
 
 	
-	char fichier [path_size]= "../../../ProjetC/SourceCode/test.vhdl";
+	char fichier [path_size]= "../../../ProjetC/SourceCode/test3.vhdl";
 	//Lancement de la routine (ouverture fichier, scan de chaque ligne + découpage)
 	lexeme_list = readSource(fichier);
 	//Suppression des éléments vides

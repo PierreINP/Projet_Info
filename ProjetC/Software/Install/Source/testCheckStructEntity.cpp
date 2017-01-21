@@ -28,7 +28,9 @@ int main() {
 	structure.push_back(Lexeme(")"));
 	structure.push_back(Lexeme(";"))*/;	
 	structure.push_back(Lexeme("end"));
-	//structure.push_back(Lexeme("toto"));
+
+	structure.push_back(Lexeme("end"));
+	structure.push_back(Lexeme("toto"));
 	structure.push_back(Lexeme(";"));
 
 	
@@ -41,44 +43,42 @@ int main() {
 		cout << *it << " | " << step <<endl;
 		switch(step){		//FSM struct entity
 
-			case 0:		if((*it).getName()=="entity"){step++;}
+			case 0:		if((*it).getName()=="entity"){step = 1;}
 					else step=-1;	//rentre dans le cas default
 			
 					break;
 
 			case 1:		if((*it).getType()=="id"){
 						entity_ID = (*it).getName();
-						step ++;
+						step = 2;
 					}
 					else step=-1;
 					break;
 
-			case 2 :   	if((*it).getName()=="is"){step++;}
+			case 2 :   	if((*it).getName()=="is"){step = 3;}
 					else step=-1;
 					break;
 
 			case 3 :        if((*it).getName()=="port"){
 						//appel methode checkStruct de port ?
-						step++;
+						step = 4;
 					}
 					else step=-1;
 					break;
 	
 
-			case 4 :        if((*it).getName()=="end" and (*++it).getType() == "id"){step++; it--; }
-					else if((*it).getName()=="end" and (*++it).getName() == ";"){step += 2 ; it--;}
+			case 4 :        if((*it).getName()=="end" and (*++it).getType() == "id"){step = 5; it--; }
+					else if((*it).getName()=="end" and (*++it).getName() == ";"){step = 6 ; it--;}
 					else step=-1;
 					break;
 
-			case 5 :        if((*it).getName()==entity_ID){step++;} //Le fait de tester entityID au lieu de type == ID est deja de l'étape contexte.
+			case 5 :        if((*it).getName()==entity_ID){step = 6;} //Le fait de tester entityID au lieu de type == ID est deja de l'étape contexte.
 					else step=-1;
 					break;
 
-			case 6 :        if((*it).getName()==";"){step++;}
-					else step=-1;
-					break;
-
-			case 7 :        return true;
+			case 6 :        if((*it).getName()==";"){return true; cout << "Structure ENTITY validée" << endl;}
+					else {return false;}    
+					
 
 			default :	cout << "error" << endl; //cf gestion d'erreur
 					return false;		  

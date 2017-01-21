@@ -46,6 +46,40 @@ sourcecode.close(); // Closing the input file stream
 return lexeme_list;
 }
 
+string suppressCommentary(string line) {
+	int i;
+	string new_line;
+	for (i=0; i < line.size(); i++) {
+		/*if (line[i]==45 and line[i+1]==45) {				
+			cout << "COMMENTAIRE" << endl;			
+			//new_line += "\0";
+			return new_line;
+		}*/		
+		new_line += line[i];
+	
+	}
+	new_line += "\0";
+	//cout << line << endl << new_line << endl;
+return new_line; 
+}
+
+//Remplace in a ligne horizontal tab by space character
+string eraseTab(string line) {
+	int i;
+	string new_line;
+	for (i=0; i < line.size(); i++) {
+		if (line[i]!=9) {		
+			new_line += line[i];
+		}
+		else {		
+			new_line += " ";
+		}	
+	}
+	new_line += "\0";
+	//cout << line << endl << new_line << endl;
+return new_line; 
+}
+
 list<Lexeme> split_line(string line) 
 {
 	std::list<Lexeme> my_list; //list of lexeme, contains list of words
@@ -54,6 +88,8 @@ list<Lexeme> split_line(string line)
 	int r = 0;
 	int i;
 
+	line = suppressCommentary(line);
+	line = eraseTab(line);
 	int sep, ope, filler;
 	//cout << "Line of " << size << " characters" << endl;
 	//cout << line << endl;
@@ -72,7 +108,7 @@ list<Lexeme> split_line(string line)
 			//Séparation char pour specialList			
 			for (sep = 0; sep < nb_separator; sep++) {
 				if(line[i]== specialList[sep]) {
-				     //séparation de la ligne si on rencontre un espace + saut du séparateur
+				     //séparation de la ligne si on rencontre un separateur + saut du séparateur
 				     Lexeme word(line.substr(r, i-r));
 				     my_list.push_back(word);
 				     //cout << "MOT  : " << word << endl;
@@ -122,8 +158,10 @@ list<Lexeme> clearList (list<Lexeme> old_list) {
 	return cleared_list;
 }
 
-list<Lexeme> search_Operator(string mot) {
 
+bool alphanum(char a) {
+	if (a >= 97 and a <=122) {return true;}
+	else {return false;}
 }
 
 list<Lexeme> checkLexeme(list<Lexeme> old_list) {
@@ -157,23 +195,24 @@ list<Lexeme> checkLexeme(list<Lexeme> old_list) {
 				size_t taille_mot = (*iter).getName().size();
 				string lex = (*iter).getName();
 
-				//Si il est present dans la première moitié, découpe operateur puis id + insertion dans la liste
-				if (pos != -1 and pos <= (taille_mot/2)) {
-					Lexeme operateur(lex.substr(pos, operatorList[ope].size() ));
-					Lexeme mot(lex.substr(pos + operatorList[ope].size(), lex.size()-1));
-					tmp_list.push_back(operateur);
+				//Si il est present après le lexeme, découpe operateur puis id + insertion dans la liste
+				if (pos != -1 and alphanum(lex[0])) {
+					// {}
+					Lexeme operateur(lex.substr(pos, lex.size()));
+					Lexeme mot(lex.substr(0, pos));
 					tmp_list.push_back(mot);
+					tmp_list.push_back(operateur);
 					
 					old_list.splice(iter, tmp_list);
 					//cout << "ORIGIN : " << lex << " POS : " << pos << " MOT : " << mot << " OPE : " << operateur << endl;
 					break;
 				}
-				//Si il est present dans la seconde moitié, découpe id puis opérateur + insertion dans la liste
-				else if (pos != -1 and pos >= (taille_mot/2)) {
-					Lexeme mot(lex.substr(0, pos));
+				//Si il est present au début du lexeme : découpe operateur puis id + insertion dans la liste
+				else if (pos == 0) {
+					Lexeme mot(lex.substr(operatorList[ope].size() , lex.size() ));
 					Lexeme operateur(lex.substr(pos, operatorList[ope].size() ));
-					tmp_list.push_back(mot);
 					tmp_list.push_back(operateur);
+					tmp_list.push_back(mot);
 
 					old_list.splice(iter, tmp_list);
 					//cout << "ORIGIN : " << lex << " POS : " << pos << " MOT : " << mot << " OPE : " << operateur << endl;
