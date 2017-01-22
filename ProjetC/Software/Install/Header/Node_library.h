@@ -9,11 +9,12 @@ class Node_library : public Node {
 private:
 	string library_ID;
 public:
-	Node_library(list<Lexeme>::iterator it);
+	Node_library(list<Lexeme> parsing, list<Lexeme>::iterator it);
 	~Node_library();
 
 //methods
 	void createSons();
+	void createStruct(list<Lexeme> parsing);
 	bool checkStruct();
 
 //accessors

@@ -1,13 +1,13 @@
 #include "./../Header/Node_entity.h"
 
 //builders
-Node_entity::Node_entity(list<Lexeme>::iterator it):Node("Entity",it){}
+Node_entity::Node_entity(list<Lexeme> parsing, list<Lexeme>::iterator it):Node("Entity",it){}
 Node_entity::~Node_entity(){}
 
 //methods
 
 void Node_entity::createSons(){}
-
+void Node_entity::createStruct(list<Lexeme> parsing){}
 bool Node_entity::checkStruct(){
 	/*list<Lexeme>::iterator it;
 	int step = 0;

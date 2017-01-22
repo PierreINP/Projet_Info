@@ -12,11 +12,11 @@ using namespace std;
 
 int main()
 {
-	std::list<Lexeme> lexeme_list;
+	list<Lexeme> lexeme_list;
 	list<Lexeme>::iterator iter; 
 
 	
-	char fichier [path_size]= "../../../ProjetC/SourceCode/test3.vhdl";
+	char fichier [path_size]= "../../../ProjetC/SourceCode/test.vhdl";
 	//Lancement de la routine (ouverture fichier, scan de chaque ligne + découpage)
 	lexeme_list = readSource(fichier);
 	//Suppression des éléments vides
@@ -29,7 +29,7 @@ int main()
 	{
 		//if ((*iter).getName()[0] == 13) {cout << "CHARRIOT" <<endl;}
 		//else if (iter->getName()[0] == 0 and iter->getName()[0] <= 32) {cout << "Merde" <<endl;}
-		cout << *iter << endl;
+		cout << *iter << " | " <<(*iter).getType()<< endl;
 	}
 	
 }

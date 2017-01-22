@@ -26,14 +26,16 @@ public:
 	virtual ~Node();
 
 //methods
-	virtual void createSons() = 0;  // pure virtual
-	virtual bool checkStruct() = 0; // pure virtual
+	virtual void createSons() = 0;   // pure virtual
+	virtual void createStruct(list<Lexeme> parsing) = 0; // pure virtual
+	virtual bool checkStruct() = 0;  // pure virtual
 	string displaySons() const;
+	string displayStruct() const;
 
 //accessors
 	const string & getLabel()const;
-	const list<Lexeme> & getStructure() const;
 	const list<Lexeme>::iterator & getLexIt()const;
+	//const list<Lexeme> & getStructure()const;
 
 //Fonctions amies
 	friend ostream& operator<<(ostream& out, const Node &n);

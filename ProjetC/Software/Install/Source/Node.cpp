@@ -1,7 +1,7 @@
 #include "./../Header/Node.h"
 
 //builders
-Node::Node(string l, list<Lexeme>::iterator it): label(l), lex_it(it){}
+Node::Node(string l, list<Lexeme>::iterator it): label(l),lex_it(it){}
 Node::~Node(){}
 
 //accessors
@@ -9,13 +9,13 @@ const string & Node::getLabel()const{
 	return label;
 }
 
-const list<Lexeme> & Node::getStructure()const{
-	return structure;
-}
-
 const list<Lexeme>::iterator & Node::getLexIt()const{
 	return lex_it;
 }
+
+/*const list<Lexeme> & Node::getStructure()const{
+	return structure;
+}*/
 
 //methods
 string  Node::displaySons() const {  
@@ -29,10 +29,20 @@ string  Node::displaySons() const {
 	return sons.str();
 }
 
+string  Node::displayStruct() const {  
+	list<Lexeme>::const_iterator it;
+	stringstream struc;
+
+	struc << "Current node " << getLabel() << " has following lexemes structure : "<< endl; 
+	for (it = structure.begin(); it != structure.end(); it++){
+		struc << *it << " " ; // display lexemes names composing current instance
+	}
+	return struc.str();
+}
+
 //friend function
  ostream& operator<<(ostream& out, const Node &n){
 	out << n.displaySons()<< endl;
 	return out;
 }
-
 
