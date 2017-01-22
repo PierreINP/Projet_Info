@@ -9,7 +9,10 @@ binary_files: object_files
 	$(CC) -o Binaries/Lexeme Object/Error.o Object/syntaxConstraints.o Object/Lexeme.o Test/testLexeme.cpp
 	$(CC) -o Binaries/Node -g Object/syntaxConstraints.o Object/Lexeme.o Object/Node.o Object/Node_root.o Object/Node_library.o Object/Node_entity.o Object/Node_architecture.o Object/Node_libraryUse.o Object/Node_port.o Test/testNode.cpp 
 	$(CC) -o Binaries/Lexeur Object/Error.o Object/syntaxConstraints.o Object/Lexeme.o Object/Lexeur.o Source/main.cpp
-	$(CC) -o Binaries/Struct Object/syntaxConstraints.o Object/Lexeme.o Test/testCheckStructEntity.cpp
+	$(CC) -o Binaries/FSM_entity Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_entity.cpp
+	$(CC) -o Binaries/FSM_port Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_port.cpp
+	$(CC) -o Binaries/FSM_library Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_library.cpp
+	$(CC) -o Binaries/FSM_libUse Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_libUse.cpp
 
 object_files: clean
 	$(CC) -c -o Object/Error.o Source/Error.cpp
