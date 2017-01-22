@@ -1,13 +1,31 @@
+CC = g++					#Compilater used
 
-CFLAGS=-g
+all: binary_files
 
-all : monExe 
+$(EXEC_NAME): binary_files
+	
+binary_files: object_files
+	$(CC) -o Binaries/Error Object/Lexeme.o Object/syntaxConstraints.o Object/Error.o Test/testError.cpp 
+	$(CC) -o Binaries/Lexeme Object/Error.o Object/syntaxConstraints.o Object/Lexeme.o Test/testLexeme.cpp
+	$(CC) -o Binaries/Node -g Object/syntaxConstraints.o Object/Lexeme.o Object/Node.o Object/Node_root.o Object/Node_library.o Object/Node_entity.o Object/Node_architecture.o Object/Node_libraryUse.o Object/Node_port.o Test/testNode.cpp 
+	$(CC) -o Binaries/Lexeur Object/Error.o Object/syntaxConstraints.o Object/Lexeme.o Object/Lexeur.o Source/main.cpp
+	$(CC) -o Binaries/Struct Object/syntaxConstraints.o Object/Lexeme.o Test/testCheckStructEntity.cpp
 
-monExe : Lexeme.o testLexeme.o 
-	g++ -o monExe $^ $(LDFLAGS)
+object_files: clean
+	$(CC) -c -o Object/Error.o Source/Error.cpp
+	$(CC) -c -o Object/syntaxConstraints.o Source/syntaxConstraints.cpp
+	$(CC) -c -o Object/Lexeme.o Source/Lexeme.cpp
+	$(CC) -c -o Object/Lexeur.o Source/Lexeur.cpp
+	$(CC) -c -o Object/Node.o Source/Node.cpp
+	$(CC) -c -o Object/Node_root.o Source/Node_root.cpp
+	$(CC) -c -o Object/Node_library.o Source/Node_library.cpp
+	$(CC) -c -o Object/Node_libraryUse.o Source/Node_libraryUse.cpp
+	$(CC) -c -o Object/Node_architecture.o Source/Node_architecture.cpp
+	$(CC) -c -o Object/Node_entity.o Source/Node_entity.cpp
+	$(CC) -c -o Object/Node_port.o Source/Node_port.cpp
 
-%.o:%.cc
-	g++ $(CFLAGS) -c -g $^
+
 
 clean:
-	rm -f *.o *~ test testLexeme
+	rm -f Object/*.o
+	rm -f Binaries/*
