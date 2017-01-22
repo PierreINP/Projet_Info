@@ -13,12 +13,19 @@ using namespace std;
 
 class Error {
 	private :
+		ofstream log;
 		string m_errors;
 	public :
 
 	Error();
+	~Error() {
+		this->display();
+		log << m_errors;
+		log.close();
+		
+	};
 	
-	void generateLog(string code, int line, string name_lexeme);
+	void generateLog(string code);
 	void display();
 	friend ostream& operator<<(ostream& out, const Error &e);
 

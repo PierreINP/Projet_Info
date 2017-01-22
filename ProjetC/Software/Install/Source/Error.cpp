@@ -3,17 +3,17 @@
 using namespace std; 
 
 
-	Error::Error() {}
+	Error::Error() {log.open("./../../Log/Compileur.log");}
 	
 	
-	void Error::generateLog(string code, int line, string name_lexeme) {
+	void Error::generateLog(string code) {
 		if (m_errors.size() != 0) {m_errors += "\n" +code;}
 		else {m_errors += code;}		
 		 
 	}
 	
 	void Error::display() {
-		cout << m_errors;
+		cout << m_errors << endl;
 	}
 	 
 
