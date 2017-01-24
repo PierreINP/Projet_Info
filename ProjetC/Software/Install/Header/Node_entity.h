@@ -9,12 +9,12 @@ class Node_entity : public Node {
 private:
 	string entity_ID;
 public:
-	Node_entity(list<Lexeme> parsing, list<Lexeme>::iterator it);
+	Node_entity(list<Lexeme>::iterator it);
 	~Node_entity();
 
 //methods
 	void createSons();
-	void createStruct(list<Lexeme> parsing);
+	void createStruct();
 	bool checkStruct();
 
 //accessors

@@ -10,12 +10,12 @@ private:
 	string entity_ID;
 	string architecture_ID;
 public:
-	Node_architecture(list<Lexeme> parsing, list<Lexeme>::iterator it);
+	Node_architecture(list<Lexeme>::iterator it);
 	~Node_architecture();
 
 //methods
 	void createSons();
-	void createStruct(list<Lexeme> parsing);
+	void createStruct();
 	bool checkStruct();
 
 //accessors

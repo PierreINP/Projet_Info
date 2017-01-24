@@ -1,13 +1,29 @@
 #include "./../Header/Node_entity.h"
 
 //builders
-Node_entity::Node_entity(list<Lexeme> parsing, list<Lexeme>::iterator it):Node("Entity",it){}
+Node_entity::Node_entity(list<Lexeme>::iterator it):Node("Entity",it){
+//	createSons()
+	createStruct();
+}
 Node_entity::~Node_entity(){}
 
 //methods
 
 void Node_entity::createSons(){}
-void Node_entity::createStruct(list<Lexeme> parsing){}
+
+void Node_entity::createStruct(){
+	list<Lexeme>::iterator it;
+	for (it = lex_it; (*it).getName() != "architecture"; it++){
+		if(((*it).getName() == "port") and ((*it).getType() == "keyword")){
+			while(((*it).getName() != "end") or ((*it).getType() != "keyword")){
+				it++;
+			}
+			structure.push_back(Lexeme("port"));
+		}
+		structure.push_back((*it).getName());
+	}
+	cout << displayStruct() << endl << endl;
+}
 bool Node_entity::checkStruct(){
 	/*list<Lexeme>::iterator it;
 	int step = 0;

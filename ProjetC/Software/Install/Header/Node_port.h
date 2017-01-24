@@ -11,12 +11,12 @@ private:
 	string direction;
 	string type;
 public:
-	Node_port(list<Lexeme> parsing, list<Lexeme>::iterator it);
+	Node_port(list<Lexeme>::iterator it);
 	~Node_port();
 
 //methods
 	void createSons();
-	void createStruct(list<Lexeme> parsing);
+	void createStruct();
 	bool checkStruct();
 
 //accessors

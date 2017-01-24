@@ -10,12 +10,12 @@ private:
 	string library_ID;
 	string package;
 public:
-	Node_libraryUse(list<Lexeme> parsing, list<Lexeme>::iterator it);
+	Node_libraryUse(list<Lexeme>::iterator it);
 	~Node_libraryUse();
 
 //methods
 	void createSons();
-	void createStruct(list<Lexeme> parsing);
+	void createStruct();
 	bool checkStruct();
 
 //accessors

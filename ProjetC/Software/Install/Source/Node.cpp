@@ -13,9 +13,6 @@ const list<Lexeme>::iterator & Node::getLexIt()const{
 	return lex_it;
 }
 
-/*const list<Lexeme> & Node::getStructure()const{
-	return structure;
-}*/
 
 //methods
 string  Node::displaySons() const {  

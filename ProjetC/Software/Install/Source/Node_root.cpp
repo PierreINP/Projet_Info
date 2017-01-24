@@ -6,8 +6,11 @@
 
 //builders
 Node_root::Node_root(list<Lexeme> parsing, list<Lexeme>::iterator it):Node("Root",it){
+	cout << endl << "######################"<<endl<<"  Begin tree built  "<< endl<<"######################"<<endl<<endl;
 	structure = parsing;
+	cout << displayStruct() << endl << endl;
 	createSons();
+
 }
 Node_root::~Node_root(){}
 
@@ -17,23 +20,20 @@ void Node_root::createSons(){
 
 	for (iter = structure.begin(); iter != structure.end(); iter++){
 		if(((*iter).getName() == "library") and ((*iter).getType() == "keyword")){
-			cout << endl <<"add son library"<< endl;
-			enfants.push_back(new Node_library(structure,iter));
+			cout <<">>> Add Root son : library"<< endl;
+			enfants.push_back(new Node_library(iter));
 		}
 		else if((*iter).getName() == "entity" and ((*iter).getType() == "keyword")){
-			cout << endl <<"add son entity"<< endl;
-			enfants.push_back(new Node_entity(structure,iter));
+			cout <<">>> Add Root son : entity"<< endl;
+			enfants.push_back(new Node_entity(iter));
 		}
 		else if((*iter).getName() == "architecture" and ((*iter).getType() == "keyword")){
-			cout << endl <<"add son architecture"<< endl;
-			enfants.push_back(new Node_architecture(structure,iter));
+			cout <<">>> Add Root son : architecture"<< endl;
+			enfants.push_back(new Node_architecture(iter));
 		}	
-		else{
-			cout << "x";
-		}
 	}
 }
 
 bool Node_root::checkStruct(){}
-void Node_root::createStruct(list<Lexeme> parsing){}
+void Node_root::createStruct(){}
 
