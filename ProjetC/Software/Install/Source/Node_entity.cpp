@@ -6,7 +6,7 @@ Node_entity::Node_entity(list<Lexeme>::iterator it):Node("Entity",it){
 	createStruct();
 	cout <<"before shaping : " << displayStruct()  <<endl;
 	createSons();
-	//shapeStruct();
+	shapeStruct(Lexeme("port"),Lexeme("end"));
 	cout <<endl<<"after shaping : " << displayStruct()  <<endl<<"---(Not implemented yet)---"<<endl;
 	/*if(checkStruct() == true){
 		cout << "	-> correct structure syntax"<< endl;

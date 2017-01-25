@@ -34,7 +34,7 @@ void Node_library::createStruct(){
 	list<Lexeme>::iterator it;
 
 	for (it = lex_it; (*it).getName() != "entity"; it++){
-		structure.push_back((*it).getName());		
+		structure.push_back((*it).getName());			
 	}
 }
 

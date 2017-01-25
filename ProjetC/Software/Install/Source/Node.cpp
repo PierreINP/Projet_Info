@@ -13,19 +13,19 @@ const list<Lexeme>::iterator & Node::getLexIt()const{
 	return lex_it;
 }
 
-
 //methods
-
 void Node::shapeStruct(Lexeme cutBegin, Lexeme cutEnd){
 	list<Lexeme>::iterator it;
 
+	//structure.remove(cutBegin.getName());
 	for(it = structure.begin(); it != structure.end();it++){
+		//cout << *it;
 		if((*it).getName() == cutBegin.getName()){
-			it++;
+			//structure.remove(*it);
 			while((*it).getName() != cutEnd.getName()){
-				//cout<<(*it).getName()<< "|||"<<cutEnd.getName();
+				//cout<<(*it)<< " ";	
+				structure.remove((*it));
 				it++;
-				//structure.remove(*it);
 			}
 		}		
 	}
