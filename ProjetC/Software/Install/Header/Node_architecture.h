@@ -9,8 +9,9 @@ class Node_architecture : public Node {
 private:
 	string entity_ID;
 	string architecture_ID;
+	list<Lexeme>::iterator end_it;
 public:
-	Node_architecture(list<Lexeme>::iterator it);
+	Node_architecture(list<Lexeme>::iterator it, list<Lexeme>::iterator itEnd);
 	~Node_architecture();
 
 //methods

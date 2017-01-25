@@ -15,6 +15,22 @@ const list<Lexeme>::iterator & Node::getLexIt()const{
 
 
 //methods
+
+void Node::shapeStruct(Lexeme cutBegin, Lexeme cutEnd){
+	list<Lexeme>::iterator it;
+
+	for(it = structure.begin(); it != structure.end();it++){
+		if((*it).getName() == cutBegin.getName()){
+			it++;
+			while((*it).getName() != cutEnd.getName()){
+				//cout<<(*it).getName()<< "|||"<<cutEnd.getName();
+				it++;
+				//structure.remove(*it);
+			}
+		}		
+	}
+}
+
 string  Node::displaySons() const {  
 	vector<Node*>::const_iterator it;
 	stringstream sons;

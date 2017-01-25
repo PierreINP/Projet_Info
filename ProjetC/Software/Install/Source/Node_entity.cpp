@@ -1,28 +1,49 @@
 #include "./../Header/Node_entity.h"
+#include "./../Header/Node_port.h"
 
 //builders
 Node_entity::Node_entity(list<Lexeme>::iterator it):Node("Entity",it){
-//	createSons()
 	createStruct();
+	cout <<"before shaping : " << displayStruct()  <<endl;
+	createSons();
+	//shapeStruct();
+	cout <<endl<<"after shaping : " << displayStruct()  <<endl<<"---(Not implemented yet)---"<<endl;
+	/*if(checkStruct() == true){
+		cout << "	-> correct structure syntax"<< endl;
+	}
+	else {
+		cout << "	-> incorrect structure syntax"<< endl;
+	}*/
+	cout << ">>> End of " << getLabel()<< " creation" << endl;
 }
+
 Node_entity::~Node_entity(){}
 
 //methods
 
-void Node_entity::createSons(){}
+void Node_entity::createSons(){	
+	list<Lexeme>::iterator iter;
+
+	for (iter = structure.begin(); iter != structure.end(); iter++){
+		if(((*iter).getName() == "port") and ((*iter).getType() == "keyword")){
+			cout <<endl<<">>> Add Entity son : port"<< endl;
+			enfants.push_back(new Node_port(iter));
+		}
+	}
+}
 
 void Node_entity::createStruct(){
 	list<Lexeme>::iterator it;
 	for (it = lex_it; (*it).getName() != "architecture"; it++){
-		if(((*it).getName() == "port") and ((*it).getType() == "keyword")){
-			while(((*it).getName() != "end") or ((*it).getType() != "keyword")){
-				it++;
-			}
-			structure.push_back(Lexeme("port"));
-		}
+		//if(((*it).getName() == "port") and ((*it).getType() == "keyword")){
+			//while(((*it).getName() != "end") or ((*it).getType() != "keyword")){
+			//	it++;
+			//}
+			//structure.push_back(Lexeme("port"));
+		//}
 		structure.push_back((*it).getName());
 	}
-	cout << displayStruct() << endl << endl;
+	
 }
 bool Node_entity::checkStruct(){
 	/*list<Lexeme>::iterator it;
