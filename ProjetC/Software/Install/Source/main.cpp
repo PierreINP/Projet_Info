@@ -10,26 +10,34 @@ Output : Data structure
 
 using namespace std;
 
-int main()
+int main(int argv, char * argc[])
 {
 	list<Lexeme> lexeme_list;
-	list<Lexeme>::iterator iter; 
+	list<Lexeme>::iterator iter;
 
-	
-	char fichier [path_size]= "../../../ProjetC/SourceCode/test3.vhdl";
-	//Lancement de la routine (ouverture fichier, scan de chaque ligne + découpage)
-	lexeme_list = readSource(fichier);
+	;
+	char root  [path_size]= "../../../ProjetC/SourceCode/";
+	if (argv > 1) {
+		strcat(root, argc[1]);
+		//Lancement de la routine (ouverture fichier, scan de chaque ligne + découpage)
+		lexeme_list = readSource(root);	
+	}
+	else {
+		char fichier [path_size] = "../../../ProjetC/SourceCode/test.vhdl";	
+		//Lancement de la routine (ouverture fichier, scan de chaque ligne + découpage)
+		lexeme_list = readSource(fichier);
+	}
+
 	//Suppression des éléments vides
 	lexeme_list = clearList(lexeme_list);
+	//Sépare les opérateurs si collés à des ID
 	lexeme_list = checkLexeme(lexeme_list);
 	
 
 	//Test lecture de la liste de lexeme	
 	for(iter = lexeme_list.begin(); iter != lexeme_list.end(); iter ++)
 	{
-		//if ((*iter).getName()[0] == 13) {cout << "CHARRIOT" <<endl;}
-		//else if (iter->getName()[0] == 0 and iter->getName()[0] <= 32) {cout << "Merde" <<endl;}
-		cout << *iter << " | " <<(*iter).getType()<< endl;
+		cout << *iter << endl;
 	}
 	
 }

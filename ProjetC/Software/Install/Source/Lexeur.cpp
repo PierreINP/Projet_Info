@@ -48,23 +48,17 @@ sourcecode.close(); // Closing the input file stream
 return lexeme_list;
 }
 
-/*
-string suppressCommentary(string line) {
-	int i;
+
+string suppressCommentary(string& line) {
+	int flag;
 	string new_line;
-	for (i=0; i < line.size(); i++) {
-		/*if (line[i]==45 and line[i+1]==45) {				
-			cout << "COMMENTAIRE" << endl;			
-			//new_line += "\0";
-			return new_line;
-		}		
-		new_line += line[i];
-	
-	}
-	new_line += "\0";
-	//cout << line << endl << new_line << endl;
-return new_line; 
-}*/
+
+	flag = line.find("--");	
+	line = line.substr(0, flag);	
+
+	cout << line << endl;// << new_line << endl;
+return line; 
+}
 
 //Remplace in a ligne horizontal tab by space character
 string eraseTab(string line) {
@@ -78,7 +72,7 @@ string eraseTab(string line) {
 			new_line += " ";
 		}	
 	}
-	new_line += "\0";
+	new_line += '\0';
 	//cout << line << endl << new_line << endl;
 return new_line; 
 }
@@ -87,17 +81,17 @@ list<Lexeme> split_line(string line)
 {
 	std::list<Lexeme> my_list; //list of lexeme, contains list of words
 
-	int size = line.size();
 	int r = 0;
 	int i;
 
-	//line = suppressCommentary(line);
+	line = suppressCommentary(line);
 	line = eraseTab(line);
+
 	int sep, ope, filler;
 	//cout << "Line of " << size << " characters" << endl;
 	//cout << line << endl;
 
-	for(i = 0; i < size; i++) {
+	for(i = 0; i < line.size(); i++) {
 		//suppression des tabulations dans le Lexeme final
 		if (line[i] == 9) {r++;}
 		else if (line[i] == 0) {r++;}
@@ -127,7 +121,7 @@ list<Lexeme> split_line(string line)
 	}
  	
 	
-Lexeme fin(line.substr(r, size-r));
+Lexeme fin(line.substr(r, line.size()-r));
 my_list.push_back(fin);
 return my_list;
 }
