@@ -5,8 +5,7 @@
 		cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		createSons();
-		//shapeStruct();
-		//checkStruct();
+		checkStruct();
 		cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
@@ -14,6 +13,8 @@
 
 //methods
 	void Node_port::createSons(){}
+	void createSons(list<Lexeme> name, Lexeme direction, Lexeme type);
+
 	void Node_port::createStruct(){
 		list<Lexeme>::iterator it;
 	
@@ -23,21 +24,17 @@
 	}
 
 	bool Node_port::checkStruct(){
-	list<Lexeme>::iterator it;
+		list<Lexeme>::iterator it;
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
 
-
-			for(it = structure.begin(); it != structure.end(); it ++){
-
+		for(it = structure.begin(); it != structure.end(); it ++){
 			it_tmp = it;
 			//cout << step << " | " << *it <<endl;
 
-	///////////////////////////////////////////CHECKSTRUCTURE PORT///////////////////////////////////////////
 			switch(step){		
 				case 0:		if((*it).getName()=="port"){step++;}
 						else step=-1;	//rentre dans le cas default
-			
 						break;
 
 				case 1:		if((*it).getName()=="("){step++;}
@@ -46,7 +43,7 @@
 
 				//Case 2 et 3 parcourt les Id avant le ":"
 				case 2 :   	if((*it).getType()=="id"  and (*++it_tmp).getName() == ","){
-							//recuperer ID dans un port
+							//list<
 							step++;
 						}
 						else if((*it).getType()=="id"  or (*++it_tmp).getName() == ":"){
@@ -60,7 +57,7 @@
 						if((*++it_tmp).getType()=="id") {step--;}
 						else step=-1;
 						break;
-	
+
 
 				case 4 :     	if((*it).getName()==":"){step++;}
 						else step=-1;
@@ -76,7 +73,7 @@
 						}
 						else step=-1;
 						break;
-	
+
 				//Détermination du type du port
 				case 6 :        if((*it).getName()== "bit"){
 							//port(s)'s type = bit;
@@ -94,7 +91,7 @@
 							//port(s)'s type = std_logic_vector;
 							step = 10;
 						}
-					
+				
 						else step=-1;
 						break;
 				//Type scalaire || fin d'un port --> fin de PORT ?
@@ -102,9 +99,9 @@
 						else if((*it).getName()==";"  or (*++it_tmp).getType() == "id"){step = 2;} // si "id" après un port --> nouveau port
 						else step=-1;
 						break;
-			
+		
 				//Type composite
-			
+		
 				case 10 :       if((*it).getName()=="range"){step = 16;} 
 						else if((*it).getName() == "("){step++;}
 						else step=-1;
@@ -139,12 +136,12 @@
 				case 14 :       if((*it).getName() == ")"){step++;}
 						else step=-1;
 						break;
-						
+					
 				case 15 :       if((*it).getName()== ")"){step = 9;}
 						else if((*it).getName() == ";" and (*++it_tmp).getType() == "id"){step = 2;}
 						else step=-1;
 						break;
-			
+		
 				//Avec range
 				case 16 :       if(isEntier((*it).getName())){
 							//récupération de l'entier
@@ -178,9 +175,9 @@
 						else step=-1;
 						break;
 
-				case 9 :        if((*it).getName()==";"){cout << "Structure PORT validée" << endl; return true;}
+				case 9 :        if((*it).getName()==";"){cout << "	Structure PORT validée" << endl; return true;}
 						else {return false;}    
-					
+				
 
 				default :	cout << "error" << endl; //cf gestion d'erreur
 						return false;		  

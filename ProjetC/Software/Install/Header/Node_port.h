@@ -7,15 +7,16 @@ using namespace std;
 
 class Node_port : public Node {
 private:
-	string name;
-	string direction;
-	string type;
+	list<Lexeme> name;
+	Lexeme direction;
+	Lexeme type;
 public:
 	Node_port(list<Lexeme>::iterator it);
 	~Node_port();
 
 //methods
 	void createSons();
+	void createSons(list<Lexeme> name, Lexeme direction, Lexeme type);
 	void createStruct();
 	bool checkStruct();
 
