@@ -16,7 +16,7 @@ class Node {
 protected:
 	list<Lexeme> structure;
 	list<Lexeme>::iterator lex_it;
-	vector <Node*> enfants;
+	vector <Node*> sons;
 	
 private:
 	string label;
@@ -37,6 +37,7 @@ public:
 //accessors
 	const string & getLabel()const;
 	const list<Lexeme>::iterator & getLexIt()const;
+	const vector<Node*> getSons()const;
 
 //Fonctions amies
 	friend ostream& operator<<(ostream& out, const Node &n);
