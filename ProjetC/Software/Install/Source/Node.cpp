@@ -18,19 +18,10 @@ void Node::shapeStruct(Lexeme cutBegin, Lexeme cutEnd){
 	list<Lexeme>::iterator it;
 	list<Lexeme> structure_tmp;
 
-	//structure.remove(cutBegin.getName());
 	for(it = structure.begin(); it != structure.end();it++){
-		//cout << *it;
 		if((*it).getName() == cutBegin.getName()){
-<<<<<<< HEAD
-			//structure.remove(*it);
-			while((*it).getName() != cutEnd.getName()){
-				//cout<<(*it)<< " ";	
-				structure.remove((*it));
-=======
 			structure_tmp.push_back(*it);
 			while((*it).getName() != cutEnd.getName()){		
->>>>>>> 3e3dc6b056c718c5e0261f1a22d9e1dcc2afaca6
 				it++;
 			}
 		}
