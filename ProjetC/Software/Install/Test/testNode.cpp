@@ -9,18 +9,23 @@ using namespace std;
 
 int main(void){
 
+	vector<Node*> Tree;
+	vector<Node*>::iterator it_tree;
+
 	list<Lexeme> lexeme_list;
-	list<Lexeme>::iterator iter = lexeme_list.begin(); //Initialisation sur le 1er lexeme par defaut
+	list<Lexeme>::iterator iter; 
 	char fichier [path_size]= "../../../ProjetC/SourceCode/test3.vhdl";
 	
 	lexeme_list = readSource(fichier);//Lancement de la routine (ouverture fichier, scan de chaque ligne + decoupage)
 	lexeme_list = clearList(lexeme_list);//Suppression des elements vides
 	lexeme_list = checkLexeme(lexeme_list);//Verification de tous les lexemes
+	iter = lexeme_list.begin(); //Initialisation sur le 1er lexeme par defaut
  
-	Node_root node1(lexeme_list,iter);
+	Node_root source(lexeme_list,iter);
+	Tree = source.getSons();
+	cout << endl << source << endl;
 
-	cout << endl << node1;
-	//cout << (*node1.getLexIt())<< endl; //display lexeme name linked to node1 iterator
-	//cout << (*node1.getLexIt()).getType()<< endl; //display lexeme type linked to node1 iterator
-	cout << node1.displayStruct()<< endl;	
+	for (it_tree = Tree.begin(); it_tree != Tree.end(); it_tree++){
+		cout << endl << (**it_tree).displayStruct() << endl;
+	}
 }
