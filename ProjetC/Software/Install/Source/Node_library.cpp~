@@ -6,7 +6,7 @@ Node_library::Node_library(list<Lexeme>::iterator it):Node("Library",it){
 	createStruct();
 	cout <<"before shaping : " << displayStruct()  <<endl;
 	createSons();
-	shapeStruct(Lexeme("use"),Lexeme("use"));
+	shapeStruct(Lexeme("use"),Lexeme(";"));
 	cout <<endl<<"after shaping : " << displayStruct() <<endl;
 	/*if(checkStruct() == true){
 		cout << "	-> correct structure syntax"<< endl;

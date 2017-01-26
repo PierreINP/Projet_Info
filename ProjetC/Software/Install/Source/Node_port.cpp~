@@ -25,7 +25,13 @@ void Node_port::createStruct(){
 	}
 }
 
-
+bool isEntier(string a) {
+	int i;
+	for (i; i< a.size(); i++) {
+		if (not(a[i] >= 48 and a[i] <= 57)) {return false;} 
+	}
+return true;
+}
 
 bool Node_port::checkStruct(){
 list<Lexeme>::iterator it;

@@ -3,8 +3,8 @@ use IEEE.std_logic_1164.ALL ;
 use ieee.numeric_std.all;
 
 entity CompteurUpDown is
-	port(	en,clk,resetn,Up_Down	: in STD_LOGIC; 
-		count		: out STD_LOGIC_VECTOR(3 downto 0)) ; 
+	port(	en,clk,resetn,Up_Down	: in STD_LOGIC; -- signal input 8 bits
+		count		: out STD_LOGIC_VECTOR(3 downto 0)) ; -- signal input 3 bits
 end CompteurUpDown; 
 
 architecture CptUpDown of CompteurUpDown is
