@@ -13,6 +13,7 @@ extern char specialList[];
 extern string operatorList[];
     
 bool isEntier(string a) {
+//Vérifie si chaque caractère d'un lexeme est un chiffre
 	int i;
 	for (i; i< a.size(); i++) {
 		if (not(a[i] >= 48 and a[i] <= 57)) {return false;} 
@@ -20,23 +21,127 @@ bool isEntier(string a) {
 return true;
 }
 
+bool isString(string a) {
+//Vérifie si chaque caractère d'un lexeme est un chiffre
+	int i;
+	for (i; i< a.size(); i++) {
+		if (not(a[i] >= 97 and a[i] <= 122)) {return false;} 
+	}
+return true;
+}
+
+bool isStd_Logic(string a) {
+//Vérifie si chaque caractère d'un lexeme est un type reconnu de std logic
+	char tab_type[10] = {"ux01zwlh-"};
+	int i;
+	for (i=0; i <9; i++) {
+		//cout << "LEX " << a[0] << " TYPE? " << tab_type[i] <<endl;
+		if(a[0] == tab_type[i]){
+			return true;
+		}
+	}
+return false;
+}
+
 
 int main() {
 
 	list<Lexeme> structure;
 //List for port test
+/*TEST VECTOR
 	structure.push_back(Lexeme("signal"));
 	structure.push_back(Lexeme("a"));
 	structure.push_back(Lexeme(","));
 	structure.push_back(Lexeme("b"));
 	structure.push_back(Lexeme(":"));
-	structure.push_back(Lexeme("std_logic_vector"));
+	structure.push_back(Lexeme("bit_vector"));
+	structure.push_back(Lexeme("("));
+	structure.push_back(Lexeme("0"));
+	structure.push_back(Lexeme("upto"));
+	structure.push_back(Lexeme("10"));
+	structure.push_back(Lexeme(")"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("="));
+	structure.push_back(Lexeme("\""));
+	structure.push_back(Lexeme("0000"));
+	structure.push_back(Lexeme("\""));
+	structure.push_back(Lexeme(";"));
+*/	
+
+/*TEST INTEGER
+	structure.push_back(Lexeme("signal"));
+	structure.push_back(Lexeme("a"));
+	structure.push_back(Lexeme(","));
+	structure.push_back(Lexeme("b"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("integer"));
 	structure.push_back(Lexeme("range"));
 	structure.push_back(Lexeme("0"));
 	structure.push_back(Lexeme("to"));
 	structure.push_back(Lexeme("10"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("="));
+	structure.push_back(Lexeme("32"));
 	structure.push_back(Lexeme(";"));
-	
+*/
+
+/*TEST STD_LOGIC
+	structure.push_back(Lexeme("signal"));
+	structure.push_back(Lexeme("a"));
+	structure.push_back(Lexeme(","));
+	structure.push_back(Lexeme("b"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("std_logic"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("="));
+	structure.push_back(Lexeme("'"));
+	structure.push_back(Lexeme("z"));
+	structure.push_back(Lexeme("'"));
+	structure.push_back(Lexeme(";"));
+*/
+
+/*TEST BIT
+	structure.push_back(Lexeme("signal"));
+	structure.push_back(Lexeme("a"));
+	structure.push_back(Lexeme(","));
+	structure.push_back(Lexeme("b"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("bit"));
+	structure.push_back(Lexeme(";"));
+*/ 
+
+/*TEST STRING*/
+	structure.push_back(Lexeme("signal"));
+	structure.push_back(Lexeme("a"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("string"));
+	structure.push_back(Lexeme("("));
+	structure.push_back(Lexeme("0"));
+	structure.push_back(Lexeme("to"));
+	structure.push_back(Lexeme("10"));/*
+	structure.push_back(Lexeme(")"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("="));	
+	structure.push_back(Lexeme("\""));
+	structure.push_back(Lexeme("salut"));
+	structure.push_back(Lexeme("\""));
+	structure.push_back(Lexeme(";"));
+*/	structure.push_back(Lexeme(";"));
+
+/*TEST BOOLEAN
+	structure.push_back(Lexeme("signal"));
+	structure.push_back(Lexeme("a"));
+	structure.push_back(Lexeme(","));
+	structure.push_back(Lexeme("b"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("boolean"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("="));
+	structure.push_back(Lexeme("false"));
+	structure.push_back(Lexeme(";"));
+*/
+
+
 	list<Lexeme>::iterator it;
 	list<Lexeme>::iterator it_tmp;
 	int step = 0;
@@ -81,114 +186,260 @@ int main() {
 					//Bit avec initialisation
 					if((*it).getName()== "bit" and (*++it_tmp).getName()== ":"){
 						//signal's type = bit;
-						step = xx;
+						step = 10;
 					}
 					//Bit sans initialisation
-					else if((*it).getName()== "bit" and (*++it_tmp).getName()== ";"){
+					else if((*it).getName()== "bit" or (*++it_tmp).getName()== ";"){
 						//signal's type = bit;
-						step = xx;
+						step = 7;
 					}
 
 					///////////////////////////////////////////
 					//std_logic avec initialisation
 					else if((*it).getName()== "std_logic" and (*++it_tmp).getName()== ":"){
-						//signal)'s type = bit;
-						step = xx;
+						//signal)'s type = std_logic;
+						step = 15;
 					}
 					//std_logic sans initialisation
-					else if((*it).getName()== "std_logic" and (*++it_tmp).getName()== ";"){
-						//signal's type = bit;
-						step = xx;
-					}					
-					else step=-1;
+					else if((*it).getName()== "std_logic" or (*++it_tmp).getName()== ";"){
+						//signal's type = std_logic;
+						step = 7;
+					}
 
 					///////////////////////////////////////////
 					//integer avec initialisation
 					else if((*it).getName()== "integer" and (*++it_tmp).getName()== "range"){
-						//signal's type = bit;
-						step = xx;
+						//signal's type = integer;
+						step = 20;
 					}
 					//integer sans initialisation
-					else if((*it).getName()== "integer" and (*++it_tmp).getName()== ";"){
-						//signal's type = bit;
-						step = xx;
-					}					
-					else step=-1;
+					else if((*it).getName()== "integer" or (*++it_tmp).getName()== ";"){
+						//signal's type = integer;
+						step = 7;
+					}
 
 					///////////////////////////////////////////
 					//string avec initialisation
 					else if((*it).getName()== "string" and (*++it_tmp).getName()== "("){
-						//signal's type = bit;
-						step = xx;
+						//signal's type = string;
+						step = 30;
 					}
-					//string sans initialisation
-					else if((*it).getName()== "string" and (*++it_tmp).getName()== ";"){
-						//signal's type = bit;
-						step = xx;
-					}					
-					else step=-1;
-
 					///////////////////////////////////////////
 					//boolean avec initialisation
 					else if((*it).getName()== "boolean" and (*++it_tmp).getName()== ":"){
-						//signal's type = bit;
-						step = xx;
+						//signal's type = boolean;
+						step = 40;
 					}
 					//boolean sans initialisation
-					else if((*it).getName()== "boolean" and (*++it_tmp).getName()== ";"){
-						//signal's type = bit;
-						step = xx;
+					else if((*it).getName()== "boolean" or (*++it_tmp).getName()== ";"){
+						//signal's type = boolean;
+						step = 7;
 					}
 
 					///////////////////////////////////////////
 					//bit_vector avec initialisation
 					else if((*it).getName()== "bit_vector" and (*++it_tmp).getName()== "("){
-						//signal's type = bit;
-						step = xx;
+						//signal's type = bit_vector;
+						step = 50;
 					}
-					//bit_vector sans initialisation
-					else if((*it).getName()== "bit_vector" and (*++it_tmp).getName()== ";"){
-						//signal's type = bit;
-						step = xx;
-					}
+
 
 					///////////////////////////////////////////
 					//std_logic_vector avec initialisation
 					else if((*it).getName()== "std_logic_vector" and (*++it_tmp).getName()== "("){
-						//signal's type = bit;
-						step = xx;
-					}
-					//std_logic_vector sans initialisation
-					else if((*it).getName()== "std_logic_vector" and (*++it_tmp).getName()== ";"){
-						//signal's type = bit;
-						step = xx;
+						//signal's type = std_logic_vector;
+						step = 50;
 					}					
 					else step=-1;
 					break;
 			
-			//Fin du SIGNAL
-			case 7 :        if((*it).getName()==";") {
-						cout << "Structure SIGNAL validée" << endl; return true;
-					}
-					else step=-1;
-					break;
-			
-			//Type composite
-			
-			case 10 :       if((*it).getName()=="range"){step = 16;} 
-					else if((*it).getName() == "("){step++;}
+			//Bit
+			case 10 :       if((*it).getName() == ":"){step++;}
 					else step=-1;
 					break;
 
-			//Avec up/down to
-			case 11 :       if(isEntier((*it).getName())){
+			case 11:       if((*it).getName() == "="){step++;}
+					else step=-1;
+					break;
+
+			case 12 :       if((*it).getName() == "'"){step++;}
+					else step=-1;
+					break;
+
+			case 13 :       if(isEntier((*it).getName())){
+						//récupération de la valeur d'initialisation
+						step++;
+					}
+					else step=-1;
+					break;
+
+			case 14 :       if((*it).getName() == "'"){step = 7;}
+					else step=-1;
+					break;
+
+			//std_logic
+			case 15 :       if((*it).getName() == ":"){step++;}
+					else step=-1;
+					break;
+
+			case 16:       if((*it).getName() == "="){step++;}
+					else step=-1;
+					break;
+
+			case 17 :       if((*it).getName() == "'"){step++;}
+					else step=-1;
+					break;
+
+			case 18 :       if(isStd_Logic((*it).getName())){
+						//récupération de la valeur d'initialisation
+						step++;
+					}
+					else step=-1;
+					break;
+
+			case 19 :       if((*it).getName() == "'"){step = 7;}
+					else step=-1;
+					break;
+
+			
+			//INTEGER avec range
+			case 20 :       if((*it).getName() == "range"){step++;}
+					else step=-1;
+					break;
+			case 21 :       if(isEntier((*it).getName())){step++;}
+					else step=-1;
+					break;
+
+			case 22 :       if((*it).getName()== "to"){
+						//manière de compter
+						step++;
+					}
+					else step=-1;
+					break;
+
+			case 23 :       if(isEntier((*it).getName()) and (*++it_tmp).getName() == ";"){
+						//récupération de l'entier
+						step = 7;
+					}
+					else if(isEntier((*it).getName()) or (*++it_tmp).getName() == ":"){step++;}
+					else step=-1;
+					break;
+
+			case 24 :       if((*it).getName() == ":"){step++;}
+					else step=-1;
+					break;
+
+			case 25 :       if((*it).getName() == "="){step++;}
+					else step=-1;
+					break;
+
+			case 26 :       if(isEntier((*it).getName())){
+						//récupération de la valeur d'initialisation
+						step = 7;
+					}
+					else step=-1;
+					break;
+
+			//String avec TO
+			case 30 :       if((*it).getName() == "("){
+						step++;
+					}
+					else step=-1;
+					break;
+
+			case 31 :       if(isEntier((*it).getName())){
 						//récupération de l'entier
 						step++;
 					}
 					else step=-1;
 					break;
 
-			case 12 :       if((*it).getName()== "upto"){
+			case 32 :       if((*it).getName()== "to"){
+						//manière de compter
+						step++;
+					}
+
+					else step=-1;
+					break;
+
+			case 33 :       if(isEntier((*it).getName())){
+						//récupération de l'entier
+						step++;
+					}
+					else step=-1;
+					break;
+
+			case 34 :      	if((*it).getName()== ")" and (*++it_tmp).getName() == ";"){
+	
+						step = 7;
+					}
+					else if((*it).getName()== ")" or (*++it_tmp).getName() == ":"){
+
+						step++;
+					}
+					else step=-1;
+					break;
+
+			case 35 :       if((*it).getName() == ":"){step++;}
+					else step=-1;
+					break;
+
+			case 36 :       if((*it).getName() == "="){step++;}
+					else step=-1;
+					break;
+
+			case 37 :       if((*it).getName() == "\""){step++;}
+					else step=-1;
+					break;
+
+			case 38 :       if(isString((*it).getName())){
+						//récupération de l'entier
+						step++;
+					}
+					else step=-1;
+					break;
+
+			case 39 :       if((*it).getName() == "\""){step = 7;}
+					else step=-1;
+					break;
+
+			//BOOLEAN
+			case 40 :       if((*it).getName() == ":"){step++;}
+					else step=-1;
+					break;
+
+			case 41:       if((*it).getName() == "="){step++;}
+					else step=-1;
+					break;
+
+
+			case 42 :       if((*it).getName() == "false"){
+						//récupération de la valeur d'initialisation
+						step = 7;
+					}
+					else if((*it).getName() == "true"){
+						//récupération de la valeur d'initialisation
+						step = 7;
+					}
+					else step=-1;
+					break;
+
+
+			//VECTOR avec up/down
+			case 50 :       if((*it).getName() == "("){
+						step++;
+					}
+					else step=-1;
+					break;
+
+			case 51 :       if(isEntier((*it).getName())){
+						//récupération de l'entier
+						step++;
+					}
+					else step=-1;
+					break;
+
+			case 52 :       if((*it).getName()== "upto"){
 						//manière de compter
 						step++;
 					}
@@ -199,40 +450,44 @@ int main() {
 					else step=-1;
 					break;
 
-			case 13 :       if(isEntier((*it).getName())){
+			case 53 :       if(isEntier((*it).getName())){
 						//récupération de l'entier
 						step++;
 					}
 					else step=-1;
 					break;
 
-			case 14 :       if((*it).getName()== ")"){
-						//récupération de l'entier
-						step =7;
-					}
+			case 54 :      	if((*it).getName()== ")" and (*++it_tmp).getName() == ";"){step = 7;}
+					else if((*it).getName()== ")" or (*++it_tmp).getName() == ":"){step++;}
 					else step=-1;
 					break;
 
+			case 55 :       if((*it).getName() == ":"){step++;}
+					else step=-1;
+					break;
 
-			
-			//Avec range
-			case 16 :       if(isEntier((*it).getName())){
+			case 56 :       if((*it).getName() == "="){step++;}
+					else step=-1;
+					break;
+
+			case 57 :       if((*it).getName() == "\""){step++;}
+					else step=-1;
+					break;
+
+			case 58 :       if(isEntier((*it).getName())){
 						//récupération de l'entier
 						step++;
 					}
 					else step=-1;
 					break;
 
-			case 17 :       if((*it).getName()== "to"){
-						//manière de compter
-						step++;
-					}
+			case 59 :       if((*it).getName() == "\""){step = 7;}
 					else step=-1;
 					break;
 
-			case 18 :       if(isEntier((*it).getName())){
-						//récupération de l'entier
-						step = 7;
+			//Fin du SIGNAL
+			case 7 :        if((*it).getName()==";") {
+						cout << "Structure SIGNAL validée" << endl; return true;
 					}
 					else step=-1;
 					break;
