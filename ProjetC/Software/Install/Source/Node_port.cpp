@@ -4,7 +4,6 @@
 	Node_port::Node_port(list<Lexeme>::iterator it):Node("Port",it){
 		cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
-		createSons();
 		checkStruct();
 		cout << "--- End of creation : " << getLabel()<< endl;	
 	}
@@ -12,9 +11,13 @@
 	Node_port::~Node_port(){}
 
 //methods
-	void Node_port::createSons(){}
+	void Node_port::createSons(list<string> name, string direction, string type){//, int lowerBound=0, int upperBound=0){
+		
 
-	void createSons(list<Lexeme> name, Lexeme direction, Lexeme type);
+		//sons.push_back(new Node_portSignal(iter,name,direction,type,lowerBound,upperBound))
+	}
+
+
 
 	void Node_port::createStruct(){
 		list<Lexeme>::iterator it;
@@ -52,20 +55,6 @@
 							else 					{step=-1;}
 						}
 						break;
-
-				/*PREVIOUS VERSION ! 
-				//Case 2 et 3 parcourt les Id avant le ":"
-				case 2 :   	if((*it).getType()=="id"){//  and (*++it_tmp).getName() == ","){
-							names.push_back((*it).getName());
-							step++;
-						}
-						else if((*it).getType()=="id"  or (*++it_tmp).getName() == ":"){
-							names.push_back((*it).getName());
-							step = 4;
-						}
-						else step=-1;
-						break;*/
-
 
 				case 3 :        //Go back to case 2 if ID after "," 
 						if((*++it_tmp).getType()=="id") 	{step--;}
@@ -107,7 +96,7 @@
 						break;
 
 				//Type scalaire || fin d'un port --> fin de PORT ?
-				case 7 :        //createSons(names,direction,type);
+				case 7 :       	//createSons(names,direction,type); 
 						if((*it).getName()==";"  and (*++it_tmp).getName() == ")"){step = 8;} // si ")" après un port --> fin de PORT
 						else if((*it).getName()==";"  or (*++it_tmp).getType() == "id"){step = 2;} // si "id" après un port --> nouveau port
 						else step=-1;
@@ -150,14 +139,15 @@
 						else step=-1;
 						break;
 					
-				case 15 :       if((*it).getName()== ")"){step = 9;}
+				case 15 :       //createSons(names,direction,type);
+						if((*it).getName()== ")"){step = 9;}
 						else if((*it).getName() == ";" and (*++it_tmp).getType() == "id"){step = 2;}
 						else step=-1;
 						break;
 		
 				//Avec range
 				case 16 :       if(isEntier((*it).getName())){
-							//récupération de l'entier
+							//lowerBound = (*it).getName();
 							step++;
 						}
 						else step=-1;
@@ -171,13 +161,14 @@
 						break;
 
 				case 18 :       if(isEntier((*it).getName())){
-							//récupération de l'entier
+							//upperBound = (*it).getName();
 							step++;
 						}
 						else step=-1;
 						break;
 
-				case 19 :       if((*it).getName()== ")"){step = 9;}
+				case 19 :       //createSons(names,direction,type);
+						if((*it).getName()== ")"){step = 9;}
 						else if((*it).getName() == ";" and (*++it_tmp).getType() == "id"){step = 2;}
 						else step=-1;
 						break;

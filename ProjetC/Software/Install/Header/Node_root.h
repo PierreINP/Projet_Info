@@ -13,8 +13,8 @@ public:
 
 //methods
 	void createSons();
-	void createStruct();
-	bool checkStruct();
+	void createStruct();//Node virtual pure function not used for this class : structure checking is made during parsing
+	bool checkStruct(); //Node virtual pure function not used for this class : structure copied from VHDL source parsing
 };
 
 #endif 

@@ -26,7 +26,6 @@ public:
 	virtual ~Node();
 
 //methods
-	virtual void createSons() = 0;   // pure virtual
 	virtual void createStruct() = 0; // pure virtual
 	virtual bool checkStruct() = 0;  // pure virtual
 	void shapeStruct(Lexeme cutBegin, Lexeme cutEnd);
