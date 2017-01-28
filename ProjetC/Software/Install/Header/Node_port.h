@@ -15,7 +15,7 @@ public:
 	~Node_port();
 
 //methods
-	void createSons(list<string> name, string direction, string type);//, int lowerBound=0, int upperBound=0);
+	void createSons(list<string> names, string direction, string type);//, int lowerBound=0, int upperBound=0);
 	void createStruct();
 	bool checkStruct();
 
