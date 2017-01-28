@@ -1,0 +1,2 @@
+g++ -o Binaries/FSM_signal Source/syntaxConstraints.cpp Source/Lexeme.cpp Source/FSM_signal.cpp
+./Binaries/FSM_signal

@@ -66,7 +66,7 @@ int main() {
 	structure.push_back(Lexeme("0000"));
 	structure.push_back(Lexeme("\""));
 	structure.push_back(Lexeme(";"));
-*/	
+*/
 
 /*TEST INTEGER
 	structure.push_back(Lexeme("signal"));
@@ -98,7 +98,7 @@ int main() {
 	structure.push_back(Lexeme("z"));
 	structure.push_back(Lexeme("'"));
 	structure.push_back(Lexeme(";"));
-*/
+
 
 /*TEST BIT
 	structure.push_back(Lexeme("signal"));
@@ -107,10 +107,15 @@ int main() {
 	structure.push_back(Lexeme("b"));
 	structure.push_back(Lexeme(":"));
 	structure.push_back(Lexeme("bit"));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("="));	
+	structure.push_back(Lexeme("\'"));
+	structure.push_back(Lexeme("0"));
+	structure.push_back(Lexeme("\'"));
 	structure.push_back(Lexeme(";"));
-*/ 
+*/
 
-/*TEST STRING*/
+/*TEST STRING
 	structure.push_back(Lexeme("signal"));
 	structure.push_back(Lexeme("a"));
 	structure.push_back(Lexeme(":"));
@@ -118,7 +123,7 @@ int main() {
 	structure.push_back(Lexeme("("));
 	structure.push_back(Lexeme("0"));
 	structure.push_back(Lexeme("to"));
-	structure.push_back(Lexeme("10"));/*
+	structure.push_back(Lexeme("10"));
 	structure.push_back(Lexeme(")"));
 	structure.push_back(Lexeme(":"));
 	structure.push_back(Lexeme("="));	
@@ -126,7 +131,7 @@ int main() {
 	structure.push_back(Lexeme("salut"));
 	structure.push_back(Lexeme("\""));
 	structure.push_back(Lexeme(";"));
-*/	structure.push_back(Lexeme(";"));
+*/
 
 /*TEST BOOLEAN
 	structure.push_back(Lexeme("signal"));
@@ -184,73 +189,63 @@ int main() {
 			//Détermination du type du signal [composite ou scalaire]
 			case 4 :       	///////////////////////////////////////////
 					//Bit avec initialisation
-					if((*it).getName()== "bit" and (*++it_tmp).getName()== ":"){
+					if((*it).getName()== "bit") {
+						if ((*++it_tmp).getName()== ":"){
 						//signal's type = bit;
 						step = 10;
-					}
-					//Bit sans initialisation
-					else if((*it).getName()== "bit" or (*++it_tmp).getName()== ";"){
-						//signal's type = bit;
-						step = 7;
+						}
+						else step = 7;
 					}
 
 					///////////////////////////////////////////
 					//std_logic avec initialisation
-					else if((*it).getName()== "std_logic" and (*++it_tmp).getName()== ":"){
-						//signal)'s type = std_logic;
-						step = 15;
+					else if((*it).getName()== "std_logic"){
+						if ((*++it_tmp).getName()== ":"){
+							//signal)'s type = std_logic;
+							step = 15;
+						}
+						else step = 7;
 					}
-					//std_logic sans initialisation
-					else if((*it).getName()== "std_logic" or (*++it_tmp).getName()== ";"){
-						//signal's type = std_logic;
-						step = 7;
-					}
-
 					///////////////////////////////////////////
 					//integer avec initialisation
-					else if((*it).getName()== "integer" and (*++it_tmp).getName()== "range"){
+					else if((*it).getName()== "integer"){
+						if ((*++it_tmp).getName()== "range"){
 						//signal's type = integer;
 						step = 20;
 					}
-					//integer sans initialisation
-					else if((*it).getName()== "integer" or (*++it_tmp).getName()== ";"){
-						//signal's type = integer;
-						step = 7;
+						else step = 7;
 					}
-
 					///////////////////////////////////////////
 					//string avec initialisation
-					else if((*it).getName()== "string" and (*++it_tmp).getName()== "("){
+					else if((*it).getName()== "string"){
 						//signal's type = string;
 						step = 30;
 					}
-					///////////////////////////////////////////
-					//boolean avec initialisation
-					else if((*it).getName()== "boolean" and (*++it_tmp).getName()== ":"){
-						//signal's type = boolean;
-						step = 40;
-					}
-					//boolean sans initialisation
-					else if((*it).getName()== "boolean" or (*++it_tmp).getName()== ";"){
-						//signal's type = boolean;
-						step = 7;
-					}
 
 					///////////////////////////////////////////
+					//boolean avec initialisation
+					else if((*it).getName()== "boolean") {
+						if ((*++it_tmp).getName()== ":"){
+							//signal's type = boolean;
+							step = 40;
+						}
+						else step = 7;
+					}
+					///////////////////////////////////////////
 					//bit_vector avec initialisation
-					else if((*it).getName()== "bit_vector" and (*++it_tmp).getName()== "("){
+					else if((*it).getName()== "bit_vector"){
 						//signal's type = bit_vector;
 						step = 50;
 					}
 
-
 					///////////////////////////////////////////
 					//std_logic_vector avec initialisation
-					else if((*it).getName()== "std_logic_vector" and (*++it_tmp).getName()== "("){
+					else if((*it).getName()== "std_logic_vector"){
 						//signal's type = std_logic_vector;
 						step = 50;
-					}					
-					else step=-1;
+					}
+				
+					else step = -1;
 					break;
 			
 			//Bit
