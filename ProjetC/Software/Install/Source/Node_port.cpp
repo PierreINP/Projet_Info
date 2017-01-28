@@ -13,6 +13,7 @@
 
 //methods
 	void Node_port::createSons(){}
+
 	void createSons(list<Lexeme> name, Lexeme direction, Lexeme type);
 
 	void Node_port::createStruct(){
@@ -28,47 +29,58 @@
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
 
+		//cout << "   ** Start PORT structure validation **   "<< endl;
 		for(it = structure.begin(); it != structure.end(); it ++){
 			it_tmp = it;
 			//cout << step << " | " << *it <<endl;
 
 			switch(step){		
-				case 0:		if((*it).getName()=="port"){step++;}
-						else step=-1;	//rentre dans le cas default
+				case 0:		if((*it).getName()=="port")	{step++;}
+						else 				{step=-1;} //go to default case 
 						break;
 
-				case 1:		if((*it).getName()=="("){step++;}
-						else step=-1;
+				case 1:		if((*it).getName()=="(")	{step++;}
+						else 				{step=-1;}
 						break;
 
+				/* NEW VERSION */
+				//Case 2 et 3 retrieve IDs before ':' lexeme 
+				case 2 :   	if((*it).getType()=="id"){
+							names.push_back((*it).getName());
+							if((*++it_tmp).getName() == ",")	{step++;}
+							else if((*++it_tmp).getName() == ":")	{step=4;}
+							else 					{step=-1;}
+						}
+						break;
+
+				/*PREVIOUS VERSION ! 
 				//Case 2 et 3 parcourt les Id avant le ":"
-				case 2 :   	if((*it).getType()=="id"  and (*++it_tmp).getName() == ","){
-							//list<
+				case 2 :   	if((*it).getType()=="id"){//  and (*++it_tmp).getName() == ","){
+							names.push_back((*it).getName());
 							step++;
 						}
 						else if((*it).getType()=="id"  or (*++it_tmp).getName() == ":"){
-							//recuperer ID dans un port
+							names.push_back((*it).getName());
 							step = 4;
 						}
 						else step=-1;
+						break;*/
+
+
+				case 3 :        //Go back to case 2 if ID after "," 
+						if((*++it_tmp).getType()=="id") 	{step--;}
+						else 					{step=-1;}
 						break;
 
-				case 3 :        //Si id après "," on repart en 2. 
-						if((*++it_tmp).getType()=="id") {step--;}
-						else step=-1;
+				case 4 :     	if((*it).getName()==":")		{step++;}
+						else 					{step=-1;}
 						break;
 
-
-				case 4 :     	if((*it).getName()==":"){step++;}
-						else step=-1;
-						break;
-
-				case 5 :        if((*it).getName()== "in"){
-							//port(s) direction = in
-							step++;
+				case 5 :        if((*it).getName()== "in"){		step++;
+							direction = "in"; 
 						}
-						else if((*it).getName()== "out"){
-							//port(s) direction = out
+						else if((*it).getName()== "out"){	
+							direction = "out";
 							step++;
 						}
 						else step=-1;
@@ -76,26 +88,27 @@
 
 				//Détermination du type du port
 				case 6 :        if((*it).getName()== "bit"){
-							//port(s)'s type = bit;
+							type = "bit";
 							step++;
 						}
 						if((*it).getName()== "std_logic"){
-							//port(s)'s type = std_logic;
+							type = "std_logic";
 							step++;
 						}
 						else if((*it).getName()== "bit_vector"){
-							//port(s)'s type = std_logic_vector;
+							type = "bit_vector";
 							step = 10;
 						}
 						else if((*it).getName()== "std_logic_vector"){
-							//port(s)'s type = std_logic_vector;
+							type = "std_logic_vector";
 							step = 10;
 						}
-				
 						else step=-1;
 						break;
+
 				//Type scalaire || fin d'un port --> fin de PORT ?
-				case 7 :        if((*it).getName()==";"  and (*++it_tmp).getName() == ")"){step = 8;} // si ")" après un port --> fin de PORT
+				case 7 :        //createSons(names,direction,type);
+						if((*it).getName()==";"  and (*++it_tmp).getName() == ")"){step = 8;} // si ")" après un port --> fin de PORT
 						else if((*it).getName()==";"  or (*++it_tmp).getType() == "id"){step = 2;} // si "id" après un port --> nouveau port
 						else step=-1;
 						break;
@@ -186,8 +199,8 @@
 	}
 
 //accessors
-	const string & Node_port::getName()const{
-		return name;
+	const list<string> & Node_port::getNames()const{
+		return names;
 	}
 
 	const string & Node_port::getDirection()const{

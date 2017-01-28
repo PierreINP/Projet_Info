@@ -56,7 +56,7 @@ string suppressCommentary(string& line) {
 	flag = line.find("--");	
 	line = line.substr(0, flag);	
 
-	cout << line << endl;// << new_line << endl;
+	//cout << line << endl;// << new_line << endl;
 return line; 
 }
 
@@ -85,7 +85,7 @@ list<Lexeme> split_line(string line)
 	int i;
 
 	line = suppressCommentary(line);
-	line = eraseTab(line);
+	//line = eraseTab(line);
 
 	int sep, ope, filler;
 	//cout << "Line of " << size << " characters" << endl;

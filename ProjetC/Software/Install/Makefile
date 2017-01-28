@@ -13,7 +13,7 @@ binary_files: object_files
 	$(CC) -o Binaries/FSM_port Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_port.cpp
 	$(CC) -o Binaries/FSM_library Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_library.cpp
 	$(CC) -o Binaries/FSM_libUse Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_libUse.cpp
-	$(CC) -o Binaries/FSM_signal Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_signal.cpp
+	#$(CC) -o Binaries/FSM_signal Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_signal.cpp
 	$(CC) -o Binaries/FSM_variable Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_variable.cpp
 
 object_files: clean
