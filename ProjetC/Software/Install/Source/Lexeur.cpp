@@ -60,6 +60,7 @@ string suppressCommentary(string& line) {
 return line; 
 }
 
+
 //Remplace in a ligne horizontal tab by space character
 string eraseTab(string line) {
 	int i;
@@ -72,7 +73,7 @@ string eraseTab(string line) {
 			new_line += " ";
 		}	
 	}
-	new_line += '\0';
+	new_line += "\0";
 	//cout << line << endl << new_line << endl;
 return new_line; 
 }

@@ -16,6 +16,7 @@
 	const vector<Node*> Node::getSons()const{
 		return sons;
 	}
+
 //methods
 	void Node::shapeStruct(Lexeme cutBegin, Lexeme cutEnd){
 		list<Lexeme>::iterator it;
@@ -38,7 +39,9 @@
 		int i;
 
 		for (i; i< a.size(); i++) {
-			if (not(a[i] >= 48 and a[i] <= 57)) {return false;} 
+			if (not(a[i] >= 48 and a[i] <= 57)) {
+				return false;
+			} 
 		}
 		return true;
 	}
