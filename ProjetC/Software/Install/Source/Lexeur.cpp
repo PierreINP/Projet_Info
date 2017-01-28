@@ -86,7 +86,7 @@ list<Lexeme> split_line(string line)
 	int i;
 
 	line = suppressCommentary(line);
-	//line = eraseTab(line);
+	line = eraseTab(line);
 
 	int sep, ope, filler;
 	//cout << "Line of " << size << " characters" << endl;
