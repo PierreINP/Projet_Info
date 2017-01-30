@@ -7,7 +7,7 @@
 		createStruct();
 		createSons();
 		shapeStruct(Lexeme("port"),Lexeme("end"));
-		//checkStruct();
+		checkStruct();
 		cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
@@ -34,55 +34,58 @@
 	}
 
 	bool Node_entity::checkStruct(){
-		/*list<Lexeme>::iterator it;
+		list<Lexeme>::iterator it;
+		list<Lexeme>::iterator it_tmp;
 		int step = 0;
+		string entity_ID;
 
-		for (it = structure.begin(); it != structure.end(); it++){//parcours de la structure de lexeme locale	
-
-			switch(step){		//FSM struct entity
-
-				case 0:		if(it.getName()=="entity"){step++;}
-						else step=-1;	//rentre dans le cas default
+		cout << "** Start ENTITY structure validation ** " << endl;
+		for(it = structure.begin(); it != structure.end(); it ++)
+		{
+			it_tmp = it;
+			cout << step << " | " << *it <<endl;
 			
+			switch(step){		//FSM struct entity
+				case 0:		if((*it).getName()=="entity"){step++;}
+						else step=-1;	//rentre dans le cas default
 						break;
 
-				case 1:		if(it.getType()=="id"){
-							entity_ID = it.getName();
-							step ++;
-						}
-						else step=-1;
-						break;
-
-				case 2 :   	if(it.getName()=="is"){step++;}
-						else step=-1;
-						break;
-
-				case 3 :        if(it.getName()=="port"){
-							//appel methode checkStruct de port ?
+				case 1:		if((*it).getType()=="id"){
+							entity_ID = (*it).getName();
 							step++;
 						}
-						else step=-1
+						else step=-1;
+						break;
+
+				case 2 :   	if((*it).getName()=="is"){step++;}
+						else step=-1;
+						break;
+
+				case 3 :        if((*it).getName()=="port"){
+							step++;
+						}
+						else step=-1;
 						break;
 	
 
-				case 4 :        if(it.getName()=="end"){step++;}
+				case 4 :     	if((*it).getName()=="end" and (*++it_tmp).getType() == "id"){step++;}
+						else if((*it).getName()=="end" or (*++it_tmp).getName() == ";"){step = 6 ;}
 						else step=-1;
 						break;
 
-				case 5 :        if(it.getName()==entity_ID){step++;}
+				case 5 :        if((*it).getName()==entity_ID){step++;} //Check matching between entity_ID at begin and end of entity bloc : context step
 						else step=-1;
 						break;
 
-				case 6 :        if(it.getName()==";"){step++;}
-						else step=-1;
-						break;
-
-				case 7 :        return true;
+				case 6 :        if((*it).getName()==";"){cout << "Structure ENTITY validée" << endl; return true;}
+						else step=-1;    
+					
 
 				default :	cout << "error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
-		}*/
+
+		}
 	}
 
 //accessors

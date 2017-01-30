@@ -18,12 +18,6 @@ public:
 	void createSons(list<string> names, string direction, string type);//, int lowerBound=0, int upperBound=0);
 	void createStruct();
 	bool checkStruct();
-
-//accessors
-	const list<string> & getNames()const;
-	const string & getDirection()const;
-	const string & getTypeD()const;
-
 };
 
 #endif 

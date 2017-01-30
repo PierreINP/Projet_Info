@@ -17,7 +17,6 @@
 		list<string>::iterator it;
 	
 		for(it = names.begin(); it != names.end(); it++){
-			cout << *it << " <<< HEEEEERE" << endl << endl; 
 			sons.push_back(new Node_portSignal(lex_it,*it,direction,type));//lowerBound,upperBound))
 		}	
 	}
@@ -38,45 +37,37 @@
 		//cout << "   ** Start PORT structure validation **   "<< endl;
 		for(it = structure.begin(); it != structure.end(); it ++){
 			it_tmp = it;
-			//cout << step << " | " << *it <<endl;
+			cout << step << " | " << *it <<endl;
 
 			switch(step){		
-				case 0:		cout << "Case 0" << endl;
-						if((*it).getName()=="port")	{step++;}
+				case 0:		if((*it).getName()=="port")	{step++;}
 						else 				{step=-1;} //go to default case 
 						break;
 
-				case 1:		cout << "Case 1" << endl;
-						if((*it).getName()=="(")	{step++;}
+				case 1:		if((*it).getName()=="(")	{step++;}
 						else 				{step=-1;}
 						break;
 
-				/* NEW VERSION */
+				
 				//Case 2 et 3 retrieve IDs before ':' lexeme 
-				case 2 :   	cout << "Case 2" << endl;
-						if((*it).getType()=="id"){
+				case 2 :   	if((*it).getType()=="id"){
 							names.push_back((*it).getName());
-							if((*++it_tmp).getName() == ",")	{cout << "," << endl;
-						step++;}
-							else if((*++it_tmp).getName() != ":")	{cout << ":" << endl;
-						step=4;}
+							if((*++it_tmp).getName() == ",")	{step++;}
+							else if((*++it_tmp).getName() != ":")	{step=4;}
 							else 					{step=-1;}
 						}
 						break;
 
-				case 3 :        cout << "Case 3" << endl;
-						//Go back to case 2 if ID after "," 
+				case 3 :        //Go back to case 2 if ID after "," 
 						if((*++it_tmp).getType()=="id") 	{step--;}
 						else 					{step=-1;}
 						break;
 
-				case 4 :     	cout << "Case 4" << endl;
-						if((*it).getName()==":")		{step++;}
+				case 4 :     	if((*it).getName()==":")		{step++;}
 						else 					{step=-1;}
 						break;
 
-				case 5 :        cout << "Case 5" << endl;
-						if((*it).getName()== "in"){		step++;
+				case 5 :       if((*it).getName()== "in"){		step++;
 							direction = "in"; 
 						}
 						else if((*it).getName()== "out"){	
@@ -87,8 +78,7 @@
 						break;
 
 				//Détermination du type du port
-				case 6 :        cout << "Case 6" << endl;
-						 if((*it).getName()== "bit"){
+				case 6 :        if((*it).getName()== "bit"){
 							type = "bit";
 							step++;
 						}
@@ -108,8 +98,8 @@
 						break;
 
 				//Type scalaire || fin d'un port --> fin de PORT ?
-				case 7 :       	cout << "Case 7" << endl;
-						createSons(names,direction,type); 
+				case 7 :        createSons(names,direction,type); 
+						names.clear();
 						if((*it).getName()==";"  and (*++it_tmp).getName() == ")"){step = 8;} // si ")" après un port --> fin de PORT
 						else if((*it).getName()==";"  or (*++it_tmp).getType() == "id"){step = 2;} // si "id" après un port --> nouveau port
 						else step=-1;
@@ -117,23 +107,20 @@
 		
 				//Type composite
 		
-				case 10 :       cout << "Case 10" << endl;
-						if((*it).getName()=="range"){step = 16;} 
+				case 10 :       if((*it).getName()=="range"){step = 16;} 
 						else if((*it).getName() == "("){step++;}
 						else step=-1;
 						break;
 
 				//Avec up/down to
-				case 11 :       cout << "Case 11" << endl;
-						if(isEntier((*it).getName())){
+				case 11 :       if(isEntier((*it).getName())){
 							//récupération de l'entier
 							step++;
 						}
 						else step=-1;
 						break;
 
-				case 12 :       cout << "Case 12" << endl;
-						if((*it).getName()== "upto"){
+				case 12 :       if((*it).getName()== "upto"){
 							//manière de compter
 							step++;
 						}
@@ -144,53 +131,48 @@
 						else step=-1;
 						break;
 
-				case 13 :       cout << "Case 13" << endl;
-						if(isEntier((*it).getName())){
+				case 13 :       if(isEntier((*it).getName())){
 							//récupération de l'entier
 							step++;
 						}
 						else step=-1;
 						break;
 
-				case 14 :       cout << "Case 14" << endl;
-						if((*it).getName() == ")"){step++;}
+				case 14 :       if((*it).getName() == ")"){step++;}
 						else step=-1;
 						break;
 					
-				case 15 :       cout << "Case 15" << endl;
-						createSons(names,direction,type);
+				case 15 :       createSons(names,direction,type);
+						names.clear();
 						if((*it).getName()== ")"){step = 9;}
 						else if((*it).getName() == ";" and (*++it_tmp).getType() == "id"){step = 2;}
 						else step=-1;
 						break;
 		
 				//Avec range
-				case 16 :       cout << "Case 16" << endl;
-						if(isEntier((*it).getName())){
+				case 16 :       if(isEntier((*it).getName())){
 							//lowerBound = (*it).getName();
 							step++;
 						}
 						else step=-1;
 						break;
 
-				case 17 :       cout << "Case 17" << endl;
-						if((*it).getName()== "to"){
+				case 17 :       if((*it).getName()== "to"){
 							//manière de compter
 							step++;
 						}
 						else step=-1;
 						break;
 
-				case 18 :       cout << "Case 18" << endl;
-						if(isEntier((*it).getName())){
+				case 18 :       if(isEntier((*it).getName())){
 							//upperBound = (*it).getName();
 							step++;
 						}
 						else step=-1;
 						break;
 
-				case 19 :       cout << "Case 19" << endl;
-						createSons(names,direction,type);
+				case 19 :       createSons(names,direction,type);
+						names.clear();
 						if((*it).getName()== ")"){step = 9;}
 						else if((*it).getName() == ";" and (*++it_tmp).getType() == "id"){step = 2;}
 						else step=-1;
@@ -198,14 +180,15 @@
 
 
 				//FIN DE FSM
-				case 8 :        cout << "Case 8" << endl;
-						if((*it).getName()==")"){step++;}
+				case 8 :        if((*it).getName()==")"){step++;}
 						else step=-1;
 						break;
 
-				case 9 :        cout << "Case 9" << endl;
-						if((*it).getName()==";"){cout << "	Structure PORT validée" << endl; return true;}
-						else {return false;}    
+				case 9 :        if((*it).getName()==";"){
+							cout << "	Structure PORT validée" << endl;
+							return true;
+						}
+						else step=-1;    
 				
 
 				default :	cout << "error" << endl; //cf gestion d'erreur
@@ -214,17 +197,5 @@
 		}
 	}
 
-//accessors
-	const list<string> & Node_port::getNames()const{
-		return names;
-	}
-
-	const string & Node_port::getDirection()const{
-		return direction;
-	}
-
-	const string & Node_port::getTypeD()const{
-		return type;
-	}
 
 

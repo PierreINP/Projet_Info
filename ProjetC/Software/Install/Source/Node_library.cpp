@@ -6,8 +6,7 @@
 		cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		createSons();
-		//shapeStruct();
-		//checkStruct();
+		checkStruct();
 		cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
@@ -15,6 +14,7 @@
 
 //methods
 	void Node_library::createSons(){} //No son
+
 	void Node_library::createStruct(){
 		list<Lexeme>::iterator it;
 
@@ -23,11 +23,47 @@
 		}
 	}
 
-	bool Node_library::checkStruct(){}
+	bool Node_library::checkStruct(){
+		list<Lexeme>::iterator it;
+		list<Lexeme>::iterator it_tmp;
+		int step = 0;
 
-//accessors
-	const string & Node_library::getLibraryID()const{
-		return library_ID;
+		cout << "   ** Start LIBRARY structure validation **   "<< endl;
+		for(it = structure.begin(); it != structure.end(); it ++)
+		{
+			it_tmp = it;
+			cout << step << " | " << *it <<endl;
+	///////////////////////////////////////////CHECKSTRUCTURE LIBRARY///////////////////////////////////////////
+			switch(step){		
+				case 0:		if((*it).getName()=="library"){step++;}
+						else step=-1;	//rentre dans le cas default
+						break;
+
+				case 1:		if((*it).getType()=="id"){
+							library_ID = (*it).getName();
+							step++;
+						}
+						else step=-1;	
+						break;
+
+				case 2:		if((*it).getName()==";"){
+							cout << "Structure LIBRARY validée" << endl;
+							return true;
+						}
+						else if((*++it_tmp).getName()=="library"){step=0;}
+						else step=-1;	
+						break;
+
+				default :	cout << "error" << endl; //cf gestion d'erreur
+						return false;		  
+			}
+
+		}
+	}
+
+	//accessors
+		const string & Node_library::getLibraryID()const{
+			return library_ID;
 	}
 
 
