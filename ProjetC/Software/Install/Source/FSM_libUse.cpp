@@ -59,6 +59,10 @@ int main() {
 						//package_name == (*it).getName();
 						step++;
 					}
+					else if((*it).getType()== "all"){
+						//package_name == all;
+						step++;
+					}
 					else step=-1;
 					break;
 
