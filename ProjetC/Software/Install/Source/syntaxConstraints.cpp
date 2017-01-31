@@ -19,6 +19,7 @@ string keywordList[N] = {
 	"upto",
 	"end",
  	"architecture",
+	"declaration",
 	"of",
 	"signal",
 	"variable",

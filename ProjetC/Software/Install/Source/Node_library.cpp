@@ -51,7 +51,7 @@
 							return true;
 						}
 						else if((*++it_tmp).getName()=="library"){step=0;}
-						else step=-1;	
+						else return false;	
 						break;
 
 				default :	cout << "error" << endl; //cf gestion d'erreur

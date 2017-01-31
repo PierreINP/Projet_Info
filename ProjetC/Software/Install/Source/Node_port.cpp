@@ -204,7 +204,7 @@
 							cout << "	Structure PORT validée" << endl;
 							return true;
 						}
-						else step=-1;    
+						else return false;    
 				
 
 				default :	cout << "error" << endl; //cf gestion d'erreur

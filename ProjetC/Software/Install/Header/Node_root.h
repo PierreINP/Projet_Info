@@ -15,7 +15,6 @@ public:
 	void createSons();
 	void createStruct();
 	bool checkStruct(); 
-
 };
 	
 #endif 

@@ -7,9 +7,9 @@
 
 //builders
 	Node_root::Node_root(list<Lexeme> parsing, list<Lexeme>::iterator it):Node("Root",it){
-		cout << endl << "######################"<<endl
-			     << "  Begin tree built  " << endl
-			     << "######################"<<endl<<endl;
+		cout << endl << "######################"<< endl
+			     << "  Begin tree built  "  << endl
+			     << "######################"<< endl << endl;
 		cout << "--- Begin of creation : " << getLabel()<< endl;
 		structure = parsing;
 		createSons();

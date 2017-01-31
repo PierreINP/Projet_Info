@@ -61,6 +61,7 @@ int main() {
 					}
 					else step=-1;
 					break;
+
 			case 4:		if((*it).getName()=="is" and (*it).getName()=="begin"){step++;}
 					else if((*it).getName()=="is" or (*it).getName()=="declaration"){step = 9;}
 					else step=-1;
@@ -86,7 +87,7 @@ int main() {
 			case 8 :        if((*it).getName()==";"){cout << "Structure ARCHITECTURE validée" << endl; return true;}
 					else {return false;}    
 					
-			case 6:		if((*it).getName()=="declaration"){step++;}
+			case 9:		if((*it).getName()=="declaration"){step++;}
 					else step=-1;
 					break;
 

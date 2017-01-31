@@ -6,7 +6,7 @@
 		cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		createSons();
-		shapeStruct(Lexeme("port"),Lexeme("end"));
+		shapeStruct();
 		checkStruct();
 		cout << "--- End of creation : " << getLabel()<< endl;	
 	}
@@ -31,6 +31,10 @@
 		for (it = lex_it; (*it).getName() != "architecture"; it++){
 			structure.push_back((*it).getName());
 		}
+	}
+
+	void Node_entity::shapeStruct(){
+		cutStruct(Lexeme("port"),Lexeme("end"));
 	}
 
 	bool Node_entity::checkStruct(){

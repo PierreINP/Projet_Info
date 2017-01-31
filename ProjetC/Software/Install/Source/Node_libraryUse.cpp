@@ -73,7 +73,7 @@
 							cout << "Structure LIBRARY USE validée" << endl;
 							return true;
 						}
-						else step=-1;
+						else return false;
 						break;    
 					
 
