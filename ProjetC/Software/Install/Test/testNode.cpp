@@ -35,20 +35,14 @@ int main(void){
 		if ((**it_tree).getLabel()=="Entity"){
 			Entity_sons = (**it_tree).getSons();
 		}
-		for(it_entity_sons = Entity_sons.begin();it_entity_sons != Entity_sons.end(); it_entity_sons++){
-			if ((**it_entity_sons).getLabel()==  "Port"){
-				//cout << **it_entity_sons << endl;
-				Port_sons = (**it_entity_sons).getSons();
-			}
-			for(it_port_sons = Port_sons.begin();it_port_sons != Port_sons.end(); it_port_sons++){
-				//cout << (**it_port_sons).getLabel() << endl; //(**it_port_sons).getName() << " || "<< (**it_port_sons).getDirection() << " || "<< (**it_port_sons).getType() << endl;
-			}	
+	}
+	for(it_entity_sons = Entity_sons.begin();it_entity_sons != Entity_sons.end(); it_entity_sons++){
+		if ((**it_entity_sons).getLabel()==  "Port"){
+			cout << **it_entity_sons << endl;
+			Port_sons = (**it_entity_sons).getSons();
 		}
 	}
+	for(it_port_sons = Port_sons.begin();it_port_sons != Port_sons.end(); it_port_sons++){
+		cout << (**it_port_sons).getLabel() << " || " <<(**it_port_sons).getName() << " || "<< (**it_port_sons).getDirection() << " || "<< (**it_port_sons).getType() <<" || "<< (**it_port_sons).getLowerBound() <<" || "<< (**it_port_sons).getUpperBound() << endl;
+	}		
 }
-
-	/*DEBUG : DON'T FORGET TO DELETE
-	for(iter = lexeme_list.begin(); iter != lexeme_list.end(); iter ++)
-	{
-		cout << *iter << endl;
-	}*/

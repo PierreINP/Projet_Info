@@ -10,12 +10,15 @@ private:
 	list<string> names;
 	string direction;
 	string type;
+	string lowerBound;
+	string upperBound;
 public:
 	Node_port(list<Lexeme>::iterator it);
 	~Node_port();
 
 //methods
-	void createSons(list<string> names, string direction, string type);//, int lowerBound=0, int upperBound=0);
+	void createScalaire(list<string> names, string direction, string type);
+	void createComposite(list<string> names, string direction, string type, string lowerBound, string upperBound);
 	void createStruct();
 	bool checkStruct();
 };

@@ -38,6 +38,12 @@ public:
 	const list<Lexeme>::iterator & getLexIt()const;
 	const vector<Node*> getSons()const;
 
+	virtual const string & getName()const;
+	virtual const string & getDirection()const;
+	virtual const string & getType()const;
+	virtual const string & getLowerBound()const;
+	virtual const string & getUpperBound()const;
+ 
 //Fonctions amies
 	friend ostream& operator<<(ostream& out, const Node &n);
 };

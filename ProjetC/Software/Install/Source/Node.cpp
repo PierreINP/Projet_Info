@@ -4,19 +4,6 @@
 	Node::Node(string l, list<Lexeme>::iterator it): label(l),lex_it(it){}
 	Node::~Node(){}
 
-//accessors
-	const string & Node::getLabel()const{
-		return label;
-	}
-
-	const list<Lexeme>::iterator & Node::getLexIt()const{
-		return lex_it;
-	}
-
-	const vector<Node*> Node::getSons()const{
-		return sons;
-	}
-
 //methods
 	void Node::shapeStruct(Lexeme cutBegin, Lexeme cutEnd){
 		list<Lexeme>::iterator it;
@@ -68,6 +55,25 @@
 		}
 		return struc.str();
 	}
+
+//accessors
+	const string & Node::getLabel()const{
+		return label;
+	}
+
+	const list<Lexeme>::iterator & Node::getLexIt()const{
+		return lex_it;
+	}
+
+	const vector<Node*> Node::getSons()const{
+		return sons;
+	}
+
+	const string & Node::getName()const{}
+	const string & Node::getDirection()const{}
+	const string & Node::getType()const{}
+	const string & Node::getLowerBound()const{}
+	const string & Node::getUpperBound()const{}
 
 //friend function
 	 ostream& operator<<(ostream& out, const Node &n){

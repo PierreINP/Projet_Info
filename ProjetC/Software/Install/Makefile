@@ -17,8 +17,9 @@ binary_fsm : object_files
 binary_files: object_files
 	$(CC) -o Binaries/Error Object/Lexeme.o Object/syntaxConstraints.o Object/Error.o Test/testError.cpp 
 	$(CC) -o Binaries/Lexeme Object/Error.o Object/syntaxConstraints.o Object/Lexeme.o Test/testLexeme.cpp
-	$(CC) -o Binaries/Node -g Object/syntaxConstraints.o Object/Lexeme.o Object/Lexeur.o Object/Node.o Object/Node_root.o Object/Node_library.o Object/Node_entity.o Object/Node_architecture.o Object/Node_libraryUse.o Object/Node_port.o Source/Node_portSignal.cpp Test/testNode.cpp 
+	$(CC) -o Binaries/Node -g Object/syntaxConstraints.o Object/Lexeme.o Object/Lexeur.o Object/Node.o Object/Node_root.o Object/Node_library.o Object/Node_entity.o Object/Node_architecture.o Object/Node_libraryUse.o Object/Node_port.o Source/Node_portScalaire.cpp Source/Node_portComposite.cpp Source/Node_declaration.cpp Source/Node_signal.cpp Source/Node_variable.cpp Source/Node_assignment.cpp Test/testNode.cpp 
 	$(CC) -o Binaries/Lexeur Object/Error.o Object/syntaxConstraints.o Object/Lexeme.o Object/Lexeur.o Source/main.cpp
+	
 
 object_files: clean
 	$(CC) -c -o Object/Error.o Source/Error.cpp
@@ -31,8 +32,13 @@ object_files: clean
 	$(CC) -c -o Object/Node_libraryUse.o Source/Node_libraryUse.cpp
 	$(CC) -c -o Object/Node_architecture.o Source/Node_architecture.cpp
 	$(CC) -c -o Object/Node_entity.o Source/Node_entity.cpp
-	#$(CC) -c -o Object/Node_port.o Source/Node_port.cpp
-	#$(CC) -c -o Object/Node_portSignal.o Source/Node_portSignal.cpp
+	$(CC) -c -o Object/Node_port.o Source/Node_port.cpp
+	$(CC) -c -o Object/Node_portScalaire.o Source/Node_portScalaire.cpp
+	$(CC) -c -o Object/Node_portComposite.o Source/Node_portComposite.cpp
+	$(CC) -c -o Object/Node_declaration.o Source/Node_declaration.cpp
+	$(CC) -c -o Object/Node_signal.o Source/Node_signal.cpp
+	$(CC) -c -o Object/Node_variable.o Source/Node_variable.cpp
+	$(CC) -c -o Object/Node_assignment Source/Node_assignment.cpp
 
 
 

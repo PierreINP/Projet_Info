@@ -1,5 +1,6 @@
 #include "./../Header/Node_port.h"
-#include "./../Header/Node_portSignal.h"
+#include "./../Header/Node_portScalaire.h"
+#include "./../Header/Node_portComposite.h"
 
 
 //builders
@@ -13,11 +14,20 @@
 	Node_port::~Node_port(){}
 
 //methods
-	void Node_port::createSons(list<string> names, string direction, string type){//, int lowerBound=0, int upperBound=0){
+
+	void Node_port::createScalaire(list<string> names, string direction, string type){
 		list<string>::iterator it;
 	
 		for(it = names.begin(); it != names.end(); it++){
-			sons.push_back(new Node_portSignal(lex_it,*it,direction,type));//lowerBound,upperBound))
+			sons.push_back(new Node_portScalaire(lex_it,*it,direction,type));
+		}
+	}
+
+	void Node_port::createComposite(list<string> names, string direction, string type, string lowerBound, string upperBound){
+		list<string>::iterator it;
+	
+		for(it = names.begin(); it != names.end(); it++){
+			sons.push_back(new Node_portComposite(lex_it,*it,direction,type, lowerBound,upperBound));
 		}	
 	}
 
@@ -32,7 +42,11 @@
 	bool Node_port::checkStruct(){
 		list<Lexeme>::iterator it;
 		list<Lexeme>::iterator it_tmp;
+
+		bool countWay;
+		string tmpBound;
 		int step = 0;
+		
 
 		//cout << "   ** Start PORT structure validation **   "<< endl;
 		for(it = structure.begin(); it != structure.end(); it ++){
@@ -98,8 +112,10 @@
 						break;
 
 				//Type scalaire || fin d'un port --> fin de PORT ?
-				case 7 :        createSons(names,direction,type); 
+				case 7 :        createScalaire(names,direction,type); //end of line : creation of scalaire port
 						names.clear();
+						direction.clear();
+						type.clear();
 						if((*it).getName()==";"  and (*++it_tmp).getName() == ")"){step = 8;} // si ")" après un port --> fin de PORT
 						else if((*it).getName()==";"  or (*++it_tmp).getType() == "id"){step = 2;} // si "id" après un port --> nouveau port
 						else step=-1;
@@ -114,25 +130,25 @@
 
 				//Avec up/down to
 				case 11 :       if(isEntier((*it).getName())){
-							//récupération de l'entier
+							lowerBound = (*it).getName();
 							step++;
 						}
 						else step=-1;
 						break;
 
 				case 12 :       if((*it).getName()== "upto"){
-							//manière de compter
+							countWay = false;
 							step++;
 						}
 						else if((*it).getName()== "downto"){
-							//manière de compter
+							countWay = true;
 							step++;
 						}
 						else step=-1;
 						break;
 
 				case 13 :       if(isEntier((*it).getName())){
-							//récupération de l'entier
+							upperBound = (*it).getName();
 							step++;
 						}
 						else step=-1;
@@ -142,8 +158,17 @@
 						else step=-1;
 						break;
 					
-				case 15 :       createSons(names,direction,type);
+				case 15 :       if (countWay){ //if range is downto type ; exchange upper and lower Bounds
+							tmpBound=lowerBound; 
+							lowerBound = upperBound;
+							upperBound = tmpBound;
+						}
+						createComposite(names,direction,type,lowerBound,upperBound);//end of line : creation of composite port
 						names.clear();
+						direction.clear();
+						type.clear();
+						lowerBound.clear();
+						upperBound.clear();
 						if((*it).getName()== ")"){step = 9;}
 						else if((*it).getName() == ";" and (*++it_tmp).getType() == "id"){step = 2;}
 						else step=-1;
@@ -151,33 +176,24 @@
 		
 				//Avec range
 				case 16 :       if(isEntier((*it).getName())){
-							//lowerBound = (*it).getName();
+							lowerBound = (*it).getName();
 							step++;
 						}
 						else step=-1;
 						break;
 
 				case 17 :       if((*it).getName()== "to"){
-							//manière de compter
 							step++;
 						}
 						else step=-1;
 						break;
 
 				case 18 :       if(isEntier((*it).getName())){
-							//upperBound = (*it).getName();
-							step++;
+							upperBound = (*it).getName();
+							step=15;
 						}
 						else step=-1;
 						break;
-
-				case 19 :       createSons(names,direction,type);
-						names.clear();
-						if((*it).getName()== ")"){step = 9;}
-						else if((*it).getName() == ";" and (*++it_tmp).getType() == "id"){step = 2;}
-						else step=-1;
-						break;
-
 
 				//FIN DE FSM
 				case 8 :        if((*it).getName()==")"){step++;}

@@ -27,11 +27,7 @@
 		list<Lexeme>::iterator it;
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
-	
-		//string library_name; //A récuperer depuis library pour vérfier contexte
-		//string package_name;
 
-		cout << "   ** Start LIBRARYUSE structure validation **   "<< endl;
 		for(it = structure.begin(); it != structure.end(); it ++)
 		{
 			it_tmp = it;
@@ -43,6 +39,7 @@
 						break;
 
 				case 1:		if((*it).getType()== "id" ){
+							
 							/* if(library_name == (*it).getName()){}
 							else step=-1;*/
 							step++;
@@ -53,25 +50,36 @@
 				case 2:		if((*it).getName()=="."){step++;}
 						else step=-1;
 						break;
-
+	
 				case 3:		if((*it).getType()== "id"){
-							package == (*it).getName();
+							library_ID = (*it).getName();
+							step++;
+						}
+						else step=-1;
+						break;	
+
+				case 4:		if((*it).getName()=="."){step++;}
+						else step=-1;
+						break;
+					
+				case 5:		if((*it).getType()== "id" or (*it).getName()== "all"){
+							package = (*it).getName();
 							step++;
 						}
 						else step=-1;
 						break;
 
-				case 4 :        if((*it).getName()==";"){
+				case 6 :        if((*it).getName()==";"){
 							cout << "Structure LIBRARY USE validée" << endl;
 							return true;
 						}
-						else step = -1;    
+						else step=-1;
+						break;    
 					
 
 				default :	cout << "error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
-
 		}
 	}
 
