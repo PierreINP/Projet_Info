@@ -28,6 +28,7 @@ public:
 //methods
 	virtual void createStruct() = 0; // pure virtual
 	virtual bool checkStruct() = 0;  // pure virtual
+	//void shapeStruct
 	void shapeStruct(Lexeme cutBegin, Lexeme cutEnd);
 	bool isEntier(string a);
 	string displaySons() const;
