@@ -24,7 +24,11 @@ int main() {
 	structure.push_back(Lexeme("of"));
 	structure.push_back(Lexeme("compteurDownUp"));	
 	structure.push_back(Lexeme("is"));
-	structure.push_back(Lexeme("begin"));	
+	structure.push_back(Lexeme("declaration"));
+	structure.push_back(Lexeme("begin"));
+	structure.push_back(Lexeme("if"));
+	structure.push_back(Lexeme("if"));
+	structure.push_back(Lexeme("process"));	
 	structure.push_back(Lexeme("end"));
 	structure.push_back(Lexeme("arc1;"));	
 	structure.push_back(Lexeme(";"));
@@ -62,20 +66,31 @@ int main() {
 					else step=-1;
 					break;
 
-			case 4:		if((*it).getName()=="is" and (*it).getName()=="begin"){step++;}
-					else if((*it).getName()=="is" or (*it).getName()=="declaration"){step = 9;}
+			case 4:		if((*it).getName()=="is" and (*++it_tmp).getName()=="begin"){step++;}
+					else if((*it).getName()=="is" or (*++it_tmp).getName()=="declaration"){step = 9;}
 					else step=-1;
 					break;
 
-			case 5:		if((*it).getName()=="begin"){step++;}
+			case 5:		if((*it).getName()=="begin" and (*++it_tmp).getName()!="end"){step = 9;}//ca va en step 10
+					if((*it).getName()=="begin" or (*++it_tmp).getName()=="end"){step++;}
+					else step=-1;
+					break;
+					
+			case 9:		if((*it).getName()=="declaration"){step = 5;}
 					else step=-1;
 					break;
 
+			case 10:	if((*it).getName()!="end"){
+						//On passse les blocs dans le process Assig, Proccess, If, Case ...
+					}
+					else if((*it).getName()=="end"){step = 7;}
+					else step=-1;
+					break;
 
+			///////////////////FIN DE FSM///////////////////
 			case 6:		if((*it).getName()=="end"){step++;}
 					else step=-1;
 					break;
-
 
 			case 7:		if((*it).getType()== "id" ){
 						/*architecture ID ??*/
@@ -86,10 +101,6 @@ int main() {
 
 			case 8 :        if((*it).getName()==";"){cout << "Structure ARCHITECTURE validée" << endl; return true;}
 					else {return false;}    
-					
-			case 9:		if((*it).getName()=="declaration"){step++;}
-					else step=-1;
-					break;
 
 			default :	cout << "error" << endl; //cf gestion d'erreur
 					return false;		  

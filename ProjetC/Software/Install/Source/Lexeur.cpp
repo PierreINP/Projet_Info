@@ -2,6 +2,14 @@
 This programm is here to perform some functions. It must identify the lexemes, compute them to validate their conformity and then give them a type. 
 Input : SourceFile.vhd
 Output : Data structure
+
+Process : Read Source
+	  Split_line
+		Erase tab
+		Suppress commentary
+		Split by tab of separator
+	  Clean empty elements (clear list)
+	  Check Lexeme : split lexeme and operator if stucked without separator	  	
 */
 
 #include"./../Header/Lexeur.h"
@@ -51,12 +59,9 @@ return lexeme_list;
 
 string suppressCommentary(string& line) {
 	int flag = -1;
-	string new_line;
-
+	//Find sub string and return the new one. Without the commentary located at the end of line
 	flag = line.find("--");
 	line = line.substr(0, flag);	
-
-	//cout << line << endl;// << new_line << endl;
 return line; 
 }
 
@@ -196,12 +201,12 @@ list<Lexeme> checkLexeme(list<Lexeme> old_list) {
 				//Si il est present après le lexeme, découpe operateur puis id + insertion dans la liste
 				if (pos != -1 and alphanum(lex[0])) {
 					// {}
-					Lexeme operateur(lex.substr(pos, lex.size()));
-					Lexeme mot(lex.substr(0, pos));
-					tmp_list.push_back(mot);
+					Lexeme operateur(lex.substr(pos, lex.size())); //Lexeme operateur
+					Lexeme mot(lex.substr(0, pos)); //Lexeme mot
+					tmp_list.push_back(mot); //Mise en place d'une liste tmp dans le bon ordre
 					tmp_list.push_back(operateur);
 					
-					old_list.splice(iter, tmp_list);
+					old_list.splice(iter, tmp_list); //Insertion de la sous liste
 					//cout << "ORIGIN : " << lex << " POS : " << pos << " MOT : " << mot << " OPE : " << operateur << endl;
 					break;
 				}
@@ -227,11 +232,11 @@ list<Lexeme> checkLexeme(list<Lexeme> old_list) {
 	{
 		(*iter).associateType();
 		if ((*iter).getType() == "id") {
-			for (ope = 0; ope < nb_operator; ope++) {
-				pos = (*iter).getName().find(operatorList[ope]);
+			for (ope = 0; ope < nb_operator; ope++) { //Recharche des lexemes ayant posés problèmes
+				pos = (*iter).getName().find(operatorList[ope]); //Récup position
 				if (pos != -1) {
 					//cout << (*iter).getName() << endl;
-					old_list.remove((*iter).getName());
+					old_list.remove((*iter).getName()); //Remove le mauvais élément
 					break;
 				}
 			}

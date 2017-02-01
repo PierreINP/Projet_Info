@@ -26,7 +26,8 @@ int main() {
 	list<Lexeme> structure;
 //List for port test
 	structure.push_back(Lexeme("a"));
-	structure.push_back(Lexeme("<="));
+	structure.push_back(Lexeme(":"));
+	structure.push_back(Lexeme("="));
 	structure.push_back(Lexeme("b"));
 	structure.push_back(Lexeme("+"));
 	structure.push_back(Lexeme("c"));
@@ -54,6 +55,7 @@ int main() {
 					break;
 
 			case 1 : 	if((*it).getName()=="<="){step++;}
+					else if((*it).getName()==":" and (*++it).getName()=="="){step++;}
 					else step=-1;
 					break;  	
 
