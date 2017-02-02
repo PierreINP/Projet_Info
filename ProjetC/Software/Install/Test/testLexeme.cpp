@@ -12,12 +12,12 @@ int main() {
 	Lexeme Lex2(";");
 	Lexeme Lex3("+");
 	Lexeme Lex4("an_id");
-
+/*
 	Lex1.associateType();
 	Lex2.associateType();
 	Lex3.associateType();
 	Lex4.associateType();
-
+*/
 	cout<< "Name " <<Lex1 << " | Type : " <<Lex1.getType() << endl;
 	cout<< "Name "<< Lex2 << " | Type : " <<Lex2.getType() << endl;
 	cout<< "Name "<< Lex3 << " | Type : " <<Lex3.getType() << endl;
@@ -34,12 +34,12 @@ int main() {
 	Lexeme	Lex6("ident1f1ant");
 	Lexeme	Lex7("_ident1f1ant_");
 	Lexeme	Lex8("ident1f1ant_");
-	Lexeme	Lex9("8dent1f1ant_");
+	Lexeme	Lex9("8dent1f1ant_");/*
 	cout << Lex5 <<" "<< Lex5.validIdentifier()<< endl; 
 	cout << Lex6 <<" "<< Lex6.validIdentifier()<< endl; 
 	cout << Lex7 <<" "<< Lex7.validIdentifier()<< endl; 
 	cout << Lex8 <<" "<< Lex8.validIdentifier()<< endl;
-	cout << Lex9 <<" "<< Lex9.validIdentifier()<< endl;
+	cout << Lex9 <<" "<< Lex9.validIdentifier()<< endl;*/
 	assert (Lex5.validIdentifier()== false);
 	assert (Lex6.validIdentifier()== true);
 	assert (Lex7.validIdentifier()== false);

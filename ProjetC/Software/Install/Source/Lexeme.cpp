@@ -22,6 +22,7 @@ extern string operatorList[];
 	name = nameLexeme;
 	type = "id";
 	associateType();
+	validIdentifier();
     }
     
        Lexeme::Lexeme(char nameLexeme){
@@ -77,39 +78,44 @@ extern string operatorList[];
     }
 
     bool Lexeme::validIdentifier() {
-	/*
-	IN : lexeme identifier
-	OUT : bool if lexeme fit to rules 
-	Rules :
-		1/ No "_" at beginning or end
-		2/ No 0-9 at beginning
-		3/ between, juste have alphanum or "_"
-	*/
-	int len = this->getName().size();
-	string id = getName();
+	if (type == "id" ){
+		/*
+		IN : lexeme identifier
+		OUT : bool if lexeme fit to rules 
+		Rules :
+			1/ No "_" at beginning or end
+			2/ No 0-9 at beginning
+			3/ between, juste have alphanum or "_"
+		*/
+		int len = this->getName().size();
+		string id = getName();
 	
-	int i;
-	// No "_" at beginning or end
-	if (id[0] == 95) {return false;}
-	else if (id[len-1] == 95) {return false;}
-	// No 0-9 at beginning
-	else if (id[0]  >= 48 && id[0] <= 57 ){return false;}
+		int i;
+		// No "_" at beginning or end
+		if (id[0] == 95) {cout << "L'identifiant " << id << " n'est pas conforme" << endl;return false;}
+		else if (id[len-1] == 95) {cout << "L'identifiant " << id << " n'est pas conforme" << endl;return false;}
+		// No 0-9 at beginning
+		else if (id[0]  >= 48 && id[0] <= 57 ){cout << "L'identifiant " << id << " n'est pas conforme" << endl;return false;}
 
-	// between, juste have alphanum or "_"
-	for (i =0; i < len; i++)
-	{
-		//caractère de a à z
-		if (id[i]  >= 97 && id[i] <= 122 ){	
+		// between, juste have alphanum or "_"
+		for (i =0; i < len; i++)
+		{
+			//caractère de a à z
+			if (id[i]  >= 97 && id[i] <= 122 ){	
+			}
+			//caractère de 0 à 9
+			else if (id[i]  >= 48 && id[i] <= 57) {
+			}
+			//caractère underscore
+			else if (id[i]  == 95) {
+			}
+			else {
+				cout << "L'identifiant " << id << " n'est pas conforme" << endl;
+				return false;
+				}
 		}
-		//caractère de 0 à 9
-		else if (id[i]  >= 48 && id[i] <= 57) {
-		}
-		//caractère underscore
-		else if (id[i]  == 95) {
-		}
-		else {return false;}
+		return true;
 	}
-	return true;
 }
 
     void Lexeme::operator=(const string & b){

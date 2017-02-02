@@ -4,7 +4,7 @@ all: binary_files
 
 $(EXEC_NAME): binary_files
 
-binary_fsm : object_files
+binary_fsm : object_files binary_files
 	$(CC) -o Binaries/FSM_entity Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_entity.cpp
 	$(CC) -o Binaries/FSM_port Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_port.cpp
 	$(CC) -o Binaries/FSM_library Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_library.cpp
@@ -15,6 +15,7 @@ binary_fsm : object_files
 	$(CC) -o Binaries/FSM_architecture Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_architecture.cpp
 	$(CC) -o Binaries/FSM_component Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_component.cpp
 	$(CC) -o Binaries/FSM_declaration Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_declaration.cpp
+	$(CC) -o Binaries/FSM_process Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_process.cpp
 	
 binary_files: object_files
 	$(CC) -o Binaries/Error Object/Lexeme.o Object/syntaxConstraints.o Object/Error.o Test/testError.cpp 
