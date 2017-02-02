@@ -52,8 +52,6 @@ object_files: clean
 	$(CC) -c -o Object/Node_caseCondition.o Source/Node_caseCondition.cpp
 	
 
-
-
 clean:
 	rm -f Object/*.o
 	rm -f Binaries/*

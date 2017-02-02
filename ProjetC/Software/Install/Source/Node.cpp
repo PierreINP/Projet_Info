@@ -16,26 +16,13 @@
 		for(it = structure.begin(); it != structure.end();it++){
 			if((*it).getName() == cutBegin.getName()){
 				structure_tmp.push_back(*it);
-				do {		
-					it++;
-				}
+				do {it++;}
 				while(((*it).getName() != cutEnd.getName()) and (it != structure.end()));
 				if(cutBegin == cutEnd){it++;it++;}//delete duplicate & lexeme after that
 			}
 			structure_tmp.push_back(*it);	
 		}
 		structure = structure_tmp;
-	}
-
-	void Node::insertInStruct(Lexeme placeInsert, Lexeme insert){
-		list<Lexeme>::iterator it;
-	
-		for(it = structure.begin(); it != structure.end();it++){
-			if((*it).getName() == placeInsert.getName()){
-				structure.insert(it,insert.getName());
-				break;
-			}
-		}
 	}
 
 	//Vérifie si chaque caractère d'un lexeme est un chiffre

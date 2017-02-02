@@ -23,6 +23,8 @@ string keywordList[N] = {
 	"of",
 	"signal",
 	"variable",
+	"component",
+	"type",
 	"begin",
 	"process",
 	"case",

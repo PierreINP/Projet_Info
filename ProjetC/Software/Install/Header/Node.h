@@ -32,7 +32,6 @@ public:
 	virtual void createSons();	 // virtual
 	
 	void cutStruct(Lexeme cutBegin, Lexeme cutEnd);
-	void insertInStruct(Lexeme placeInsert, Lexeme insert);
 	bool isEntier(string a);
 	bool isString(string a);
 	bool isStd_Logic(string a); 
