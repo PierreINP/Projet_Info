@@ -101,63 +101,92 @@
 	///////////////////////////////////////////CHECKSTRUCTURE ARCHITECTURE///////////////////////////////////////////
 			switch(step){		
 				case 0:		if((*it).getName()=="architecture"){step++;}
-						else step=-1;	//rentre dans le cas default
+						else {
+							step=-1;
+							cout << "L'architecture ne commence pas par architecture !" << endl;
+						}	//rentre dans le cas default
 						break;
 
 				case 1:		if((*it).getType()== "id" ){
 							architecture_ID = (*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Il faut un ID valide après architecture!" << endl;
+						}
 						break;
 
 				case 2:		if((*it).getName()=="of"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Il faut of dans la déclaration d'une architecture!" << endl;
+						}
 						break;
 
 				case 3:		if((*it).getType()== "id" ){
 							entity_ID = (*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Il faut un ID pour associer une entité dans la déclaration d'une architecture!" << endl;
+						}
 						break;
 
 				case 4:		if((*it).getName()=="is" and (*++it_tmp).getName()=="begin"){step++;}
 						else if((*it).getName()=="is" or (*++it_tmp).getName()=="declaration"){step = 9;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Il faut is pour finir la déclaration d'une architecture!" << endl;
+						}
 						break;
 
 				case 5:		if((*it).getName()=="begin" and (*++it_tmp).getName()!="end"){step = 9;}//ca va en step 10
 						if((*it).getName()=="begin" or (*++it_tmp).getName()=="end"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Il manque le begin d'une architecture!" << endl;
+						}
 						break;
 					
 				case 9:		if((*it).getName()=="declaration"){step = 5;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "On s'attendait à une déclatation entre is et begin !" << endl;
+						}
 						break;
 
 				case 10:	if((*it).getName()!="end"){
 							//On passe les blocs dans le process Assig, Proccess, If, Case ...
 						}
 						else if((*it).getName()=="end"){step = 7;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "On termine une architecture par end process; !" << endl;
+						}
 						break;
 
 				///////////////////FIN DE FSM///////////////////
 				case 6:		if((*it).getName()=="end"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "On termine une architecture par end process; !" << endl;
+						}
 						break;
 
 				case 7:		if((*it).getType()== "id" ){
 							if (architecture_ID == (*it).getName())//part of context
 								step++;
-							else 
-								step=-1;
+							else {
+							step=-1;
+							cout << "On termine une architecture par end process; !" << endl;
+							}
 						}
 						break;
 
 				case 8 :        if((*it).getName()==";"){cout << "Structure ARCHITECTURE validée" << endl; return true;}
-						else {return false;}    
+						else {cout << "On termine une architecture par end process; !" << endl; return false;}    
 
 				default :	cout << "error" << endl; //cf gestion d'erreur
 						return false;		  

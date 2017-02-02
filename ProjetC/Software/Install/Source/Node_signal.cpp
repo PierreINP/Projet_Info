@@ -57,7 +57,10 @@
 	///////////////////////////////////////////CHECKSTRUCTURE SIGNAL///////////////////////////////////////////
 			switch(step){		
 				case 0:		if((*it).getName()=="signal"){step++;}
-						else step=-1;	//rentre dans le cas default
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}	//rentre dans le cas default
 			
 						break;
 
@@ -70,17 +73,26 @@
 							names.push_back((*it).getName());
 							step +=2;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 2 :        //Si id après "," on repart en 2. 
 						if((*++it_tmp).getType()=="id") {step--;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 	
 
 				case 3 :     	if((*it).getName()==":"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				//Détermination du type du signal [composite ou scalaire]
@@ -147,56 +159,89 @@
 			
 				//Bit
 				case 10 :       if((*it).getName() == ":"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 11:       if((*it).getName() == "="){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 12 :       if((*it).getName() == "'"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 13 :       if(isEntier((*it).getName())){
 							initValue = (*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 14 :       if((*it).getName() == "'"){step = 7;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				//std_logic
 				case 15 :       if((*it).getName() == ":"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 16:       if((*it).getName() == "="){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 17 :       if((*it).getName() == "'"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 18 :       if(isStd_Logic((*it).getName())){
 							initValue = (*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 19 :       if((*it).getName() == "'"){step = 7;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 			
 				//INTEGER avec range
 				case 20 :       if((*it).getName() == "range"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 							
 				case 21 :       if(isEntier((*it).getName())){
@@ -204,13 +249,19 @@
 							step++;
 						}
 
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 22 :       if((*it).getName()== "to"){
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 23 :       if(isEntier((*it).getName()) and (*++it_tmp).getName() == ";"){
@@ -218,36 +269,54 @@
 							step = 7;
 						}
 						else if(isEntier((*it).getName()) or (*++it_tmp).getName() == ":"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 24 :       if((*it).getName() == ":"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 25 :       if((*it).getName() == "="){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 26 :       if(isEntier((*it).getName())){
 							initValue=(*it).getName();
 							step = 7;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				//String avec TO
 				case 30 :       if((*it).getName() == "("){
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 31 :       if(isEntier((*it).getName())){
 							lowerBound=(*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 32 :       if((*it).getName()== "to"){
@@ -255,14 +324,20 @@
 							step++;
 						}
 
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 33 :       if(isEntier((*it).getName())){
 							upperBound=(*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 34 :      	if((*it).getName()== ")" and (*++it_tmp).getName() == ";"){
@@ -273,39 +348,63 @@
 
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 35 :       if((*it).getName() == ":"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 36 :       if((*it).getName() == "="){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 37 :       if((*it).getName() == "\""){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 38 :       if(isString((*it).getName())){
 							initValue=(*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 39 :       if((*it).getName() == "\""){step = 7;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				//BOOLEAN
 				case 40 :       if((*it).getName() == ":"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 41:       if((*it).getName() == "="){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 
@@ -317,7 +416,10 @@
 							initValue=(*it).getName();
 							step = 7;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 
@@ -325,14 +427,20 @@
 				case 50 :       if((*it).getName() == "("){
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 51 :       if(isEntier((*it).getName())){
 							lowerBound=(*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 52 :       if((*it).getName()== "upto"){
@@ -343,42 +451,66 @@
 							countWay = false;
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 53 :       if(isEntier((*it).getName())){
 							lowerBound=(*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 54 :      	if((*it).getName()== ")" and (*++it_tmp).getName() == ";"){step = 7;}
 						else if((*it).getName()== ")" or (*++it_tmp).getName() == ":"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 55 :       if((*it).getName() == ":"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 56 :       if((*it).getName() == "="){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 57 :       if((*it).getName() == "\""){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 58 :       if(isEntier((*it).getName())){
 							initValue=(*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 59 :       if((*it).getName() == "\""){step = 7;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				//Fin du SIGNAL
@@ -405,7 +537,10 @@
 							cout << "Structure SIGNAL validée" << endl;
 							return true;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				default :	cout << "error" << endl; //cf gestion d'erreur

@@ -61,31 +61,49 @@
 							entity_ID = (*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "mauvais ID pour l'entité !" << endl;
+						}
 						break;
 
 				case 2 :   	if((*it).getName()=="is"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "on attend un ID + is pour l'entité !" << endl;
+						}
 						break;
 
 				case 3 :        if((*it).getName()=="port"){
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "L'entité n'a pas de port !" << endl;
+						}
 						break;
 	
 
 				case 4 :     	if((*it).getName()=="end" and (*++it_tmp).getType() == "id"){step++;}
 						else if((*it).getName()=="end" or (*++it_tmp).getName() == ";"){step = 6 ;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "On fini une entité par end (ID); !" << endl;
+						}
 						break;
 
 				case 5 :        if((*it).getName()==entity_ID){step++;} //Check matching between entity_ID at begin and end of entity bloc : context step
-						else step=-1;
+						else {
+							step=-1;
+							cout << "On fini une entité par end (ID); !" << endl;
+						}
 						break;
 
 				case 6 :        if((*it).getName()==";"){cout << "Structure ENTITY validée" << endl; return true;}
-						else step=-1;    
+						else {
+							cout << "On fini une entité par end (ID); !" << endl;
+							return false;
+						}   
 					
 
 				default :	cout << "error" << endl; //cf gestion d'erreur

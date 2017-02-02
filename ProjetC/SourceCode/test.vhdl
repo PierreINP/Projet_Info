@@ -10,7 +10,7 @@ entity full_add1 is
 end entity;
 
 architecture arc of full_add1 is
-	signal resultat : unsigned(1 downto 0);
+	signal resultat : bit_vector(1 downto 0);
 begin
 	resultat<=('0'& a) + ( '0'&b) + ( '0' &cin);
 	s <=resultat[0];

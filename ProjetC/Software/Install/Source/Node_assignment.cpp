@@ -29,7 +29,7 @@
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
 
-
+		cout << "L'assignation n'est pas completement implementée : manque assignation aux variables et par constantes avec ordre d'affectation ()" << endl;
 		for(it = structure.begin(); it != structure.end(); it ++)
 		{
 			it_tmp = it;
@@ -46,7 +46,10 @@
 						break;
 
 				case 1 : 	if((*it).getName()=="<="){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "mauvais opérateur pour l'assignation !" << endl;
+						}
 						break;  	
 
 				//Case 2 et 3 parcourt les Id avant le ":"
@@ -55,14 +58,20 @@
 							step++;
 						}
 						else if ((*it).getType()=="id" or (*++it_tmp).getName() == ";") {step = 4;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "On attendait un ID pour l'assignation !" << endl;
+						}
 						break;
 
 				case 3 :       if((*it).getType() == "operator" and (*++it_tmp).getType()=="id"){
 							//recuperer opérator
 							step--;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "mauvais opérateur dans l'assignation !" << endl;
+						}
 						break;
 
 					//Fin de l'assignation

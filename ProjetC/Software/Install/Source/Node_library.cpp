@@ -43,7 +43,10 @@
 							library_ID = (*it).getName();
 							step++;
 						}
-						else step=-1;	
+						else {
+							step=-1;
+							cout << "Library sans ID !" << endl;
+						}	
 						break;
 
 				case 2:		if((*it).getName()==";"){
@@ -51,7 +54,9 @@
 							return true;
 						}
 						else if((*++it_tmp).getName()=="library"){step=0;}
-						else return false;	
+						else {
+							cout << "; en fin de library !" << endl;
+							return false; }	
 						break;
 
 				default :	cout << "error" << endl; //cf gestion d'erreur

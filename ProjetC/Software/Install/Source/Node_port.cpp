@@ -62,7 +62,10 @@
 						break;
 
 				case 1:		if((*it).getName()=="(")	{step++;}
-						else 				{step=-1;}
+						else {
+							step=-1;
+							cout << "Manque la ( après port!" << endl;
+						}
 						break;
 
 				
@@ -71,7 +74,10 @@
 							names.push_back((*it).getName());
 							if((*++it_tmp).getName() == ",")	{step++;}
 							else if((*++it_tmp).getName() != ":")	{step=4;}
-							else 					{step=-1;}
+							else {
+							step=-1;
+							cout << "Les ports doivent être des identifiants valides !" << endl;
+						}
 						}
 						break;
 
@@ -91,7 +97,10 @@
 							direction = "out";
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Mauvaise direction pour un port!" << endl;
+						}
 						break;
 
 				//Détermination du type du port
@@ -111,7 +120,10 @@
 							type = "std_logic_vector";
 							step = 10;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Type du port non reconnu!" << endl;
+						}
 						break;
 
 				//Type scalaire || fin d'un port --> fin de PORT ?
@@ -121,14 +133,20 @@
 						type.clear();
 						if((*it).getName()==";"  and (*++it_tmp).getName() == ")"){step = 8;} // si ")" après un port --> fin de PORT
 						else if((*it).getName()==";"  or (*++it_tmp).getType() == "id"){step = 2;} // si "id" après un port --> nouveau port
-						else step=-1;
+						else {
+							step=-1;
+							cout << "fini un ligne dans port par ;!" << endl;
+						}
 						break;
 		
 				//Type composite
 		
 				case 10 :       if((*it).getName()=="range"){step = 16;} 
 						else if((*it).getName() == "("){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "range est à utilser pour le type de port écrit !" << endl;
+						}
 						break;
 
 				//Avec up/down to
@@ -136,7 +154,10 @@
 							lowerBound = (*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 12 :       if((*it).getName()== "upto"){
@@ -147,18 +168,27 @@
 							countWay = false;
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 13 :       if(isEntier((*it).getName())){
 							upperBound = (*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 14 :       if((*it).getName() == ")"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "parenthèse fermante après un port composite !" << endl;
+						}
 						break;
 					
 				case 15 :       if (!countWay){ //if range is downto type ; exchange upper and lower Bounds
@@ -174,7 +204,10 @@
 						upperBound.clear();
 						if((*it).getName()== ")"){step = 9;}
 						else if((*it).getName() == ";" and (*++it_tmp).getType() == "id"){step = 2;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 		
 				//Avec range
@@ -182,25 +215,37 @@
 							lowerBound = (*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 17 :       if((*it).getName()== "to"){
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 18 :       if(isEntier((*it).getName())){
 							upperBound = (*it).getName();
 							step=15;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				//FIN DE FSM
 				case 8 :        if((*it).getName()==")"){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << (*it).getName() << " n'est pas une valeur recevable !" << endl;
+						}
 						break;
 
 				case 9 :        if((*it).getName()==";"){

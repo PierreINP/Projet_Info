@@ -44,22 +44,34 @@
 							else step=-1;*/
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Manque l'ID de la library Used !" << endl;
+						}
 						break;
 
 				case 2:		if((*it).getName()=="."){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Un point sépare les mots dans Use library!" << endl;
+						}
 						break;
 	
 				case 3:		if((*it).getType()== "id"){
 							library_ID = (*it).getName();
 							step++;
 						}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Manque l'ID du paquet Used !" << endl;
+						}
 						break;	
 
 				case 4:		if((*it).getName()=="."){step++;}
-						else step=-1;
+						else {
+							step=-1;
+							cout << "Un point sépare les mots dans Use library!" << endl;
+						}
 						break;
 					
 				case 5:		if((*it).getType()== "id" or (*it).getName()== "all"){
@@ -73,7 +85,7 @@
 							cout << "Structure LIBRARY USE validée" << endl;
 							return true;
 						}
-						else return false;
+						else { cout<< "Manque un ; pour finir lib Use" << endl;  return false;}
 						break;    
 					
 
