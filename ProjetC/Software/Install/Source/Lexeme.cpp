@@ -49,7 +49,7 @@ extern string operatorList[];
     }	
 
     //Methodes
-	bool isEntier(string a) {
+	bool isNum(string a) {
 		int i =0;
 		for (i; i< a.size(); i++) {
 			if (not(a[i] >= 48 and a[i] <= 57)) {return false;} 
@@ -81,7 +81,7 @@ extern string operatorList[];
 			setType("operator");
 			break;
 		}
-		else if (isEntier(name)) {
+		else if (isNum(name)) {
 			type = "numerique";
 			setType("numerique");
 		}

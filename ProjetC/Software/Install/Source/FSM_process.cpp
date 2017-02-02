@@ -21,16 +21,16 @@ int main() {
 
 	structure.push_back(Lexeme("process"));
 	structure.push_back(Lexeme("("));
-	structure.push_back(Lexeme("_salut"));
+	structure.push_back(Lexeme("sal_ut"));
 	structure.push_back(Lexeme(","));
 	structure.push_back(Lexeme("conio"));
 	structure.push_back(Lexeme(")"));
-	structure.push_back(Lexeme("begin"));
+	structure.push_back(Lexeme("begin"));/*
 	structure.push_back(Lexeme("if"));	
 	structure.push_back(Lexeme("case"));
-	structure.push_back(Lexeme("case"));	
+	structure.push_back(Lexeme("declaration"));	
 	structure.push_back(Lexeme("if"));
-	structure.push_back(Lexeme("assignation"));
+	structure.push_back(Lexeme("assignation"));*/
 	structure.push_back(Lexeme("end"));
 	structure.push_back(Lexeme("process"));
 	structure.push_back(Lexeme(";"));
@@ -46,7 +46,7 @@ int main() {
 	{
 		it_tmp = it;
 		cout << step << " | " << *it <<endl;
-///////////////////////////////////////////CHECKSTRUCTURE LIBRARY///////////////////////////////////////////
+///////////////////////////////////////////CHECKSTRUCTURE PROCESS///////////////////////////////////////////
 		switch(step){		
 			case 0:		if((*it).getName()=="process"){step++;}
 					else step=-1;	//rentre dans le cas default
@@ -79,7 +79,17 @@ int main() {
 					else step=-1;
 					break;
 
-			case 5 :     	if((*it).getName()=="begin"){step++;}
+			case 5 :     	if((*it).getName()=="begin"){
+						if ((*++it_tmp).getName() == "end") step++;
+						else if ((*++it_tmp).getName() != "end") step = 9;
+					}
+					else step=-1;
+					break;
+
+			case 9 :     	if((*it).getName()=="declaration" or (*it).getName()=="if" or (*it).getName()=="assignation" or (*it).getName()=="case"){step = 9;}
+					else if((*it).getName()=="end") {
+						step = 7; 
+					}
 					else step=-1;
 					break;
 
