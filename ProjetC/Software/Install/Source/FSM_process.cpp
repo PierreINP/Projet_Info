@@ -26,6 +26,11 @@ int main() {
 	structure.push_back(Lexeme("conio"));
 	structure.push_back(Lexeme(")"));
 	structure.push_back(Lexeme("begin"));
+	structure.push_back(Lexeme("if"));	
+	structure.push_back(Lexeme("case"));
+	structure.push_back(Lexeme("case"));	
+	structure.push_back(Lexeme("if"));
+	structure.push_back(Lexeme("assignation"));
 	structure.push_back(Lexeme("end"));
 	structure.push_back(Lexeme("process"));
 	structure.push_back(Lexeme(";"));

@@ -12,6 +12,7 @@ int main() {
 	Lexeme Lex2(";");
 	Lexeme Lex3("+");
 	Lexeme Lex4("an_id");
+	Lexeme Lex30("0010");
 /*
 	Lex1.associateType();
 	Lex2.associateType();
@@ -22,11 +23,13 @@ int main() {
 	cout<< "Name "<< Lex2 << " | Type : " <<Lex2.getType() << endl;
 	cout<< "Name "<< Lex3 << " | Type : " <<Lex3.getType() << endl;
 	cout<< "Name "<< Lex4 << " | Type : " <<Lex4.getType() << endl;
+	cout<< "Name "<< Lex30 << " | Type : " <<Lex30.getType() << endl;
 
 	assert (Lex1.getType()== "keyword");
 	assert (Lex2.getType()== "special");
 	assert (Lex3.getType()== "operator");
 	assert (Lex4.getType()== "id");
+	assert (Lex30.getType()== "numerique");
 
 	cout << endl << "--------------------------"<< endl << "Test 2 : validIdentifier " << endl << "--------------------------" << endl;
 
