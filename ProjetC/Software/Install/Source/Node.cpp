@@ -66,9 +66,9 @@
 		vector<Node*>::const_iterator it;
 		stringstream mySons;
 
-		mySons << "Node " << getLabel() << " has following sons : "<< endl; 
+		mySons << "----Sons----" << endl; 
 		for (it = sons.begin(); it != sons.end(); it++){
-			mySons << (*it)->getLabel() << endl;
+			mySons << "				"  << (*it)->getLabel() << endl;
 		}
 		return mySons.str();
 	}
@@ -77,7 +77,7 @@
 		list<Lexeme>::const_iterator it;
 		stringstream struc;
 
-		struc << "Node " << getLabel() << " has following lexemes structure : "<< endl; 
+		struc << "----Structure----" << endl; 
 		for (it = structure.begin(); it != structure.end(); it++){
 			struc << *it << " " ; // display lexemes names composing current instance
 		}
@@ -101,7 +101,11 @@
 
 	//friend function
 	 ostream& operator<<(ostream& out, const Node &n){
-		out << n.displaySons()<< endl << n.displayStruct();
+		out << "################################################################################"<< endl
+		    << "  		  		 Node "<< n.getLabel()  << endl
+		    << "################################################################################"<< endl
+		    << "				" << n.displaySons()  << endl 
+		    << "				" << n.displayStruct()<< endl;
 		return out;
 	}
 

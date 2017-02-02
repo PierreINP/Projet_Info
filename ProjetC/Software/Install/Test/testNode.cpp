@@ -31,7 +31,7 @@ int main(void){
 
 	////////////* Display all root sons lexemes structures *///////
 	for (it_tree = Tree.begin(); it_tree != Tree.end(); it_tree++){
-		cout << endl << (**it_tree).displayStruct() << endl;
+		cout << endl << **it_tree << endl;//display sons & structure
 		if ((**it_tree).getLabel()=="Entity"){
 			Entity_sons = (**it_tree).getSons();
 		}
