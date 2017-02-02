@@ -41,9 +41,10 @@
 				cout <<"	>>> Add "<< getLabel() <<" son : Architecture"<< endl;
 				sons.push_back(new Node_architecture(iter,iter_endOfList));
 			}
-			if (sons.size() == 0){
-				cout<< getLabel()<< " has no son"<< endl;
-			}
+		}
+	
+		if (sons.size() == 0){
+			cout<< getLabel()<< " has no son"<< endl;
 		}
 	}
 

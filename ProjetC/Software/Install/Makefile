@@ -20,9 +20,9 @@ binary_fsm : object_files binary_files
 	
 binary_files: object_files
 	$(CC) -o Binaries/Error Object/Lexeme.o Object/syntaxConstraints.o Object/Error.o Test/testError.cpp 
-	$(CC) -o Binaries/Lexeur Object/Error.o Object/syntaxConstraints.o Object/Lexeme.o Object/Lexeur.o Source/main.cpp
+	$(CC) -o Binaries/Lexeur Object/Error.o Object/syntaxConstraints.o Object/Lexeme.o Object/Lexeur.o Test/testLexeur.cpp
 	$(CC) -o Binaries/Lexeme Object/Error.o Object/syntaxConstraints.o Object/Lexeme.o Test/testLexeme.cpp
-	$(CC) -o Binaries/Node -g Object/syntaxConstraints.o Object/Lexeme.o Object/Lexeur.o Object/Node.o Object/Node_root.o Object/Node_library.o Object/Node_libraryUse.o Object/Node_entity.o Object/Node_port.o Object/Node_portScalaire.o Object/Node_portComposite.o Object/Node_architecture.o Object/Node_declaration.o Object/Node_signal.o Object/Node_signalScalaire.o Object/Node_signalComposite.o Object/Node_variable.o Object/Node_variableScalaire.o Object/Node_variableComposite.o Object/Node_component.o Object/Node_type.o Object/Node_assignment.o Object/Node_process.o Object/Node_ifCondition.o Object/Node_caseCondition.o Test/testNode.cpp 
+	$(CC) -o Binaries/Main -g Object/syntaxConstraints.o Object/Lexeme.o Object/Lexeur.o Object/Node.o Object/Node_root.o Object/Node_library.o Object/Node_libraryUse.o Object/Node_entity.o Object/Node_port.o Object/Node_portScalaire.o Object/Node_portComposite.o Object/Node_architecture.o Object/Node_declaration.o Object/Node_signal.o Object/Node_signalScalaire.o Object/Node_signalComposite.o Object/Node_variable.o Object/Node_variableScalaire.o Object/Node_variableComposite.o Object/Node_component.o Object/Node_type.o Object/Node_assignment.o Object/Node_process.o Object/Node_ifCondition.o Object/Node_caseCondition.o Source/main.cpp 
 
 	
 
