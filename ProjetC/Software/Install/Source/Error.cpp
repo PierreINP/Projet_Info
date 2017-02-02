@@ -16,7 +16,6 @@ using namespace std;
 		cout << m_errors << endl;
 	}
 	 
-
 	ostream& operator<<(ostream& out, const Error &e) {
 			out << e.m_errors << endl;
 	return out;

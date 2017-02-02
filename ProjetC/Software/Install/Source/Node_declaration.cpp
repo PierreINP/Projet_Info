@@ -3,10 +3,8 @@
 
 //builders
 	Node_declaration::Node_declaration(list<Lexeme>::iterator it):Node("Declaration",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
-		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		checkStruct();	
 	}
 
 	Node_declaration::~Node_declaration(){}
@@ -16,9 +14,15 @@
 	}
 
 	void Node_declaration::createStruct(){
+		list<Lexeme>::iterator it;
+	
+		for (it = lex_it; (*it).getName() != "begin"; it++){
+			structure.push_back((*it).getName());
+		}
 	}
 
 	bool Node_declaration::checkStruct(){
+
 	}
 
 

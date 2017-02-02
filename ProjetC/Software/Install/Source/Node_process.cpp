@@ -16,6 +16,12 @@
 	}
 
 	void Node_process::createStruct(){
+		list<Lexeme>::iterator it;
+	
+		for (it = lex_it; (*it).getName() != "process"; it++){
+			structure.push_back((*it).getName());
+			structure.push_back(Lexeme(";"));
+		}
 	}
 
 	bool Node_process::checkStruct(){

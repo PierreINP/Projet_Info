@@ -16,6 +16,11 @@
 	}
 
 	void Node_assignment::createStruct(){
+		list<Lexeme>::iterator it;
+	
+		for (it = lex_it; (*it).getName() != ";"; it++){
+			structure.push_back((*it).getName());
+		}
 	}
 
 	bool Node_assignment::checkStruct(){
