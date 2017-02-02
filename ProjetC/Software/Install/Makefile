@@ -14,6 +14,7 @@ binary_fsm : object_files
 	$(CC) -o Binaries/FSM_assignation Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_assignation.cpp
 	$(CC) -o Binaries/FSM_architecture Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_architecture.cpp
 	$(CC) -o Binaries/FSM_component Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_component.cpp
+	$(CC) -o Binaries/FSM_declaration Object/syntaxConstraints.o Object/Lexeme.o Source/FSM_declaration.cpp
 	
 binary_files: object_files
 	$(CC) -o Binaries/Error Object/Lexeme.o Object/syntaxConstraints.o Object/Error.o Test/testError.cpp 
