@@ -7,15 +7,21 @@ using namespace std;
 
 class Node_variableScalaire : public Node {
 private:
-
+	
 public:
-	Node_variableScalaire(list<Lexeme>::iterator it);
+	string name;
+	string initValue;
+	string type;
+	Node_variableScalaire(list<Lexeme>::iterator it,string n, string iV, string t);
 	~Node_variableScalaire();
 
 //methods
-	void createSons();
 	void createStruct();
-	bool checkStruct();
+	bool checkStruct(); 
+//accessors
+	const string & getName()const;
+	const string & getInitValue()const;
+	const string & getType()const;
 };
 
 #endif 

@@ -3,11 +3,11 @@
 
 //builders
 	Node_library::Node_library(list<Lexeme>::iterator it):Node("Library",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		createSons();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_library::~Node_library(){}

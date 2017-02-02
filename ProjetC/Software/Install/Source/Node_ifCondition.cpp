@@ -3,10 +3,10 @@
 
 //builders
 	Node_ifCondition::Node_ifCondition(list<Lexeme>::iterator it):Node("IfCondition",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_ifCondition::~Node_ifCondition(){}

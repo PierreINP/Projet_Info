@@ -84,6 +84,18 @@
 		return struc.str();
 	}
 
+	string Node::displayAttributes()const {} // To be surcharged in each subclass
+
+	string Node::toString() const {
+		stringstream flow;
+		flow<< "################################################################################"<< endl
+		    << "  		  		 Node "<< getLabel()  << endl
+		    << "################################################################################"<< endl
+		    << "				" << displaySons()  << endl 
+		    << "				" << displayStruct()<< endl;
+		return flow.str();
+	}
+
 	//accessors
 	const string & Node::getLabel()const{return label;}
 	const list<Lexeme>::iterator & Node::getLexIt()const{return lex_it;}
@@ -101,11 +113,7 @@
 
 	//friend function
 	 ostream& operator<<(ostream& out, const Node &n){
-		out << "################################################################################"<< endl
-		    << "  		  		 Node "<< n.getLabel()  << endl
-		    << "################################################################################"<< endl
-		    << "				" << n.displaySons()  << endl 
-		    << "				" << n.displayStruct()<< endl;
+		out << n.toString()<<endl;
 		return out;
 	}
 

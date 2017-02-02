@@ -5,10 +5,13 @@
 
 //builders
 	Node_port::Node_port(list<Lexeme>::iterator it):Node("Port",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		if (sons.size() == 0){
+			cout<< getLabel()<< " has no son"<< endl;
+		}
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_port::~Node_port(){}
@@ -96,7 +99,7 @@
 							type = "bit";
 							step++;
 						}
-						if((*it).getName()== "std_logic"){
+						else if((*it).getName()== "std_logic"){
 							type = "std_logic";
 							step++;
 						}
@@ -137,11 +140,11 @@
 						break;
 
 				case 12 :       if((*it).getName()== "upto"){
-							countWay = false;
+							countWay = true;
 							step++;
 						}
 						else if((*it).getName()== "downto"){
-							countWay = true;
+							countWay = false;
 							step++;
 						}
 						else step=-1;
@@ -158,7 +161,7 @@
 						else step=-1;
 						break;
 					
-				case 15 :       if (countWay){ //if range is downto type ; exchange upper and lower Bounds
+				case 15 :       if (!countWay){ //if range is downto type ; exchange upper and lower Bounds
 							tmpBound=lowerBound; 
 							lowerBound = upperBound;
 							upperBound = tmpBound;

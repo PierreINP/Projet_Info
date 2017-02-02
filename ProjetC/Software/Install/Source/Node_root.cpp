@@ -10,10 +10,10 @@
 		cout << endl << "		###################################"<< endl
 			     << " 			Begin tree built  "  	    << endl
 			     << "		###################################"<< endl << endl;
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		structure = parsing;
 		createSons();
-		cout << "--- End of creation : " << getLabel()<< endl;
+		//cout << "--- End of creation : " << getLabel()<< endl;
 	}
 
 	Node_root::~Node_root(){}
@@ -22,24 +22,28 @@
 	void Node_root::createSons(){
 		list<Lexeme>::iterator iter;
 		list<Lexeme>::iterator iter_endOfList = structure.end();
+		bool asSon = false;
 
 		for (iter = structure.begin(); iter != structure.end(); iter++){
 			if(((*iter).getName() == "library") and ((*iter).getType() == "keyword")){
-				cout <<"	>>> Add Root son : Library"<< endl;
+				cout <<"	>>> Add "<< getLabel() <<" son : Library"<< endl;
 				sons.push_back(new Node_library(iter));
 			}
 			else if((*iter).getName() == "use" and ((*iter).getType() == "keyword")){
-				cout <<"	>>> Add Root son : LibraryUse"<< endl;
-				sons.push_back(new Node_libraryUse(iter));
+				cout <<"	>>> Add "<< getLabel() <<" son : LibraryUse"<< endl;
+				sons.push_back(new Node_libraryUse(iter));	
 			}
 			else if((*iter).getName() == "entity" and ((*iter).getType() == "keyword")){
-				cout <<"	>>> Add Root son : Entity"<< endl;
-				sons.push_back(new Node_entity(iter));
+				cout <<"	>>> Add "<< getLabel() <<" son : Entity"<< endl;
+				sons.push_back(new Node_entity(iter));	
 			}
 			else if((*iter).getName() == "architecture" and ((*iter).getType() == "keyword")){
-				cout <<"	>>> Add Root son : Architecture"<< endl;
+				cout <<"	>>> Add "<< getLabel() <<" son : Architecture"<< endl;
 				sons.push_back(new Node_architecture(iter,iter_endOfList));
-			}	
+			}
+			if (sons.size() == 0){
+				cout<< getLabel()<< " has no son"<< endl;
+			}
 		}
 	}
 

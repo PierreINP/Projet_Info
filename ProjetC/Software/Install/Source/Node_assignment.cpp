@@ -3,10 +3,10 @@
 
 //builders
 	Node_assignment::Node_assignment(list<Lexeme>::iterator it):Node("Assignement",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_assignment::~Node_assignment(){}
@@ -21,6 +21,7 @@
 		for (it = lex_it; (*it).getName() != ";"; it++){
 			structure.push_back((*it).getName());
 		}
+		structure.push_back(Lexeme(";"));
 	}
 
 	bool Node_assignment::checkStruct(){
@@ -34,7 +35,7 @@
 			it_tmp = it;
 			cout << step << " | " << *it <<endl;
 
-	///////////////////////////////////////////CHECKSTRUCTURE ASSIGNATION///////////////////////////////////////////
+//////////////////////////////////////////CHECKSTRUCTURE ASSIGNATION///////////////////////////////////////////
 			switch(step){		
 				case 0:		if((*it).getType()=="id"){
 							step++;

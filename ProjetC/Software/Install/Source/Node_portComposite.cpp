@@ -2,13 +2,13 @@
 
 //builders
 	Node_portComposite::Node_portComposite(list<Lexeme>::iterator it, string n, string d, string t, string lB, string uB):Node("PortComposite",it),name(n),direction(d),type(t),lowerBound(lB),upperBound(uB){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		cout << "	Name : " << getName() << endl;
 		cout << "	Direction : " << getDirection() << endl;
 		cout << "	Type : " << getType() << endl;
 		cout << "	lowerBound : " << getLowerBound() << endl;
 		cout << "	upperBound : " << getUpperBound() << endl;
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_portComposite::~Node_portComposite(){}

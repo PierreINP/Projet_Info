@@ -52,6 +52,6 @@ int main() {
 		}
 
 	}
-cout << "Structure DECLERATION validée" << endl; 
+cout << "Structure DECLARATION validée" << endl; 
 return true;
 }

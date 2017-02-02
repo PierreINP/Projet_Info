@@ -2,11 +2,11 @@
 
 //builders
 	Node_libraryUse::Node_libraryUse(list<Lexeme>::iterator it):Node("LibraryUse",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		createSons();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_libraryUse::~Node_libraryUse(){}

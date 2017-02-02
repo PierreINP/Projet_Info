@@ -2,11 +2,11 @@
 
 //builders
 	Node_portScalaire::Node_portScalaire(list<Lexeme>::iterator it, string n, string d, string t):Node("PortScalaire",it),name(n),direction(d),type(t){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		cout << "	Name : " << getName() << endl;
 		cout << "	Direction : " << getDirection() << endl;
 		cout << "	Type : " << getType() << endl;
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_portScalaire::~Node_portScalaire(){}

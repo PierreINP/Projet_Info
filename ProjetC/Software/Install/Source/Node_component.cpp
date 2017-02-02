@@ -3,10 +3,10 @@
 
 //builders
 	Node_component::Node_component(list<Lexeme>::iterator it):Node("Component",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_component::~Node_component(){}

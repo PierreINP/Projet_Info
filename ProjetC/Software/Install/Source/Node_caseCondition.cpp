@@ -3,10 +3,10 @@
 
 //builders
 	Node_caseCondition::Node_caseCondition(list<Lexeme>::iterator it):Node("CaseCondition",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_caseCondition::~Node_caseCondition(){}

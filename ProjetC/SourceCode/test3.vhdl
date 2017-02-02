@@ -9,12 +9,12 @@ end CompteurUpDown;
 
 architecture CptUpDown of CompteurUpDown is
 
-	variable count_int : unsigned (3 downto 0);
+	variable count_int : std_logic_vector (3 downto 0):="100";
 begin
 	count_int := count_int - "0001";
 	
 process(resetn, clk)
-	variable count_int : unsigned (3 downto 0);
+	variable count_int : std_logic_vector (3 downto 0);
 begin 
 	if resetn = '0' then 
 		count_int := "0000";

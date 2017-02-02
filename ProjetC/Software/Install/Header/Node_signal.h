@@ -7,13 +7,18 @@ using namespace std;
 
 class Node_signal : public Node {
 private:
-
+	list<string> names;
+	string initValue;
+	string type;
+	string lowerBound;
+	string upperBound;
 public:
 	Node_signal(list<Lexeme>::iterator it);
 	~Node_signal();
 
 //methods
-	void createSons();
+	void createScalaire(list<string> names, string initValue, string type);
+	void createComposite(list<string> names, string initValue, string type, string lowerBound, string upperBound);
 	void createStruct();
 	bool checkStruct();
 };

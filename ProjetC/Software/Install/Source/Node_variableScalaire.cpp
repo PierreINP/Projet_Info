@@ -1,25 +1,29 @@
 #include "./../Header/Node_variableScalaire.h"
 
-
 //builders
-	Node_variableScalaire::Node_variableScalaire(list<Lexeme>::iterator it):Node("VariableScalaire",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
-		createStruct();
-		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+	Node_variableScalaire::Node_variableScalaire(list<Lexeme>::iterator it, string n, string iV, string t):Node("VariableScalaire",it),name(n),initValue(iV),type(t){
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
+		cout << "	Name : " << getName() << endl;
+		cout << "	InitValue : " << getInitValue() << endl;
+		cout << "	Type : " << getType() << endl;
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_variableScalaire::~Node_variableScalaire(){}
 
 //methods
-	void Node_variableScalaire::createSons(){
+	void Node_variableScalaire::createStruct(){}//Node virtual pure function not used for this class : subclass attributes are already set through constructor
+	bool Node_variableScalaire::checkStruct(){}//Node virtual pure function not used for this class : structure checking made at upper level of port
+
+//accessors
+	const string & Node_variableScalaire::getName()const{
+		return name;
 	}
 
-	void Node_variableScalaire::createStruct(){
+	const string & Node_variableScalaire::getInitValue()const{
+		return initValue;
 	}
 
-	bool Node_variableScalaire::checkStruct(){
+	const string & Node_variableScalaire::getType()const{
+		return type;
 	}
-
-
-

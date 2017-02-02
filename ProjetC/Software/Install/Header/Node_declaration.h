@@ -15,6 +15,7 @@ public:
 //methods
 	void createSons();
 	void createStruct();
+	void shapeStruct();
 	bool checkStruct();
 };
 

@@ -35,8 +35,11 @@ public:
 	bool isEntier(string a);
 	bool isString(string a);
 	bool isStd_Logic(string a); 
+
 	string displaySons() const;
 	string displayStruct() const;
+	virtual string displayAttributes() const;
+	virtual string toString() const;
 
 //accessors
 	const string & getLabel()const;

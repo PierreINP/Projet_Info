@@ -7,15 +7,21 @@ using namespace std;
 
 class Node_signalScalaire : public Node {
 private:
-
+	
 public:
-	Node_signalScalaire(list<Lexeme>::iterator it);
+	string name;
+	string initValue;
+	string type;
+	Node_signalScalaire(list<Lexeme>::iterator it,string n, string iV, string t);
 	~Node_signalScalaire();
 
 //methods
-	void createSons();
 	void createStruct();
-	bool checkStruct();
+	bool checkStruct(); 
+//accessors
+	const string & getName()const;
+	const string & getInitValue()const;
+	const string & getType()const;
 };
 
 #endif 

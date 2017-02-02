@@ -3,12 +3,12 @@
 
 //builders
 	Node_entity::Node_entity(list<Lexeme>::iterator it):Node("Entity",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		createSons();
 		shapeStruct();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_entity::~Node_entity(){}
@@ -24,6 +24,9 @@
 				sons.push_back(new Node_port(iter));
 			}
 		}
+		if (sons.size() == 0){
+			cout<< getLabel()<< " has no son"<< endl;
+		}	
 	}
 
 	void Node_entity::createStruct(){

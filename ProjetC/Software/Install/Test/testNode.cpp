@@ -9,12 +9,20 @@ using namespace std;
 
 int main(void){
 
-	vector<Node*> Tree;
-	vector<Node*> Entity_sons;
-	vector<Node*> Port_sons;
-	vector<Node*>::iterator it_tree;
-	vector<Node*>::iterator it_entity_sons;
-	vector<Node*>::iterator it_port_sons;
+	vector<Node*> TreeLvl1;
+	vector<Node*> TreeLvl2;
+	vector<Node*> TreeLvl3;
+	vector<Node*> TreeLvl4;
+	vector<Node*>::iterator it_tree_lvl1;
+	vector<Node*>::iterator it_tree_lvl2;
+	vector<Node*>::iterator it_tree_lvl3;
+	vector<Node*>::iterator it_tree_lvl4;
+
+	//vector<Node*> Entity_sons;
+	//vector<Node*> Port_sons;
+	
+	//vector<Node*>::iterator it_entity_sons;
+	//vector<Node*>::iterator it_port_sons;
 
 	list<Lexeme> lexeme_list;
 	list<Lexeme>::iterator iter; 
@@ -26,23 +34,26 @@ int main(void){
 	iter = lexeme_list.begin();         //Initialisation sur le 1er lexeme par defaut
 
 	Node_root source(lexeme_list,iter); // create an instance root of node which is the highest level of nodes
-	Tree = source.getSons();	    // get all root sons
+	TreeLvl1 = source.getSons();	    // get all root sons
 	cout << endl << source << endl;	    // display root structure which contains all lexemes
 
 	////////////* Display all root sons lexemes structures *///////
-	for (it_tree = Tree.begin(); it_tree != Tree.end(); it_tree++){
-		cout << endl << **it_tree << endl;//display sons & structure
-		if ((**it_tree).getLabel()=="Entity"){
-			Entity_sons = (**it_tree).getSons();
+	for (it_tree_lvl1 = TreeLvl1.begin(); it_tree_lvl1 != TreeLvl1.end(); it_tree_lvl1++){
+		cout << endl << **it_tree_lvl1<< endl;//display sons & structure
+		TreeLvl2 = (**it_tree_lvl1).getSons();
+
+		for (it_tree_lvl2 = TreeLvl2.begin(); it_tree_lvl2 != TreeLvl2.end(); it_tree_lvl2++){
+			cout << endl << **it_tree_lvl2<< endl;//display sons & structure
+			TreeLvl3 = (**it_tree_lvl2).getSons();
+		
+			for (it_tree_lvl3 = TreeLvl3.begin(); it_tree_lvl3 != TreeLvl3.end(); it_tree_lvl3++){
+				cout << endl << **it_tree_lvl3<< endl;//display sons & structure
+				TreeLvl4 = (**it_tree_lvl3).getSons();
+
+				for (it_tree_lvl4=TreeLvl4.begin(); it_tree_lvl4 != TreeLvl4.end(); it_tree_lvl4++){
+					cout << endl << **it_tree_lvl4<< endl;//display sons & structure
+				}
+			}
 		}
-	}
-	for(it_entity_sons = Entity_sons.begin();it_entity_sons != Entity_sons.end(); it_entity_sons++){
-		if ((**it_entity_sons).getLabel()==  "Port"){
-			cout << **it_entity_sons << endl;
-			Port_sons = (**it_entity_sons).getSons();
-		}
-	}
-	for(it_port_sons = Port_sons.begin();it_port_sons != Port_sons.end(); it_port_sons++){
-		cout << (**it_port_sons).getLabel() << " || " <<(**it_port_sons).getName() << " || "<< (**it_port_sons).getDirection() << " || "<< (**it_port_sons).getType() <<" || "<< (**it_port_sons).getLowerBound() <<" || "<< (**it_port_sons).getUpperBound() << endl;
-	}		
+	}	
 }

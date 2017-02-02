@@ -1,26 +1,52 @@
 #include "./../Header/Node_variable.h"
+#include "./../Header/Node_variableScalaire.h"
+#include "./../Header/Node_variableComposite.h"
 
 
 //builders
-	Node_variable::Node_variable(list<Lexeme>::iterator it):Node("Declaration",it){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+	Node_variable::Node_variable(list<Lexeme>::iterator it):Node("Variable",it){
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		if (sons.size() == 0){
+			cout<< getLabel()<< " has no son"<< endl;
+		}
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_variable::~Node_variable(){}
 
 //methods
-	void Node_variable::createSons(){
+	void Node_variable::createScalaire(list<string> names, string initValue, string type){
+		list<string>::iterator it;
+	
+		for(it = names.begin(); it != names.end(); it++){
+			sons.push_back(new Node_variableScalaire(lex_it,*it,initValue,type));
+		}
+	}
+
+	void Node_variable::createComposite(list<string> names, string initValue, string type, string lowerBound, string upperBound){
+		list<string>::iterator it;
+	
+		for(it = names.begin(); it != names.end(); it++){
+			sons.push_back(new Node_variableComposite(lex_it,*it,initValue,type, lowerBound,upperBound));
+		}	
 	}
 
 	void Node_variable::createStruct(){
+		list<Lexeme>::iterator it;
+		for (it = lex_it; (*it).getName() != ";"; it++){
+			structure.push_back((*it).getName());
+		}
+		structure.push_back(Lexeme(";"));
 	}
 
 	bool Node_variable::checkStruct(){
 		list<Lexeme>::iterator it;
 		list<Lexeme>::iterator it_tmp;
+		
+		bool countWay=true;
+		string tmpBound;
 		int step = 0;
 
 		for(it = structure.begin(); it != structure.end(); it ++)
@@ -28,7 +54,7 @@
 			it_tmp = it;
 			cout << step << " | " << *it <<endl;
 
-	///////////////////////////////////////////CHECKSTRUCTURE variable///////////////////////////////////////////
+	/////////////////////////////////////////CHECKSTRUCTURE VARIABLE///////////////////////////////////////////
 			switch(step){		
 				case 0:		if((*it).getName()=="variable"){step++;}
 						else step=-1;	//rentre dans le cas default
@@ -37,11 +63,11 @@
 
 				//Case 2 et 3 parcourt les Id avant le ":"
 				case 1 :   	if((*it).getType()=="id"  and (*++it_tmp).getName() == ","){
-							//recuperer ID dans un port
+							names.push_back((*it).getName());
 							step++;
 						}
 						else if((*it).getType()=="id"  or (*++it_tmp).getName() == ":"){
-							//recuperer ID dans un port
+							names.push_back((*it).getName());
 							step +=2;
 						}
 						else step=-1;
@@ -57,12 +83,12 @@
 						else step=-1;
 						break;
 
-				//Détermination du type du variable [composite ou scalaire]
+				//Détermination du type du signal [composite ou scalaire]
 				case 4 :       	///////////////////////////////////////////
 						//Bit avec initialisation
 						if((*it).getName()== "bit") {
 							if ((*++it_tmp).getName()== ":"){
-							//variable's type = bit;
+							type = (*it).getName();
 							step = 10;
 							}
 							else step = 7;
@@ -72,7 +98,7 @@
 						//std_logic avec initialisation
 						else if((*it).getName()== "std_logic"){
 							if ((*++it_tmp).getName()== ":"){
-								//variable)'s type = std_logic;
+								type = (*it).getName();
 								step = 15;
 							}
 							else step = 7;
@@ -81,15 +107,15 @@
 						//integer avec initialisation
 						else if((*it).getName()== "integer"){
 							if ((*++it_tmp).getName()== "range"){
-							//variable's type = integer;
-							step = 20;
+								type = (*it).getName();
+								step = 20;
 						}
 							else step = 7;
 						}
 						///////////////////////////////////////////
 						//string avec initialisation
 						else if((*it).getName()== "string"){
-							//variable's type = string;
+							type = (*it).getName();
 							step = 30;
 						}
 
@@ -97,7 +123,7 @@
 						//boolean avec initialisation
 						else if((*it).getName()== "boolean") {
 							if ((*++it_tmp).getName()== ":"){
-								//variable's type = boolean;
+								type = (*it).getName();
 								step = 40;
 							}
 							else step = 7;
@@ -105,14 +131,14 @@
 						///////////////////////////////////////////
 						//bit_vector avec initialisation
 						else if((*it).getName()== "bit_vector"){
-							//variable's type = bit_vector;
+							type = (*it).getName();
 							step = 50;
 						}
 
 						///////////////////////////////////////////
 						//std_logic_vector avec initialisation
 						else if((*it).getName()== "std_logic_vector"){
-							//variable's type = std_logic_vector;
+							type = (*it).getName();
 							step = 50;
 						}
 				
@@ -133,7 +159,7 @@
 						break;
 
 				case 13 :       if(isEntier((*it).getName())){
-							//récupération de la valeur d'initialisation
+							initValue = (*it).getName();
 							step++;
 						}
 						else step=-1;
@@ -157,7 +183,7 @@
 						break;
 
 				case 18 :       if(isStd_Logic((*it).getName())){
-							//récupération de la valeur d'initialisation
+							initValue = (*it).getName();
 							step++;
 						}
 						else step=-1;
@@ -172,19 +198,23 @@
 				case 20 :       if((*it).getName() == "range"){step++;}
 						else step=-1;
 						break;
-				case 21 :       if(isEntier((*it).getName())){step++;}
+							
+				case 21 :       if(isEntier((*it).getName())){
+							lowerBound = (*it).getName();
+							step++;
+						}
+
 						else step=-1;
 						break;
 
 				case 22 :       if((*it).getName()== "to"){
-							//manière de compter
 							step++;
 						}
 						else step=-1;
 						break;
 
 				case 23 :       if(isEntier((*it).getName()) and (*++it_tmp).getName() == ";"){
-							//récupération de l'entier
+							upperBound = (*it).getName();
 							step = 7;
 						}
 						else if(isEntier((*it).getName()) or (*++it_tmp).getName() == ":"){step++;}
@@ -200,7 +230,7 @@
 						break;
 
 				case 26 :       if(isEntier((*it).getName())){
-							//récupération de la valeur d'initialisation
+							initValue=(*it).getName();
 							step = 7;
 						}
 						else step=-1;
@@ -214,14 +244,14 @@
 						break;
 
 				case 31 :       if(isEntier((*it).getName())){
-							//récupération de l'entier
+							lowerBound=(*it).getName();
 							step++;
 						}
 						else step=-1;
 						break;
 
 				case 32 :       if((*it).getName()== "to"){
-							//manière de compter
+
 							step++;
 						}
 
@@ -229,7 +259,7 @@
 						break;
 
 				case 33 :       if(isEntier((*it).getName())){
-							//récupération de l'entier
+							upperBound=(*it).getName();
 							step++;
 						}
 						else step=-1;
@@ -259,7 +289,7 @@
 						break;
 
 				case 38 :       if(isString((*it).getName())){
-							//récupération de l'entier
+							initValue=(*it).getName();
 							step++;
 						}
 						else step=-1;
@@ -280,11 +310,11 @@
 
 
 				case 42 :       if((*it).getName() == "false"){
-							//récupération de la valeur d'initialisation
+							initValue=(*it).getName();
 							step = 7;
 						}
 						else if((*it).getName() == "true"){
-							//récupération de la valeur d'initialisation
+							initValue=(*it).getName();
 							step = 7;
 						}
 						else step=-1;
@@ -299,25 +329,25 @@
 						break;
 
 				case 51 :       if(isEntier((*it).getName())){
-							//récupération de l'entier
+							lowerBound=(*it).getName();
 							step++;
 						}
 						else step=-1;
 						break;
 
 				case 52 :       if((*it).getName()== "upto"){
-							//manière de compter
+							countWay = true;
 							step++;
 						}
 						else if((*it).getName()== "downto"){
-							//manière de compter
+							countWay = false;
 							step++;
 						}
 						else step=-1;
 						break;
 
 				case 53 :       if(isEntier((*it).getName())){
-							//récupération de l'entier
+							upperBound=(*it).getName();
 							step++;
 						}
 						else step=-1;
@@ -341,7 +371,7 @@
 						break;
 
 				case 58 :       if(isEntier((*it).getName())){
-							//récupération de l'entier
+							initValue=(*it).getName();
 							step++;
 						}
 						else step=-1;
@@ -351,9 +381,29 @@
 						else step=-1;
 						break;
 
-				//Fin du variable
-				case 7 :        if((*it).getName()==";") {
-							cout << "Structure variable validée" << endl; return true;
+				//Fin du SIGNAL
+				case 7 :        if((*it).getName()==";") {	
+							if(type== "bit" or type =="std_logic"){
+								createScalaire(names,initValue,type); 
+								names.clear();
+								initValue.clear();
+								type.clear();
+							}
+							else{
+								if (!countWay){ //if range is downto type ; exchange upper and lower Bounds
+									tmpBound=lowerBound; 
+									lowerBound = upperBound;
+									upperBound = tmpBound;
+								}
+								createComposite(names,initValue,type,lowerBound,upperBound);
+								names.clear();
+								initValue.clear();
+								type.clear();
+								lowerBound.clear();
+								upperBound.clear();
+							}
+							cout << "Structure VARIABLE validée" << endl;
+							return true;
 						}
 						else step=-1;
 						break;

@@ -5,12 +5,12 @@
 
 //builders
 	Node_architecture::Node_architecture(list<Lexeme>::iterator it, list<Lexeme>::iterator itEnd):Node("Architecture",it), end_it(itEnd){
-		cout << "--- Begin of creation : " << getLabel()<< endl;
+		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		createSons();
 		shapeStruct();
 		checkStruct();
-		cout << "--- End of creation : " << getLabel()<< endl;	
+		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
 	Node_architecture::~Node_architecture(){}
@@ -30,7 +30,7 @@
 				   or(*it_tmp).getName()=="component" 
 				   or(*it_tmp).getName()=="type"){
 					cout <<"	>>> Add Architecture son : declaration"<< endl;
-					sons.push_back(new Node_declaration(it));
+					sons.push_back(new Node_declaration(++it));
 				}	
 			}
 
@@ -51,6 +51,10 @@
 					sons.push_back(new Node_assignment(it));
 				}
 			}
+		}
+
+		if (sons.size() == 0){
+			cout<< getLabel()<< " has no son"<< endl;
 		}
 	}
 
