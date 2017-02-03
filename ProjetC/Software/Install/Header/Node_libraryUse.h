@@ -14,9 +14,9 @@ public:
 	~Node_libraryUse();
 
 //methods
-	void createSons();
 	void createStruct();
 	bool checkStruct();
+	string toString() const;
 
 //accessors
 	const string & getLibraryID()const;

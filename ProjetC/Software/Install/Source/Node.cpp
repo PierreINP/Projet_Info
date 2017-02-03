@@ -62,11 +62,11 @@
 		return false;
 	}
 
-	string  Node::displaySons() const {  
+	string  Node::displaySonsAndAttributes() const {  
 		vector<Node*>::const_iterator it;
 		stringstream mySons;
 
-		mySons << "----Sons----" << endl; 
+		mySons << "	----Sons----" << endl; 
 		for (it = sons.begin(); it != sons.end(); it++){
 			mySons << "				"  << (*it)->getLabel() << endl;
 		}
@@ -77,22 +77,19 @@
 		list<Lexeme>::const_iterator it;
 		stringstream struc;
 
-		struc << "----Structure----" << endl; 
+		struc << "	----Structure----" << endl; 
 		for (it = structure.begin(); it != structure.end(); it++){
 			struc << *it << " " ; // display lexemes names composing current instance
 		}
 		return struc.str();
 	}
 
-	string Node::displayAttributes()const {} // To be surcharged in each subclass
-
 	string Node::toString() const {
 		stringstream flow;
 		flow<< "################################################################################"<< endl
 		    << "  		  		 Node "<< getLabel()  << endl
 		    << "################################################################################"<< endl
-		    << "				" << displaySons()  << endl 
-		    << "				" << displayStruct()<< endl;
+		    << "			" << displaySonsAndAttributes() ;
 		return flow.str();
 	}
 
@@ -110,10 +107,11 @@
 	const string & Node::getLowerBound()const{}	
 	const string & Node::getUpperBound()const{}	
 	const string & Node::getArchitectureID()const{}
+	const string & Node::getInitValue()const{}
 
 	//friend function
 	 ostream& operator<<(ostream& out, const Node &n){
-		out << n.toString()<<endl;
+		out << n.toString();
 		return out;
 	}
 

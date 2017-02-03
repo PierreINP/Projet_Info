@@ -49,10 +49,11 @@
 		string tmpBound;
 		int step = 0;
 
+		cout << "							Start SIGNAL structure validation"<< endl;
 		for(it = structure.begin(); it != structure.end(); it ++)
 		{
 			it_tmp = it;
-			cout << step << " | " << *it <<endl;
+			//cout << step << " | " << *it <<endl;
 
 	///////////////////////////////////////////CHECKSTRUCTURE SIGNAL///////////////////////////////////////////
 			switch(step){		
@@ -516,6 +517,7 @@
 				//Fin du SIGNAL
 				case 7 :        if((*it).getName()==";") {	
 							if(type== "bit" or type =="std_logic"){
+								cout << "			>>>> Create Signal son :" << endl << "				signalScalaire" << endl;
 								createScalaire(names,initValue,type); 
 								names.clear();
 								initValue.clear();
@@ -527,6 +529,7 @@
 									lowerBound = upperBound;
 									upperBound = tmpBound;
 								}
+								cout << "			>>>> Create Signal son :" << endl << "				signalComposite" << endl;
 								createComposite(names,initValue,type,lowerBound,upperBound);
 								names.clear();
 								initValue.clear();
@@ -534,7 +537,7 @@
 								lowerBound.clear();
 								upperBound.clear();
 							}
-							cout << "Structure SIGNAL validée" << endl;
+							cout << "							Structure SIGNAL OK" << endl;
 							return true;
 						}
 						else {
@@ -543,10 +546,35 @@
 						}
 						break;
 
-				default :	cout << "error" << endl; //cf gestion d'erreur
+				default :	cout << "							error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
 		}
+	}
+
+	string  Node_signal::displaySonsAndAttributes() const {  
+		vector<Node*>::const_iterator it;
+		stringstream mySons;
+
+		mySons << "	----Sons----" << endl;
+		for (it = sons.begin(); it != sons.end(); it++){ 
+			mySons << "			"  << (*it)->getLabel() << " : " ;
+			if ((*it)->getLabel()=="SignalScalaire"){
+				mySons << endl
+				       << "				"<<(*it)-> getName()<< endl
+				       << "				"<<(*it)-> getInitValue()<< endl
+				       << "				"<<(*it)-> getType()<< endl;
+			}
+			else if ((*it)->getLabel()=="SignalComposite"){
+				mySons << endl
+				       << "				"<<(*it)-> getName()<< endl
+				       << "				"<<(*it)-> getInitValue()<< endl
+				       << "				"<<(*it)-> getType()<< endl
+				       << "				"<<(*it)-> getLowerBound()<< endl
+				       << "				"<<(*it)-> getUpperBound()<< endl;
+			}	
+		}
+		return mySons.str();
 	}
 
 

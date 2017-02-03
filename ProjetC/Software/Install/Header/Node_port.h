@@ -21,6 +21,7 @@ public:
 	void createComposite(list<string> names, string direction, string type, string lowerBound, string upperBound);
 	void createStruct();
 	bool checkStruct();
+	string  displaySonsAndAttributes() const ;
 };
 
 #endif 

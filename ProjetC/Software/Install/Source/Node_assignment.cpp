@@ -29,11 +29,11 @@
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
 
-		cout << "L'assignation n'est pas completement implementée : manque assignation aux variables et par constantes avec ordre d'affectation ()" << endl;
+		cout << "							Start ASSIGNMENT structure validation"<< 			endl << "							       (Not fully implemented)" << endl;
 		for(it = structure.begin(); it != structure.end(); it ++)
 		{
 			it_tmp = it;
-			cout << step << " | " << *it <<endl;
+			//cout << step << " | " << *it <<endl;
 
 //////////////////////////////////////////CHECKSTRUCTURE ASSIGNATION///////////////////////////////////////////
 			switch(step){		
@@ -76,15 +76,21 @@
 
 					//Fin de l'assignation
 				case 4 :        if((*it).getName()==";") {
-							cout << "Structure ASSIGNATION validée" << endl; return true;
+							cout << "								Structure ASSIGNATION OK" << endl; return true;
 						}
 						else step=-1;
 						break;
 
-				default :	cout << "error" << endl; //cf gestion d'erreur
+				default :	cout << "							error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
 		}
+	}
+
+	string Node_assignment::toString() const {
+		stringstream flow;
+		flow << "";
+		return flow.str();
 	}
 
 

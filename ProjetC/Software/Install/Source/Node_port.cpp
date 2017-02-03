@@ -51,10 +51,10 @@
 		int step = 0;
 		
 
-		//cout << "   ** Start PORT structure validation **   "<< endl;
+		cout << "							Start PORT structure validation"<< endl;
 		for(it = structure.begin(); it != structure.end(); it ++){
 			it_tmp = it;
-			cout << step << " | " << *it <<endl;
+			//cout << step << " | " << *it <<endl;
 
 			switch(step){		
 				case 0:		if((*it).getName()=="port")	{step++;}
@@ -127,7 +127,8 @@
 						break;
 
 				//Type scalaire || fin d'un port --> fin de PORT ?
-				case 7 :        createScalaire(names,direction,type); //end of line : creation of scalaire port
+				case 7 :        cout <<"		>>> Create Port son : portScalaire"<< endl;
+						createScalaire(names,direction,type); //end of line : creation of scalaire port
 						names.clear();
 						direction.clear();
 						type.clear();
@@ -196,6 +197,7 @@
 							lowerBound = upperBound;
 							upperBound = tmpBound;
 						}
+						cout <<"		>>> Create Port son : portComposite"<< endl;
 						createComposite(names,direction,type,lowerBound,upperBound);//end of line : creation of composite port
 						names.clear();
 						direction.clear();
@@ -249,17 +251,42 @@
 						break;
 
 				case 9 :        if((*it).getName()==";"){
-							cout << "	Structure PORT validée" << endl;
+							cout << "							Structure PORT OK" << endl;
 							return true;
 						}
 						else return false;    
 				
 
-				default :	cout << "error" << endl; //cf gestion d'erreur
+				default :	cout << "							error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
 		}
 	}
 
+	string  Node_port::displaySonsAndAttributes() const {  
+		vector<Node*>::const_iterator it;
+		stringstream mySons;
+
+		mySons << "	----Sons----" << endl; 
+		for (it = sons.begin(); it != sons.end(); it++){
+			mySons << "			"  << (*it)->getLabel() << " : " ;
+			if ((*it)->getLabel()=="PortScalaire"){
+				mySons << endl
+				       << "				"<<(*it)-> getName()<< endl
+				       << "				"<<(*it)-> getDirection()<< endl
+				       << "				"<<(*it)-> getType()<< endl;
+			}
+			else if ((*it)->getLabel()=="PortComposite"){
+				mySons << endl
+				       << "				"<<(*it)-> getName()<< endl
+				       << "				"<<(*it)-> getDirection()<< endl
+				       << "				"<<(*it)-> getType()<< endl
+				       << "				"<<(*it)-> getLowerBound()<< endl
+				       << "				"<<(*it)-> getUpperBound()<< endl;
+			}
+			
+		}
+		return mySons.str();
+	}
 
 

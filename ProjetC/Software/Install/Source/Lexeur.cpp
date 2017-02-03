@@ -37,7 +37,7 @@ list<Lexeme> readSource(char* file)
 		//GESTION D'ERREUR ? flags montés dans une fonction exterieure
 	}
 	else {
-		cout << "Source code openned\n";
+		cout << endl << "Source code openned\n";
 		int i;
 		while (getline(sourcecode, line)) // reads the line
     		{	

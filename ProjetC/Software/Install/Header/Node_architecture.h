@@ -19,6 +19,7 @@ public:
 	void createStruct();
 	void shapeStruct();
 	bool checkStruct();
+	string displaySonsAndAttributes() const ;
 
 //accessors
 	const string & getEntityID()const;

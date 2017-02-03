@@ -29,13 +29,13 @@
 				   or(*it_tmp).getName()=="variable" 
 				   or(*it_tmp).getName()=="component" 
 				   or(*it_tmp).getName()=="type"){
-					cout <<"	>>> Add Architecture son : declaration"<< endl;
+					cout <<"	>> Create Architecture son : declaration"<< endl;
 					sons.push_back(new Node_declaration(++it));
 				}	
 			}
 
 			else if(((*it).getName() == "process") and ((*it).getType() == "keyword")){
-				cout <<"	>>> Add Architecture son : process"<< endl;
+				cout <<"	>> Create Architecture son : process"<< endl;
 				sons.push_back(new Node_process(it));
 				do {it++;}
 				while((*it).getName() != "process");
@@ -43,11 +43,11 @@
 
 			else if((*it).getType() == "id"){
 				if ((*++it_tmp).getName()=="<="){
-					cout <<"	>>> Add Architecture son : assignment "<< (*it).getName() << endl;
+					cout <<"	>> Create Architecture son : assignment "<< endl;
 					sons.push_back(new Node_assignment(it));
 				}
 				else if ((*it_tmp).getName()==":" and (*++it_tmp).getName() == "="){
-					cout <<"	>>> Add Architecture son : assignment "<< (*it).getName() << endl;
+					cout <<"	>> Create Architecture son : assignment "<< endl;
 					sons.push_back(new Node_assignment(it));
 				}
 			}
@@ -94,10 +94,11 @@
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
 
+		cout << "							Start ARCHITECTURE structure validation"<< endl;
 		for(it = structure.begin(); it != structure.end(); it ++)
 		{
 			it_tmp = it;
-			cout << step << " | " << *it <<endl;
+			//cout << step << " | " << *it <<endl;
 	///////////////////////////////////////////CHECKSTRUCTURE ARCHITECTURE///////////////////////////////////////////
 			switch(step){		
 				case 0:		if((*it).getName()=="architecture"){step++;}
@@ -185,14 +186,25 @@
 						}
 						break;
 
-				case 8 :        if((*it).getName()==";"){cout << "Structure ARCHITECTURE validée" << endl; return true;}
+				case 8 :        if((*it).getName()==";"){cout << "							Structure ARCHITECTURE OK" << endl; return true;}
 						else {cout << "On termine une architecture par end process; !" << endl; return false;}    
 
-				default :	cout << "error" << endl; //cf gestion d'erreur
+				default :	cout << "							error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
 
 		}
+	}
+
+	string  Node_architecture::displaySonsAndAttributes() const {  
+		vector<Node*>::const_iterator it;
+		stringstream mySons;
+
+		mySons << "	----Sons----" << endl; 
+		for (it = sons.begin(); it != sons.end(); it++){
+			mySons << "				"  << (*it)->getLabel() << endl;
+		}
+		return mySons.str();
 	}
 
 //accessors

@@ -17,6 +17,7 @@ public:
 	void createStruct();
 	void shapeStruct();
 	bool checkStruct();
+	string  displaySonsAndAttributes() const ;
 };
 
 #endif 

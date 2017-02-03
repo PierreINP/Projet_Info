@@ -17,15 +17,23 @@
 
 	void Node_process::createStruct(){
 		list<Lexeme>::iterator it;
-	
-		for (it = lex_it; (*it).getName() != "process"; it++){
+
+		structure.push_back(Lexeme("process"));
+		for (it = ++lex_it; (*it).getName() != "process" ; it++){
 			structure.push_back((*it).getName());
-			structure.push_back(Lexeme(";"));
 		}
+		structure.push_back(Lexeme("process"));
+		structure.push_back(Lexeme(";"));
 	}
 
 	bool Node_process::checkStruct(){
-	}
 
+	}
+	
+	string Node_process::toString() const {
+		stringstream flow;
+		flow << "";
+		return flow.str();
+	}
 
 

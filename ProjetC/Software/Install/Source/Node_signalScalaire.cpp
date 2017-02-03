@@ -3,9 +3,9 @@
 //builders
 	Node_signalScalaire::Node_signalScalaire(list<Lexeme>::iterator it, string n, string iV, string t):Node("SignalScalaire",it),name(n),initValue(iV),type(t){
 		//cout << "--- Begin of creation : " << getLabel()<< endl;
-		cout << "	Name : " << getName() << endl;
-		cout << "	InitValue : " << getInitValue() << endl;
-		cout << "	Type : " << getType() << endl;
+		//cout << "	Name : " << getName() << endl;
+		//cout << "	InitValue : " << getInitValue() << endl;
+		//cout << "	Type : " << getType() << endl;
 		//cout << "--- End of creation : " << getLabel()<< endl;	
 	}
 
@@ -14,6 +14,11 @@
 //methods
 	void Node_signalScalaire::createStruct(){}//Node virtual pure function not used for this class : subclass attributes are already set through constructor
 	bool Node_signalScalaire::checkStruct(){}//Node virtual pure function not used for this class : structure checking made at upper level of port
+
+	string Node_signalScalaire::toString() const {
+		stringstream flow;
+		return flow.str();
+	}
 
 //accessors
 	const string & Node_signalScalaire::getName()const{

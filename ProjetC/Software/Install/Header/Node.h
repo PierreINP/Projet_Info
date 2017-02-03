@@ -36,9 +36,9 @@ public:
 	bool isString(string a);
 	bool isStd_Logic(string a); 
 
-	string displaySons() const;
+	
 	string displayStruct() const;
-	virtual string displayAttributes() const;
+	virtual string displaySonsAndAttributes() const;
 	virtual string toString() const;
 
 //accessors
@@ -55,6 +55,8 @@ public:
 	virtual const string & getLowerBound()const;
 	virtual const string & getUpperBound()const;
 	virtual const string & getArchitectureID()const;
+	virtual const string & getInitValue()const;
+
  
 //Fonctions amies
 	friend ostream& operator<<(ostream& out, const Node &n);

@@ -20,7 +20,7 @@
 
 		for (iter = structure.begin(); iter != structure.end(); iter++){
 			if(((*iter).getName() == "port") and ((*iter).getType() == "keyword")){
-				cout <<"	>>> Add Entity son : port"<< endl;
+				cout <<"	>> Create Entity son : port"<< endl;
 				sons.push_back(new Node_port(iter));
 			}
 		}
@@ -44,13 +44,12 @@
 		list<Lexeme>::iterator it;
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
-		string entity_ID;
 
-		cout << "** Start ENTITY structure validation ** " << endl;
+		cout << "							Start ENTITY structure validation" << endl;
 		for(it = structure.begin(); it != structure.end(); it ++)
 		{
 			it_tmp = it;
-			cout << step << " | " << *it <<endl;
+			//cout << step << " | " << *it <<endl;
 			
 			switch(step){		//FSM struct entity
 				case 0:		if((*it).getName()=="entity"){step++;}
@@ -99,18 +98,29 @@
 						}
 						break;
 
-				case 6 :        if((*it).getName()==";"){cout << "Structure ENTITY validée" << endl; return true;}
+				case 6 :        if((*it).getName()==";"){cout << "							Structure ENTITY OK" << endl; return true;}
 						else {
 							cout << "On fini une entité par end (ID); !" << endl;
 							return false;
 						}   
 					
 
-				default :	cout << "error" << endl; //cf gestion d'erreur
+				default :	cout << "							error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
 
 		}
+	}
+
+	string  Node_entity::displaySonsAndAttributes() const {  
+		vector<Node*>::const_iterator it;
+		stringstream mySons;
+
+		mySons << "	----Sons----" << endl; 
+		for (it = sons.begin(); it != sons.end(); it++){
+			mySons << "			"  << (*it)->getLabel() << endl;
+		}
+		return mySons.str();
 	}
 
 //accessors

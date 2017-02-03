@@ -16,6 +16,7 @@ public:
 	void createSons();
 	void createStruct();
 	bool checkStruct();
+	string toString() const; 
 };
 
 #endif 

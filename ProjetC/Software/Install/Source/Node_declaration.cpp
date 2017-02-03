@@ -23,24 +23,24 @@
 
 		for (iter = structure.begin(); iter != structure.end(); iter++){
 			if(((*iter).getName() == "signal") and ((*iter).getType() == "keyword")){
-				cout <<"	>>> Add "<< getLabel() <<" son : signal"<< endl;
+				cout <<"		>>> Create "<< getLabel() <<" son : signal"<< endl;
 				sons.push_back(new Node_signal(iter));
 			}
 			else if(((*iter).getName() == "variable") and ((*iter).getType() == "keyword")){
-				cout <<"	>>> Add "<< getLabel() <<" son : variable"<< endl;
+				cout <<"		>>> Create "<< getLabel() <<" son : variable"<< endl;
 				sons.push_back(new Node_variable(iter));
 			}
 			else if(((*iter).getName() == "component") and ((*iter).getType() == "keyword")){
-				cout <<"	>>> Add "<< getLabel() <<" son : component"<< endl;
+				cout <<"		>>> Create "<< getLabel() <<" son : component"<< endl;
 				sons.push_back(new Node_component(iter));
 			}
 			else if(((*iter).getName() == "type") and ((*iter).getType() == "keyword")){
-				cout <<"	>>> Add "<< getLabel() <<" son : type"<< endl;
+				cout <<"		>>> Create "<< getLabel() <<" son : type"<< endl;
 				sons.push_back(new Node_type(iter));
 			}
 
 			if (sons.size() == 0){
-				cout<< getLabel()<< " has no son"<< endl;
+				cout<< "			---"<< getLabel()<< " has no son"<< "---" << endl;
 			}	
 		}
 	}
@@ -80,10 +80,11 @@
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
 
+		cout << "							Start DECLARATION structure validation"<< endl;
 		for(it = structure.begin(); it != structure.end(); it ++)
 		{
 			it_tmp = it;
-			cout << step << " | " << *it <<endl;
+			//cout << step << " | " << *it <<endl;
 ///////////////////////////////////////////CHECKSTRUCTURE DECLARATION///////////////////////////////////////////
 			switch(step){		
 				case 0:		if((*it).getName()=="signal" 
@@ -97,13 +98,24 @@
 						}
 						break;
 
-				default :	cout << "error" << endl; //cf gestion d'erreur
+				default :	cout << "							error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
 		}
-			cout << "Structure DECLARATION validée" << endl; 
+			cout << "							Structure DECLARATION OK" << endl; 
 			return true;
 	}
 
+
+	string  Node_declaration::displaySonsAndAttributes() const {  
+		vector<Node*>::const_iterator it;
+		stringstream mySons;
+
+		mySons << "	----Sons----" << endl; 
+		for (it = sons.begin(); it != sons.end(); it++){
+			mySons << "				"  << (*it)->getLabel() << endl;
+		}
+		return mySons.str();
+	}
 
 

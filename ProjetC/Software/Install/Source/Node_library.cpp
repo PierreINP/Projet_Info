@@ -3,18 +3,14 @@
 
 //builders
 	Node_library::Node_library(list<Lexeme>::iterator it):Node("Library",it){
-		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		createSons();
-		checkStruct();
-		//cout << "--- End of creation : " << getLabel()<< endl;	
+		checkStruct();	
 	}
 
 	Node_library::~Node_library(){}
 
 //methods
-	void Node_library::createSons(){} //No son
-
 	void Node_library::createStruct(){
 		list<Lexeme>::iterator it;
 
@@ -28,11 +24,12 @@
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
 
-		cout << "   ** Start LIBRARY structure validation **   "<< endl;
+		cout << "							Start LIBRARY structure validation"
+		     << endl;
 		for(it = structure.begin(); it != structure.end(); it ++)
 		{
 			it_tmp = it;
-			cout << step << " | " << *it <<endl;
+			//cout << step << " | " << *it <<endl;
 	///////////////////////////////////////////CHECKSTRUCTURE LIBRARY///////////////////////////////////////////
 			switch(step){		
 				case 0:		if((*it).getName()=="library"){step++;}
@@ -50,7 +47,7 @@
 						break;
 
 				case 2:		if((*it).getName()==";"){
-							cout << "Structure LIBRARY validée" << endl;
+							cout << "							Structure LIBRARY OK" << endl;
 							return true;
 						}
 						else if((*++it_tmp).getName()=="library"){step=0;}
@@ -59,11 +56,16 @@
 							return false; }	
 						break;
 
-				default :	cout << "error" << endl; //cf gestion d'erreur
+				default :	cout << "							error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
 
 		}
+	}
+
+	string Node_library::toString() const {
+		stringstream flow;
+		return flow.str();
 	}
 
 	//accessors

@@ -12,8 +12,6 @@
 	Node_libraryUse::~Node_libraryUse(){}
 
 //methods
-	void Node_libraryUse::createSons(){}//no son
-
 	void Node_libraryUse::createStruct(){
 		list<Lexeme>::iterator it;
 
@@ -28,10 +26,11 @@
 		list<Lexeme>::iterator it_tmp;
 		int step = 0;
 
+		cout << "							Start LIBRARYUSE structure validation"<< endl;
 		for(it = structure.begin(); it != structure.end(); it ++)
 		{
 			it_tmp = it;
-			cout << step << " | " << *it <<endl;
+			//cout << step << " | " << *it <<endl;
 	///////////////////////////////////////////CHECKSTRUCTURE LIBRARY USE///////////////////////////////////////////
 			switch(step){		
 				case 0:		if((*it).getName()=="use"){step++;}
@@ -82,17 +81,22 @@
 						break;
 
 				case 6 :        if((*it).getName()==";"){
-							cout << "Structure LIBRARY USE validée" << endl;
+							cout << "							Structure LIBRARYUSE OK" << endl;
 							return true;
 						}
 						else { cout<< "Manque un ; pour finir lib Use" << endl;  return false;}
 						break;    
 					
 
-				default :	cout << "error" << endl; //cf gestion d'erreur
+				default :	cout << "							error" << endl; //cf gestion d'erreur
 						return false;		  
 			}
 		}
+	}
+
+	string Node_libraryUse::toString() const {
+		stringstream flow;
+		return flow.str();
 	}
 
 //accessors

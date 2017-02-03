@@ -20,6 +20,7 @@ public:
 //methods
 	void createStruct();
 	bool checkStruct();
+	string toString() const;
 
 //accessors
 	const string & getName()const;

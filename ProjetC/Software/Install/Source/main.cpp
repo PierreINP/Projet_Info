@@ -18,12 +18,6 @@ int main(int argv, char * argc[]){
 	vector<Node*>::iterator it_tree_lvl3;
 	vector<Node*>::iterator it_tree_lvl4;
 
-	//vector<Node*> Entity_sons;
-	//vector<Node*> Port_sons;
-	
-	//vector<Node*>::iterator it_entity_sons;
-	//vector<Node*>::iterator it_port_sons;
-
 	list<Lexeme> lexeme_list;
 	list<Lexeme>::iterator iter; 
 
@@ -50,19 +44,19 @@ int main(int argv, char * argc[]){
 
 	////////////* Display all root sons lexemes structures *///////
 	for (it_tree_lvl1 = TreeLvl1.begin(); it_tree_lvl1 != TreeLvl1.end(); it_tree_lvl1++){
-		cout << endl << **it_tree_lvl1<< endl;//display sons & structure
+		cout << endl << **it_tree_lvl1;//display sons & structure
 		TreeLvl2 = (**it_tree_lvl1).getSons();
 
 		for (it_tree_lvl2 = TreeLvl2.begin(); it_tree_lvl2 != TreeLvl2.end(); it_tree_lvl2++){
-			cout << endl << **it_tree_lvl2<< endl;//display sons & structure
+			cout << endl << **it_tree_lvl2;//display sons & structure
 			TreeLvl3 = (**it_tree_lvl2).getSons();
 		
 			for (it_tree_lvl3 = TreeLvl3.begin(); it_tree_lvl3 != TreeLvl3.end(); it_tree_lvl3++){
-				cout << endl << **it_tree_lvl3<< endl;//display sons & structure
+				cout << endl << **it_tree_lvl3;//display sons & structure
 				TreeLvl4 = (**it_tree_lvl3).getSons();
 
 				for (it_tree_lvl4=TreeLvl4.begin(); it_tree_lvl4 != TreeLvl4.end(); it_tree_lvl4++){
-					cout << endl << **it_tree_lvl4<< endl;//display sons & structure
+					cout << endl << **it_tree_lvl4;//display sons & structure
 				}
 			}
 		}
