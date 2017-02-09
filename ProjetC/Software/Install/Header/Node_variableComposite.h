@@ -20,6 +20,7 @@ public:
 //methods
 	void createStruct();
 	bool checkStruct();
+	void wrondBoundaries();
 	string toString() const;
 
 //accessors

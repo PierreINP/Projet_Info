@@ -18,6 +18,10 @@
 	void Node_signalComposite::createStruct(){}//Node virtual pure function not used for this class : subclass attributes are already set through constructor
 	bool Node_signalComposite::checkStruct(){}//Node virtual pure function not used for this class : structure checking made at upper level of port
 
+	string Node_signalComposite::wrondBoundaries() {
+
+}
+
 	string Node_signalComposite::toString() const {
 		stringstream flow;
 		return flow.str();

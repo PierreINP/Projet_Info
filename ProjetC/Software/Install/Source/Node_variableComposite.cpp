@@ -23,6 +23,10 @@
 		return flow.str();
 	}
 
+	string Node_signalComposite::wrondBoundaries() {
+
+}
+
 //accessors
 	const string & Node_variableComposite::getName()const{
 		return name;
