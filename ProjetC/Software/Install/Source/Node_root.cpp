@@ -35,7 +35,7 @@
 			}
 			else if((*iter).getName() == "entity" and ((*iter).getType() == "keyword")){
 				cout <<"> Create "<< getLabel() <<" son : Entity"<< endl;
-				sons.push_back(new Node_entity(iter));	
+				sons.push_back(new Node_entity(iter,iter_endOfList));	
 			}
 			else if((*iter).getName() == "architecture" and ((*iter).getType() == "keyword")){
 				cout <<"> Create "<< getLabel() <<" son : Architecture"<< endl;

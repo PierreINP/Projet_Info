@@ -30,8 +30,7 @@ public:
 	virtual bool checkStruct() = 0;  // pure virtual
 	virtual void shapeStruct();	 // virtual
 	virtual void createSons();	 // virtual
-	
-	void cutStruct(Lexeme cutBegin, Lexeme cutEnd);
+	virtual void cutStruct(Lexeme cutBegin, Lexeme cutEnd);//virtual
 	bool isEntier(string a);
 	bool isString(string a);
 	bool isStd_Logic(string a); 

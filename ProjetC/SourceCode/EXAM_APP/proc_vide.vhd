@@ -19,12 +19,12 @@ entity proc_vide is
 
 architecture struct of proc_vide is
 
-signal data_round_in       : bit_vector(12 downto 0);
-signal data_round_out       : bit_vector(17 downto 0);
-signal First_round_KEY       : bit_vector(6 downto 0);            
-  signal round_KEY         : bit_vector(127 downto 0);            
-  signal last_round_signal    : bit;
-  signal first_round_signal    : bit;
+--signal data_round_in       : bit_vector(12 downto 0);
+--signal data_round_out       : bit_vector(17 downto 0);
+--signal First_round_KEY       : bit_vector(6 downto 0);            
+--  signal round_KEY         : bit_vector(127 downto 0);            
+--  signal last_round_signal    : bit;
+--  signal first_round_signal    : bit;
 
 
 begin

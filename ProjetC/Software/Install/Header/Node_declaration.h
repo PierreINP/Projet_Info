@@ -16,6 +16,7 @@ public:
 	void createSons();
 	void createStruct();
 	void shapeStruct();
+	void cutStruct(Lexeme cutBegin, Lexeme cutEnd);//surcharge
 	bool checkStruct();
 	string  displaySonsAndAttributes() const ;
 };

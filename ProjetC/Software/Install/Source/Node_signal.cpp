@@ -97,11 +97,11 @@
 						break;
 
 				//Détermination du type du signal [composite ou scalaire]
-				case 4 :       	///////////////////////////////////////////
+				case 4 :       type = (*it).getName();
+						///////////////////////////////////////////
 						//Bit avec initialisation
 						if((*it).getName()== "bit") {
 							if ((*++it_tmp).getName()== ":"){
-							type = (*it).getName();
 							step = 10;
 							}
 							else step = 7;
@@ -111,7 +111,6 @@
 						//std_logic avec initialisation
 						else if((*it).getName()== "std_logic"){
 							if ((*++it_tmp).getName()== ":"){
-								type = (*it).getName();
 								step = 15;
 							}
 							else step = 7;
@@ -120,7 +119,6 @@
 						//integer avec initialisation
 						else if((*it).getName()== "integer"){
 							if ((*++it_tmp).getName()== "range"){
-								type = (*it).getName();
 								step = 20;
 						}
 							else step = 7;
@@ -128,7 +126,6 @@
 						///////////////////////////////////////////
 						//string avec initialisation
 						else if((*it).getName()== "string"){
-							type = (*it).getName();
 							step = 30;
 						}
 
@@ -136,7 +133,6 @@
 						//boolean avec initialisation
 						else if((*it).getName()== "boolean") {
 							if ((*++it_tmp).getName()== ":"){
-								type = (*it).getName();
 								step = 40;
 							}
 							else step = 7;
@@ -144,7 +140,6 @@
 						///////////////////////////////////////////
 						//bit_vector avec initialisation
 						else if((*it).getName()== "bit_vector"){
-							type = (*it).getName();
 							step = 50;
 						}
 
@@ -444,7 +439,7 @@
 						}
 						break;
 
-				case 52 :       if((*it).getName()== "upto"){
+				case 52 :       if((*it).getName()== "to"){
 							countWay = true;
 							step++;
 						}

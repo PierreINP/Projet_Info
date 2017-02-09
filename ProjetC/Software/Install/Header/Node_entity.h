@@ -8,8 +8,9 @@ using namespace std;
 class Node_entity : public Node {
 private:
 	string entity_ID;
+	list<Lexeme>::iterator end_it;
 public:
-	Node_entity(list<Lexeme>::iterator it);
+	Node_entity(list<Lexeme>::iterator it, list<Lexeme>::iterator itEnd);
 	~Node_entity();
 
 //methods

@@ -58,21 +58,37 @@
 		for (iter = structure.begin(); iter != structure.end(); iter++){
 			if(((*iter).getName() == "signal") and ((*iter).getType() == "keyword")){
 				cutStruct(Lexeme("signal"),Lexeme(";"));
-				structure.pop_back();	
+				//structure.pop_back();	
 			}
 			else if(((*iter).getName() == "variable") and ((*iter).getType() == "keyword")){
 				cutStruct(Lexeme("variable"),Lexeme(";"));
-				structure.pop_back();
+				//structure.pop_back();
 			}
 			else if(((*iter).getName() == "component") and ((*iter).getType() == "keyword")){
 				cutStruct(Lexeme("component"),Lexeme(";"));
-				structure.pop_back();
+				//structure.pop_back();
 			}
 			else if(((*iter).getName() == "type") and ((*iter).getType() == "keyword")){
 				cutStruct(Lexeme("type"),Lexeme(";"));
-				structure.pop_back();
+				//structure.pop_back();
 			}
 		}	
+	}
+
+	void Node_declaration::cutStruct(Lexeme cutBegin, Lexeme cutEnd){
+		list<Lexeme>::iterator it;
+		list<Lexeme> structure_tmp;
+
+		for(it = structure.begin(); it != structure.end();it++){
+			if((*it).getName() == cutBegin.getName()){
+				structure_tmp.push_back(*it);
+				while(((*it).getName() != cutEnd.getName()) and (it != structure.end()))
+					it++;
+			}
+			structure_tmp.push_back(*it);	
+		}
+		structure_tmp.pop_back();
+		structure = structure_tmp;
 	}
 
 	bool Node_declaration::checkStruct(){
@@ -111,9 +127,11 @@
 		vector<Node*>::const_iterator it;
 		stringstream mySons;
 
+		mySons << displayStruct()<<endl;
 		mySons << "	----Sons----" << endl; 
+		
 		for (it = sons.begin(); it != sons.end(); it++){
-			mySons << "				"  << (*it)->getLabel() << endl;
+			mySons << "				"  << (*it)->getLabel()<<endl;
 		}
 		return mySons.str();
 	}

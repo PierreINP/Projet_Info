@@ -444,7 +444,7 @@
 						}
 						break;
 
-				case 52 :       if((*it).getName()== "upto"){
+				case 52 :       if((*it).getName()== "to"){
 							countWay = true;
 							step++;
 						}

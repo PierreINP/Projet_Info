@@ -132,7 +132,7 @@
 						names.clear();
 						direction.clear();
 						type.clear();
-						if((*it).getName()==";"  and (*++it_tmp).getName() == ")"){step = 8;} // si ")" après un port --> fin de PORT
+						if((*it).getName()==")"  and (*++it_tmp).getName() == ";"){step = 9;} // si ")" après un port --> fin de PORT
 						else if((*it).getName()==";"  or (*++it_tmp).getType() == "id"){step = 2;} // si "id" après un port --> nouveau port
 						else {
 							step=-1;
@@ -161,7 +161,7 @@
 						}
 						break;
 
-				case 12 :       if((*it).getName()== "upto"){
+				case 12 :       if((*it).getName()== "to"){
 							countWay = true;
 							step++;
 						}

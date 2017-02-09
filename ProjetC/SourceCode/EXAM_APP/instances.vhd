@@ -21,8 +21,8 @@ entity instances is
 
 architecture struct of instances is
 
-signal int_level_1 : bit_vector(1 downto 0);
-signal int_level_2 : bit_vector(1 downto 0);
+--signal int_level_1 : bit_vector(1 downto 0);
+--signal int_level_2 : bit_vector(1 downto 0);
 begin
 
 first: and2 port map(a => input(0),

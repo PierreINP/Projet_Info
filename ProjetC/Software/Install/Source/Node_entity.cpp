@@ -2,7 +2,7 @@
 #include "./../Header/Node_port.h"
 
 //builders
-	Node_entity::Node_entity(list<Lexeme>::iterator it):Node("Entity",it){
+	Node_entity::Node_entity(list<Lexeme>::iterator it, list<Lexeme>::iterator itEnd):Node("Entity",it), end_it(itEnd){
 		//cout << "--- Begin of creation : " << getLabel()<< endl;
 		createStruct();
 		createSons();
@@ -31,7 +31,7 @@
 
 	void Node_entity::createStruct(){
 		list<Lexeme>::iterator it;
-		for (it = lex_it; (*it).getName() != "architecture"; it++){
+		for (it = lex_it; (*it).getName() != "architecture" and it != end_it; it++){
 			structure.push_back((*it).getName());
 		}
 	}
