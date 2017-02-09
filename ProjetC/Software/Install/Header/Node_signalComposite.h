@@ -21,14 +21,14 @@ public:
 	void createStruct();
 	bool checkStruct();
 	string toString() const;
-	void wrondBoundaries();
+	string wrondBoundaries()const;
 
 //accessors
 	const string & getName()const;
 	const string & getInitValue()const;
 	const string & getType()const;
-	const string & getLowerBound()const;;
-	const string & getUpperBound()const;;
+	const string & getLowerBound()const;
+	const string & getUpperBound()const;
 };
 
 #endif 

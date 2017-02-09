@@ -23,7 +23,7 @@
 		return flow.str();
 	}
 
-	string Node_signalComposite::wrondBoundaries() {
+	string Node_variableComposite::wrondBoundaries() const{
 
 }
 
