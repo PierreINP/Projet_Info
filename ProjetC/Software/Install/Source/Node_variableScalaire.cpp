@@ -17,7 +17,6 @@
 
 	string Node_variableScalaire::toString() const {
 		stringstream flow;
-		flow << "";
 		return flow.str();
 	}
 //accessors

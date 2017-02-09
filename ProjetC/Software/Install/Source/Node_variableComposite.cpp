@@ -20,7 +20,6 @@
 
 	string Node_variableComposite::toString() const {
 		stringstream flow;
-		flow << "";
 		return flow.str();
 	}
 

@@ -562,16 +562,16 @@
 			if ((*it)->getLabel()=="VariableScalaire"){
 				mySons << endl
 				       << "				"<<(*it)-> getName()<< endl
-				       << "				"<<(*it)-> getInitValue()<< endl
 				       << "				"<<(*it)-> getType()<< endl;
+				       << "				"<<(*it)-> getInitValue()<< endl
 			}
 			else if ((*it)->getLabel()=="VariableComposite"){
 				mySons << endl
 				       << "				"<<(*it)-> getName()<< endl
-				       << "				"<<(*it)-> getInitValue()<< endl
 				       << "				"<<(*it)-> getType()<< endl
 				       << "				"<<(*it)-> getLowerBound()<< endl
 				       << "				"<<(*it)-> getUpperBound()<< endl;
+				       << "				"<<(*it)-> getInitValue()<< endl
 			}	
 		}
 		return mySons.str();

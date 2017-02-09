@@ -454,7 +454,7 @@
 						break;
 
 				case 53 :       if(isEntier((*it).getName())){
-							lowerBound=(*it).getName();
+							upperBound=(*it).getName();
 							step++;
 						}
 						else {
@@ -557,16 +557,17 @@
 			if ((*it)->getLabel()=="SignalScalaire"){
 				mySons << endl
 				       << "				"<<(*it)-> getName()<< endl
-				       << "				"<<(*it)-> getInitValue()<< endl
 				       << "				"<<(*it)-> getType()<< endl;
+				       << "				"<<(*it)-> getInitValue()<< endl
+
 			}
 			else if ((*it)->getLabel()=="SignalComposite"){
 				mySons << endl
 				       << "				"<<(*it)-> getName()<< endl
-				       << "				"<<(*it)-> getInitValue()<< endl
 				       << "				"<<(*it)-> getType()<< endl
 				       << "				"<<(*it)-> getLowerBound()<< endl
 				       << "				"<<(*it)-> getUpperBound()<< endl;
+				       << "				"<<(*it)-> getInitValue()<< endl
 			}	
 		}
 		return mySons.str();
