@@ -58,37 +58,17 @@
 		for (iter = structure.begin(); iter != structure.end(); iter++){
 			if(((*iter).getName() == "signal") and ((*iter).getType() == "keyword")){
 				cutStruct(Lexeme("signal"),Lexeme(";"));
-				//structure.pop_back();	
 			}
 			else if(((*iter).getName() == "variable") and ((*iter).getType() == "keyword")){
 				cutStruct(Lexeme("variable"),Lexeme(";"));
-				//structure.pop_back();
 			}
 			else if(((*iter).getName() == "component") and ((*iter).getType() == "keyword")){
 				cutStruct(Lexeme("component"),Lexeme(";"));
-				//structure.pop_back();
 			}
 			else if(((*iter).getName() == "type") and ((*iter).getType() == "keyword")){
 				cutStruct(Lexeme("type"),Lexeme(";"));
-				//structure.pop_back();
 			}
 		}	
-	}
-
-	void Node_declaration::cutStruct(Lexeme cutBegin, Lexeme cutEnd){
-		list<Lexeme>::iterator it;
-		list<Lexeme> structure_tmp;
-
-		for(it = structure.begin(); it != structure.end();it++){
-			if((*it).getName() == cutBegin.getName()){
-				structure_tmp.push_back(*it);
-				while(((*it).getName() != cutEnd.getName()) and (it != structure.end()))
-					it++;
-			}
-			structure_tmp.push_back(*it);	
-		}
-		structure_tmp.pop_back();
-		structure = structure_tmp;
 	}
 
 	bool Node_declaration::checkStruct(){
@@ -106,11 +86,16 @@
 				case 0:		if((*it).getName()=="signal" 
 						or (*it).getName()=="variable" 
 						or (*it).getName()=="component" 
-						or (*it).getName()=="type") {step = 0;}
+						or (*it).getName()=="type") {step = 1;}
 
 						else {
 							cout << "error" << endl; //cf gestion d'erreur
 							return false;	//rentre dans le cas default
+						}
+						break;
+
+				case 1:		if ((*it).getName()==";"){
+							step=0;
 						}
 						break;
 
