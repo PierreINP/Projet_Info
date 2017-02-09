@@ -21,7 +21,7 @@ public:
 	void createStruct();
 	bool checkStruct();
 	string toString() const;
-	string wrondBoundaries()const;
+	void wrondBoundaries();
 
 //accessors
 	const string & getName()const;

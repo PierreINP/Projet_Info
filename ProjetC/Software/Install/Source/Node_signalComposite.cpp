@@ -9,6 +9,7 @@
 		//cout << "	lowerBound : " << getLowerBound() << endl;
 		//cout << "	upperBound : " << getUpperBound() << endl;
 		//cout << "--- End of creation : " << getLabel()<< endl;	
+	wrondBoundaries();
 	}
 
 	Node_signalComposite::~Node_signalComposite(){}
@@ -18,8 +19,10 @@
 	void Node_signalComposite::createStruct(){}//Node virtual pure function not used for this class : subclass attributes are already set through constructor
 	bool Node_signalComposite::checkStruct(){}//Node virtual pure function not used for this class : structure checking made at upper level of port
 
-	string Node_signalComposite::wrondBoundaries() const{
-
+	void Node_signalComposite::wrondBoundaries(){
+		if (getLowerBound() >= getUpperBound()) {
+										cout << "							Wrong direction for boundaries" << endl;
+		}
 	}
 
 	string Node_signalComposite::toString() const {

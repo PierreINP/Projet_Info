@@ -9,6 +9,7 @@
 		//cout << "	lowerBound : " << getLowerBound() << endl;
 		//cout << "	upperBound : " << getUpperBound() << endl;
 		//cout << "--- End of creation : " << getLabel()<< endl;	
+	wrondBoundaries();
 	}
 
 	Node_variableComposite::~Node_variableComposite(){}
@@ -23,10 +24,11 @@
 		return flow.str();
 	}
 
-	string Node_variableComposite::wrondBoundaries() const{
-
-}
-
+	void Node_variableComposite::wrondBoundaries() {
+		if (getLowerBound() >= getUpperBound()) {
+										cout << "							CONTEXT : Wrong direction for boundaries" << endl;
+		}
+	}
 //accessors
 	const string & Node_variableComposite::getName()const{
 		return name;
